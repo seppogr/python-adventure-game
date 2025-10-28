@@ -1,14 +1,18 @@
 import time
+import os
 
 paikat = [
         {'tupa' :'tupa',
          'tarina': 'Olet vanhassa hollituvassa.',
         'esineet': {'avain': 'avain', 'lamppu': 'lamppu'},
-        'indeksi': 0},
+        'hahmot': 'isäntä',
+        'puhe' : 'Kellarissa on grue. Varo ettei se popsaise sinua suihinsa!'
+        },
         {'kellari': 'kellari',
-         'tarina': 'Onpa täällä pimeää. Hui! Siunt todennäköisesti syö grue.',
+         'tarina': 'Onpa täällä pimeää. Hui! Siut todennäköisesti syö grue.',
          'esineet': {'kirja': 'kirja'},
-         'indeksi': 1
+         'hahmot' : 'grue',
+         'puhe' : 'Maiskis!'
         }
 ]
 
@@ -17,7 +21,7 @@ kellari = paikat[1]
 
 coms = [
     {'ota':'ota',
-     'otettavat' : {'lamppu': 'lamppu', 'avain': 'avain'}
+     'otettavat' : {'lamppu': 'lamppu', 'avain': 'avain', 'kirja': 'kirja'}
     },
     {
     'avaa': 'avaa',
@@ -37,8 +41,8 @@ menna = coms[3]
 
 
 
-pelaaja = {'pisteet':0,
-           'paikka' : 'tupa',
+pelaaja = {'pisteet': 0,
+           'paikka' : '',
            'paikkaIndeksi': 0,
            'reppu': []}
 
@@ -55,8 +59,10 @@ def showStory():
     print(f"{paikat[pelaaja['paikkaIndeksi']]['tarina']}")
 
 def checkWhere(indeksi):
-
+    #trimmedPlayer = pelaaja['paikka'][:-2]
     printText(f"Olet paikassa {pelaaja['paikka'].upper()}.")
+    printText(f'Täällä on {paikat[indeksi]['hahmot']}')
+    printText(f'Hän sanoo: {paikat[indeksi]['puhe']}')
     if len(paikat[indeksi]['esineet'])> 0:
         printText("Täältä löytyy: ")
         for esine in paikat[indeksi]['esineet']:
@@ -71,17 +77,29 @@ def setPlayerPlace(place, index):
     pelaaja['paikkaIndeksi'] = index
 
 
-def addToIventory(item):
-    pelaaja['reppu'].append(item)
-    tupa['esineet'].pop(item)
-    printText(f'{item.upper()} lisätty reppuun!')
-    print()
+def addToIventory(item, placeIndex):
+    if item in paikat[placeIndex]['esineet'].keys():
+        pelaaja['reppu'].append(item)
+        paikat[placeIndex]['esineet'].pop(item)
+        printText(f'{item.upper()} lisätty reppuun!')
+        print()
+    else:
+        printText(f'Esinettä {item} ei löydy täältä.')
 
 def checkInventory():
     printText("Repussasi on:")
     for item in pelaaja['reppu']:
         printText(item.upper())
     print()
+
+def checkForDeath(place, index):
+    if place == 'kellari' and 'lamppu' not in pelaaja['reppu']:
+        printText(f'Sinut söi kamala {paikat[index]['hahmot']}!')
+        printText(f'{paikat[index]['puhe']}')
+        return True
+    elif place == 'kellari' and 'lamppu' in pelaaja['reppu']:
+        printText(f'Lamppu pelasti sinut kamalan {paikat[index]['hahmot']}n kynsistä. HUH! ')
+        return False
 
 def unableToExecute():
     printText('Anteeksi, en ymmärtänyt.')
@@ -93,15 +111,18 @@ def printText(string):
         time.sleep(.08)
     print()
 
-sanaMaara = 0
+
 showStart()
 showStory()
-komento = input("Mitä teet?> ").strip()
+setPlayerPlace(menna['mentavat']['tupa'], 0)
+komento = input('Mitä teet?> ').strip()
 
-for item in komento.split(" "):
-        sanaMaara = sanaMaara + 1;
 
 while komento != 'Lopeta':
+    sanaMaara = 0
+    for item in komento.split(" "):
+        sanaMaara = sanaMaara + 1
+
     komentoLista = komento.split(" ")
     if sanaMaara == 1 and komento == 'apua':
             printText('Apua saa täältä!')
@@ -114,26 +135,33 @@ while komento != 'Lopeta':
 
         try:
             if (verbi == ottaa['ota']) and substantiivi == ottaa['otettavat'][substantiivi]:
-                addToIventory(substantiivi)
+                paikkaIndeksi = pelaaja['paikkaIndeksi']
+                addToIventory(substantiivi, paikkaIndeksi)
+
             elif (verbi == avata['avaa'] and substantiivi == avata['avattavat']['reppu']):
                 checkInventory()
+
             elif(verbi == kertoa['kerro'] and substantiivi == kertoa['kerrottavat']['paikka']):
-                paikkaIndeksi = pelaaja['paikkaIndeksi']['indeksi']
+                paikkaIndeksi = pelaaja['paikkaIndeksi']
                 checkWhere(paikkaIndeksi)
+
             elif(verbi == menna['mene'] and substantiivi == menna['mentavat'][substantiivi]):
                 paikkaIndeksi = checkIndex(substantiivi)
-                indeksi = paikat[paikkaIndeksi]
-                setPlayerPlace(substantiivi, indeksi)
-
+                setPlayerPlace(substantiivi, paikkaIndeksi)
+                printText(paikat[paikkaIndeksi][substantiivi].upper())
+                printText(paikat[paikkaIndeksi]['tarina'])
+                if (checkForDeath(substantiivi, paikkaIndeksi)):
+                    printText('Voi sentään. Kuolit. Peli päättyi.')
+                    break
             else:
                 unableToExecute()
         except:
-            print("kaatuu")
+            print(f'kaatuu: "{verbi}" tai "{substantiivi}" ei ole tuettujen komentojen joukossa. Kirjoita "apua" nähdäksesi sallitut komennot.')
     else:
         unableToExecute()
 
 
-    komento = input("Anna komento (kirjoita 'Lopeta' poistuaksesi): ").strip()
+    komento = input('Mitä teet?> ').strip()
 
 
 
