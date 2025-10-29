@@ -1,12 +1,28 @@
 import time
-import os
+maksimiPisteet = 20
+CGREEN  = '\33[32m'
+CEND      = '\33[0m'
+
+epht = {
+    'isäntä': {
+        'tehtävä' : 'Tuo minulle kirjani. Se jäi kellariin.',
+        'avain' : 'Tarvitset tuon avaimen että saat oven auki.',
+        'lamppu' : 'Ota lamppu niin se grue ei syö sinua',
+        'grue' : 'Kellarissa asustaa kamala grue!',
+        'kellari' : 'Se on tuossa alakerrassa.'
+    },
+    'grue' : {
+        'mikä' : 'Olen grue. Popsin sinut'
+    }
+}
 
 paikat = [
         {'tupa' :'tupa',
-         'tarina': 'Olet vanhassa hollituvassa.',
+        'tarina': 'Olet vanhassa hollituvassa.',
         'esineet': {'avain': 'avain', 'lamppu': 'lamppu'},
         'hahmot': 'isäntä',
-        'puhe' : 'Kellarissa on grue. Varo ettei se popsaise sinua suihinsa!'
+        'puhe' : 'Tervehdys matkalainen!',
+        'tiedustelut' : [*epht['isäntä'].keys()]
         },
         {'kellari': 'kellari',
          'tarina': 'Onpa täällä pimeää. Hui! Siut todennäköisesti syö grue.',
@@ -16,28 +32,51 @@ paikat = [
         }
 ]
 
+esineet = {
+    'lamppu' : {
+        'kuvaus': 'Kiva lamppu. Nytpä saa grue pitkän nenän.',
+        'synonyymi': 'kivasti valaiseva lamppu'
+    },
+    'avain' : {
+        'kuvaus': 'Vanha ruosteinen avain. Avaa kellarin oven.',
+        'synonyymi' : 'kellarin avain'
+    },
+    'kirja' : {
+        'kuvaus': 'Pahaenteinen nahkakantinen kirja. Kirjoittanut Abdul Alhazred.',
+        'synonyymi' : 'necronomicon'
+    }
+}
+
+
 tupa = paikat[0]
 kellari = paikat[1]
 
 coms = [
     {'ota':'ota',
-     'otettavat' : {'lamppu': 'lamppu', 'avain': 'avain', 'kirja': 'kirja'}
+     'otettavat' : [*esineet.keys()]
     },
     {
     'avaa': 'avaa',
-    'avattavat': {'ovi': 'ovi', 'reppu': 'reppu'}
+    'avattavat': ['ovi', 'reppu']
     },
-    {'kerro': 'kerro',
-    'kerrottavat': {'paikka': 'paikka'}
+    {'kuvaile': 'kuvaile',
+    'kuvailtavat': ['paikka', *esineet.keys()]
     },
     {'mene': 'mene',
-     'mentavat': {'tupa': 'tupa', 'kellari': 'kellari'}}
+     'mentavat': ['tupa', 'kellari']},
+    {'kysy' : 'kysy',
+
+     }
 ]
+
+
+
 
 ottaa = coms[0]
 avata = coms[1]
-kertoa = coms[2]
+kuvaile = coms[2]
 menna = coms[3]
+kysy = coms[4]
 
 
 
@@ -51,6 +90,9 @@ def checkIndex(place):
         return 0
     elif place == 'kellari':
         return 1
+def rakennaKysyttavat():
+    indeksi = checkIndex(pelaaja['paikka'])
+    return [*epht[paikat[indeksi]['hahmot']].keys()]
 
 def showStart():
     print("jepu jee peli alkaa")
@@ -61,18 +103,21 @@ def showStory():
 def checkWhere(indeksi):
     #trimmedPlayer = pelaaja['paikka'][:-2]
     printText(f"Olet paikassa {pelaaja['paikka'].upper()}.")
-    printText(f'Täällä on {paikat[indeksi]['hahmot']}')
-    printText(f'Hän sanoo: {paikat[indeksi]['puhe']}')
+    printText(f'Täällä on {paikat[indeksi]['hahmot']}.')
+    printText(f'Hän sanoo: {paikat[indeksi]['puhe']}!')
     if len(paikat[indeksi]['esineet'])> 0:
         printText("Täältä löytyy: ")
         for esine in paikat[indeksi]['esineet']:
             printText(esine)
         print()
     else:
-        printText("Huone on tyhjä.")
+        printText("Huoneessa ei ole poimittavia esineitä.")
+
+def checkItem(item):
+    print(f'{esineet[item]['kuvaus']}')
+
 
 def setPlayerPlace(place, index):
-    print(index)
     pelaaja['paikka'] = place
     pelaaja['paikkaIndeksi'] = index
 
@@ -81,16 +126,23 @@ def addToIventory(item, placeIndex):
     if item in paikat[placeIndex]['esineet'].keys():
         pelaaja['reppu'].append(item)
         paikat[placeIndex]['esineet'].pop(item)
-        printText(f'{item.upper()} lisätty reppuun!')
+        printText(f'{esineet[item]['synonyymi'].upper()} lisätty reppuun!')
         print()
     else:
         printText(f'Esinettä {item} ei löydy täältä.')
 
 def checkInventory():
-    printText("Repussasi on:")
-    for item in pelaaja['reppu']:
-        printText(item.upper())
+    if len(pelaaja['reppu']) > 0:
+        printText("Repussasi on:")
+        for item in pelaaja['reppu']:
+            printText(CGREEN + esineet[item]['synonyymi'].upper() + CEND)
+    else:
+        printText('Reppusi on tyhjä.')
     print()
+
+def tellMeMore(question, index):
+    hahmo = paikat[index]['hahmot']
+    print(f'{hahmo.capitalize()} sanoo "{epht[hahmo][question]}"')
 
 def checkForDeath(place, index):
     if place == 'kellari' and 'lamppu' not in pelaaja['reppu']:
@@ -108,13 +160,13 @@ def unableToExecute():
 def printText(string):
     for char in string:
         print(char, end='', flush=True)
-        time.sleep(.08)
+        time.sleep(.05)
     print()
 
 
 showStart()
 showStory()
-setPlayerPlace(menna['mentavat']['tupa'], 0)
+setPlayerPlace(tupa['tupa'], 0)
 komento = input('Mitä teet?> ').strip()
 
 
@@ -134,18 +186,21 @@ while komento != 'Lopeta':
         substantiivi = komentoLista[1]
 
         try:
-            if (verbi == ottaa['ota']) and substantiivi == ottaa['otettavat'][substantiivi]:
+            if (verbi == ottaa['ota']) and substantiivi in ottaa['otettavat']:
                 paikkaIndeksi = pelaaja['paikkaIndeksi']
                 addToIventory(substantiivi, paikkaIndeksi)
 
-            elif (verbi == avata['avaa'] and substantiivi == avata['avattavat']['reppu']):
+            elif (verbi == 'avaa' and substantiivi == 'reppu'):
                 checkInventory()
 
-            elif(verbi == kertoa['kerro'] and substantiivi == kertoa['kerrottavat']['paikka']):
-                paikkaIndeksi = pelaaja['paikkaIndeksi']
-                checkWhere(paikkaIndeksi)
+            elif(verbi == kuvaile['kuvaile'] and substantiivi in kuvaile['kuvailtavat']):
+                if substantiivi == 'paikka':
+                    paikkaIndeksi = pelaaja['paikkaIndeksi']
+                    checkWhere(paikkaIndeksi)
+                else:
+                    checkItem(substantiivi)
 
-            elif(verbi == menna['mene'] and substantiivi == menna['mentavat'][substantiivi]):
+            elif(verbi == menna['mene'] and substantiivi in menna['mentavat']):
                 paikkaIndeksi = checkIndex(substantiivi)
                 setPlayerPlace(substantiivi, paikkaIndeksi)
                 printText(paikat[paikkaIndeksi][substantiivi].upper())
@@ -153,6 +208,11 @@ while komento != 'Lopeta':
                 if (checkForDeath(substantiivi, paikkaIndeksi)):
                     printText('Voi sentään. Kuolit. Peli päättyi.')
                     break
+
+            elif(verbi == 'kysy' and substantiivi in rakennaKysyttavat()):
+                paikkaIndeksi = checkIndex(pelaaja['paikka'])
+                tellMeMore(substantiivi, paikkaIndeksi)
+
             else:
                 unableToExecute()
         except:
@@ -164,6 +224,6 @@ while komento != 'Lopeta':
     komento = input('Mitä teet?> ').strip()
 
 
-
+printText(f'Ensi kertaan! Lopulliset pisteesi ovat: {pelaaja["pisteet"]} / {maksimiPisteet}.')
 
 
