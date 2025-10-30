@@ -1,0 +1,6 @@
+Sallitut komennot:
+- ota <esine>
+- anna <esine>
+- kuvaile <paikka> tai <esine>
+- avaa <reppu> tai <ovi>
+- kysy <asia> tai <esine>

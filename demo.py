@@ -1,8 +1,12 @@
 import time
-maksimiPisteet = 20
+from collections import Counter
+maksimiPisteet = 6
 CGREEN  = '\33[32m'
+CVIOLET = '\33[35m'
 CEND      = '\33[0m'
 
+# eph:den kahta viimeistä avainta ei näytetä pelaajalle, ne sisältävät aina
+# pelin sisäistä dataa
 epht = {
     'isäntä': {
         'tehtävä' : 'Tuo minulle kirjani. Se jäi kellariin.',
@@ -10,11 +14,12 @@ epht = {
         'lamppu' : 'Ota lamppu niin se grue ei syö sinua!',
         'grue' : 'Kellarissa asustaa kamala grue!',
         'kellari' : 'Se on tuossa alakerrassa.',
+        'kirja' : 'Se on minulle kallisarvoinen.',
         'haluaa' : 'kirja',
         'esineet' : ['myyrä']
     },
     'grue' : {
-        'mikä' : 'Olen grue. Popsin sinut suihini!!!',
+        'grue' : 'Olen grue. Popsin sinut suihini!!!',
         'tehtävä' : 'Anna minulle tuo lamppu. Kaipaan sitä niin.',
         'haluaa' : 'lamppu',
         'esineet' : []
@@ -26,7 +31,7 @@ paikat = [
         'tarina': 'Olet vanhassa hollituvassa.',
         'esineet': {'avain': 'avain', 'lamppu': 'lamppu'},
         'hahmot': 'isäntä',
-        'puhe' : 'Tervehdys matkalainen!',
+        'puhe' : 'Tervehdys matkalainen! Olisi vähän asiaa.',
         'tiedustelut' : [*epht['isäntä'].keys()]
         },
         {'kellari': 'kellari',
@@ -74,16 +79,17 @@ coms = [
     {'anna' : 'anna'}
 ]
 
-
-
+pisteet = {
+    'lamppuOtettu' : 0,
+    'kirjaAnnettu' : 0,
+    'kirjaLuettu' : 0
+}
 
 ottaa = coms[0]
 avata = coms[1]
 kuvaile = coms[2]
 menna = coms[3]
 kysy = coms[4]
-
-
 
 pelaaja = {'pisteet': 0,
            'paikka' : '',
@@ -105,44 +111,51 @@ def tarkistaOnkoRepussa(esine):
         return True
     else:
         printText(f'{esine.upper()} ei ole repussasi.')
+        print()
         return False
 
 def showStart():
     print("Majatalon isäntä on huhuillut sinut sisään. Hän vaikuttaa hermostuneelta.")
+    print()
 
 def showStory():
     print(f"{paikat[pelaaja['paikkaIndeksi']]['tarina']}")
+    print()
 
 def checkWhere(indeksi):
     printText(f"Olet paikassa {pelaaja['paikka'].upper()}.")
     printText(f'Täällä on {paikat[indeksi]['hahmot']}.')
-    printText(f'Hän sanoo: {paikat[indeksi]['puhe']}!')
+    printText(f'Hän sanoo: {paikat[indeksi]['puhe']}')
+    print()
     printText('Voit kysyä häneltä seuraavia asioita:' )
 
     asiat = list(epht[paikat[indeksi]['hahmot']])
-    printattavat = len(asiat) -2
-
-    for i in range(printattavat):
-        printText(CGREEN + asiat[i] + CEND)
-
+    asiatPituus = len(asiat) -2
+    asiatRivissa =''
+    for i in range(asiatPituus):
+        asiatRivissa += CGREEN + asiat[i] + CEND + ' '
+    printText(asiatRivissa)
     print()
 
+    esineetRivissa =''
     if len(paikat[indeksi]['esineet'])> 0:
-        printText("Täältä löytyy: ")
+        printText(f'{CVIOLET}Täältä löytyy: {CEND}')
         for esine in paikat[indeksi]['esineet']:
-            printText(esine)
+            esineetRivissa += CVIOLET + esine + CEND + ' '
+
+        printText(esineetRivissa)
         print()
     else:
         printText("Huoneessa ei ole poimittavia esineitä.")
 
 def checkItem(item):
+    if item == 'kirja':
+        pisteet['kirjaLuettu'] = 1
     print(f'{esineet[item]['kuvaus']}')
-
 
 def setPlayerPlace(place, index):
     pelaaja['paikka'] = place
     pelaaja['paikkaIndeksi'] = index
-
 
 def addToIventory(item, placeIndex):
     if item in paikat[placeIndex]['esineet'].keys():
@@ -185,6 +198,12 @@ def tarkistaHaluaako(esine, haluttuEsine):
     else:
         return False
 
+def tarkistaPisteet():
+    if 'kirja' in epht['isäntä']['esineet']:
+        pisteet['kirjaAnnettu'] = 1
+    if 'lamppu' in pelaaja['reppu']:
+        pisteet['lamppuOtettu'] = 1
+
 def tarkistaVoitto():
     if 'kirja' in epht['isäntä']['esineet']:
         return True
@@ -213,6 +232,10 @@ def convertToBasicForm(place):
     elif place == 'kellariin':
         return 'kellari'
 
+def countPoints():
+    multiplier = Counter(list([*pisteet.values()]))
+    return multiplier[1] * 2
+
 showStart()
 showStory()
 setPlayerPlace(tupa['tupa'], 0)
@@ -225,9 +248,11 @@ while komento != ('lopeta'):
         sanaMaara = sanaMaara + 1
 
     komentoLista = komento.split(" ")
+
     if sanaMaara == 1 and komento == 'apua':
             printText('Apua saa täältä!')
-            printText(epht[paikat[pelaaja['paikkaIndeksi']]['hahmot']]['esineet'])
+            aputiedosto = open("demohelp.txt")
+            print(aputiedosto.read())
             print()
     elif sanaMaara == 1:
         unableToExecute()
@@ -243,8 +268,8 @@ while komento != ('lopeta'):
             elif (verbi == 'avaa' and substantiivi == 'reppu'):
                 checkInventory()
 
-            elif(verbi == kuvaile['kuvaile'] and substantiivi in kuvaile['kuvailtavat']):
-                if substantiivi == 'paikka':
+            elif(verbi == 'kuvaile'):
+                if substantiivi == pelaaja['paikka'] or substantiivi == 'paikka':
                     paikkaIndeksi = pelaaja['paikkaIndeksi']
                     checkWhere(paikkaIndeksi)
                 else:
@@ -273,14 +298,14 @@ while komento != ('lopeta'):
                     else:
                         print(f'{paikat[pelaaja['paikkaIndeksi']]['hahmot'].capitalize()} toteaa "{substantiivi.capitalize()} ei kelpaa minulle!"')
 
-
-
             else:
                 unableToExecute()
         except:
             print(f'kaatuu: "{verbi}" tai "{substantiivi}" ei ole tuettujen komentojen joukossa. Kirjoita "apua" nähdäksesi sallitut komennot.')
     else:
         unableToExecute()
+    tarkistaPisteet()
+    pelaaja["pisteet"] = countPoints()
 
     if(tarkistaTyhmyys()):
         print('Ei voi olla totta!')
@@ -291,10 +316,10 @@ while komento != ('lopeta'):
         print('Huikeaa, isäntä sai kirjansa ja pääsee noitumaan!')
         print('Olet voittanut!')
         break
-
+    print(f'Pisteet: {pelaaja["pisteet"]}/{maksimiPisteet}')
     komento = input('Mitä teet?> ').strip().lower()
 
 
-printText(f'Ensi kertaan! Lopulliset pisteesi ovat: {pelaaja["pisteet"]} / {maksimiPisteet}.')
+printText(f'Ensi kertaan! Lopulliset pisteesi ovat: {pelaaja["pisteet"]}/{maksimiPisteet}.')
 
 
