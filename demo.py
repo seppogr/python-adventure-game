@@ -27,7 +27,6 @@ epht = {
     }
 }
 
-
 paikat = [
         {'tupa' :'tupa',
         'tarina': 'Olet vanhassa hollituvassa.',
@@ -63,7 +62,6 @@ esineet = {
         {'kuvaus' : 'Epämääräisen oloinen kaveri. Jostain syystä niskakarvasi nousevat pystyyn kun puhut hänen kanssaan.' }
 }
 
-
 tupa = paikat[0]
 kellari = paikat[1]
 
@@ -96,9 +94,7 @@ pisteet = {
     'kirjaLuettu' : 0
 }
 
-
 # selvitellään tarvitseeko näitä ollenkaan
-
 ottaa = coms[0]
 avata = coms[1]
 kuvaile = coms[2]
@@ -107,14 +103,12 @@ kysy = coms[4]
 anna = coms[5]
 
 # pelaajaobjekti
-
 pelaaja = {'pisteet': 0,
            'paikka' : '',
            'paikkaIndeksi': 0,
            'reppu': []}
 
 # palauttaa paikkaindeksin eri paikoille
-
 def checkIndex(place):
     if place == 'tupa':
         return 0
@@ -263,6 +257,7 @@ def tarkistaVoitto():
         return True
     else:
         return False
+
 # jos pelaaja toimii erittäin tyhmästi, tämä laukeaa
 def tarkistaTyhmyys():
     if 'lamppu' in epht['grue']['esineet']:
@@ -296,12 +291,10 @@ def countPoints():
     multiplier = Counter(list([*pisteet.values()]))
     return multiplier[1] * 2
 
-
 showStart()
 showStory()
 setPlayerPlace(tupa['tupa'], 0)
 komento = input('Mitä teet?> ').strip().lower()
-
 
 while komento != ('lopeta'):
     sanaMaara = 0
@@ -315,6 +308,7 @@ while komento != ('lopeta'):
             aputiedosto = open("demohelp.txt")
             print(aputiedosto.read())
             print()
+            aputiedosto.close()
 
     elif sanaMaara == 1 and komento == 'mukana':
         showInventory()
@@ -329,7 +323,6 @@ while komento != ('lopeta'):
             if (verbi == ottaa['ota']) and substantiivi in ottaa['otettavat']:
                 paikkaIndeksi = pelaaja['paikkaIndeksi']
                 addToIventory(substantiivi, paikkaIndeksi)
-
 
             elif(verbi == 'kuvaile'):
                 if substantiivi == pelaaja['paikka'] or substantiivi == 'paikka':
@@ -347,13 +340,10 @@ while komento != ('lopeta'):
                     paikkaIndeksi = pelaaja['paikkaIndeksi']
                     substantiivi = paikat[paikkaIndeksi]['ovi']['suunta']
 
-
-
                 vanhaPaikka = pelaaja['paikka']
                 vanhaPaikkaIndeksi = checkIndex(vanhaPaikka)
                 uusiPaikka = convertToBasicForm(substantiivi)
                 paikkaIndeksi = checkIndex(uusiPaikka)
-
 
                 if paikat[vanhaPaikkaIndeksi]['ovi']['auki']:
                     setPlayerPlace(uusiPaikka, paikkaIndeksi)
@@ -377,14 +367,11 @@ while komento != ('lopeta'):
                         setPlayerPlace(vanhaPaikka, paikkaIndeksi)
                         substantiivi = vanhaPaikka
 
-
-
                 paikkaIndeksi = checkIndex(substantiivi)
 
                 if (checkForDeath(substantiivi, paikkaIndeksi)):
                     printText('Voi sentään. Kuolit. Peli päättyi.')
                     break
-
 
             elif(verbi == 'kysy' and substantiivi in rakennaKysyttavat()):
                 paikkaIndeksi = checkIndex(pelaaja['paikka'])
@@ -418,11 +405,7 @@ while komento != ('lopeta'):
         print('Olet voittanut!')
         break
 
-
     print(f'Pisteet: {pelaaja["pisteet"]}/{maksimiPisteet}')
     komento = input('Mitä teet?> ').strip().lower()
 
-
 printText(f'Ensi kertaan! Lopulliset pisteesi ovat: {pelaaja["pisteet"]}/{maksimiPisteet}.')
-
-
