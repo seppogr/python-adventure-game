@@ -8,4 +8,3 @@ def printText(string):
         print(char, end='', flush=True)
         time.sleep(.05)
     print()
-

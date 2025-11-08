@@ -16,7 +16,7 @@ places = [
         {'inn' :'inn',
         'story': 'Olet vanhassa hollituvassa.',
         'items': {'key': 'key', 'lamp': 'lamp'},
-        'characters': 'isäntä',
+        'characters': 'innkeeper',
         'speech' : 'Tervehdys matkalainen! Olisi vähän asiaa.',
         'door' : {'open': False, 'direction' : 'basement', 'open' : 'key' },
         'directions': ['basement', 'plaza', 'attic']

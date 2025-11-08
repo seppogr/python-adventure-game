@@ -1,7 +1,14 @@
-from Player import MainChar
-from Place import *
+from places import places
+from Player import player
+#from player import Player
 from commands import *
-from printer import printText
+import utils
+import printer
+
+
+utils.setPlayerPlace('inn', 0)
+utils.showStart()
+utils.showStory()
 
 
 
@@ -16,7 +23,7 @@ while commandInput != ('quit'):
 
     if wordCountInCommand == 1 and commandInput in singleWordCommands:
         if commandInput == 'help':
-            printText('GET SOME HELP HERE')
+            printer.printText('GET SOME HELP HERE')
             # aputiedosto = open("demohelp.txt")
             #todo: write the file below properly
             # print(aputiedosto.read())
@@ -26,23 +33,23 @@ while commandInput != ('quit'):
         elif commandInput == 'inventory':
             print(commandInput)
 
+
+
     elif wordCountInCommand == 2:
         verb = listOfCommands[0]
         noun = listOfCommands[1]
 
         if verb not in commandVerbs:
             print('illegal command VERB')
+            #todo early exit if verb not allowed
 
         try:
-
-
-            if(verb == 'go' and noun in MainChar.currentPlace.directions.keys()):
-                print(f'lessgogogoog to {noun}')
-                indexOfPlaceObject = MainChar.currentPlace.directions[noun]
-                MainChar.set_current_place(places[indexOfPlaceObject])
-                print(MainChar.currentPlace.placeName)
-
-
+            if(verb == 'go' and noun in places[player['placeIndex']]['directions']):
+                index = utils.getPlayerPlaceIndex(noun)
+                utils.setPlayerPlace(noun, index)
+                for direction in places[player['placeIndex']]['directions']:
+                    printer.printText(f'Available direction: {direction}')
+                utils.showStory()
 
             # else:
             #     print('Caanot go there from here')

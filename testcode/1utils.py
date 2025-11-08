@@ -1,5 +1,5 @@
 from places import places
-from player import player
+from Player import player
 
 # prints the start story on screen
 # todo a lot!!!
