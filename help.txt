@@ -1,0 +1,31 @@
+This is the help file. Use the following commands in the game:
+
+You can use one or two words, some verbs can be used either singulary
+or together with a noun.
+
+
+1-word:
+
+'help'              ->  Brings out this help file
+
+'describe'          ->  Gives you a brief description of the room or area you are in.
+                        Helpful in figuring out whatt o ask or pick up etc.
+
+'chat'              ->  A casual greeting to the npc on the room or area. Useful in figuring
+                        out what to ask the character.
+
+'directions'        ->  You take a look around and see where to go next.
+
+'inventory'         -> What's in your bag at the moment.
+
+2-word:
+
+go + <place>        ->  Move from one place to another. If you cannot think of a next place to go,
+                        have a brief look around with 'directions' command.
+
+describe + <item>   ->  Describe an item more thoroughly. Can be important when you are trying to
+                        find important clues. Available items in the area or room can be quicky seen
+                        with the help of 'describe' command, or maybe with 'ask <about>'.
+
+ask + <about>       ->  Ask another character about an item or place, or about some other character. If
+                        you are unsure what to ask about, use 'chat' command.
