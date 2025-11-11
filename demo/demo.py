@@ -305,10 +305,10 @@ while komento != ('lopeta'):
 
     if sanaMaara == 1 and komento == 'apua':
             printText('Apua saa täältä!')
-            aputiedosto = open("demohelp.txt")
-            print(aputiedosto.read())
-            print()
-            aputiedosto.close()
+            # aputiedosto = open("demohelp.txt")
+            # print(aputiedosto.read())
+            # print()
+            # aputiedosto.close()
 
     elif sanaMaara == 1 and komento == 'mukana':
         showInventory()

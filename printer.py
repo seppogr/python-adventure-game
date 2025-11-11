@@ -11,4 +11,4 @@ def printText(string):
     print()
 
 def printInColour(string, colourCode):
-    return colourCode + string + CEND
+    return colourCode + string + END

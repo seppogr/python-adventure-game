@@ -1,4 +1,4 @@
-singleWordCommands = ['help', 'inventory', 'describe', 'directions']
+singleWordCommands = ['help', 'inventory', 'describe', 'directions', 'test']
 
 commandVerbs = ['go', 'describe', 'ask', 'chat']
 

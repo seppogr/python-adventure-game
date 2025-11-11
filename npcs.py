@@ -1,11 +1,13 @@
 # A dictionary of various non-player characters encountered n the game.
 # Keys represent different conversation topics and values what the npc has to say about it.
-# Last three key-value pairs are invisible to the player and used in marking the quests
-# progression and npc inventory.
+# Last four key-value pairs are invisible to the player and used in marking the quests
+# progression and npc inventory and other data not meant as a conversation topic.
 
 npcs = {
+    'default' : {
+
+    },
     'innkeeper': {
-        'greeting' : 'Hello traveler',
         'name' : 'I am Alfred the innkeeper.',
         'job' : 'Yes, I AM the innkeeper.',
         'mission' : 'There is a book in the basement. Can you bring it to me.',
@@ -16,15 +18,16 @@ npcs = {
         'book' : 'The count left it there',
         'description' : 'A middle-aged man with a beard and a worried look on his face. Probably wants to talk to you about something.',
         'wants' : 'book',
-        'items' : ['mole']
+        'items' : ['key'],
+        'greeting' : 'Hello traveler',
     },
     'grue' : {
-        'greeting' : 'Graugh!!!',
         'grue' : 'I am GRUE!!!',
         'mission' : 'What a nice lamp you have, please give it to me!',
         'book' : 'It says NECRONOMICON on the cover. A bit shady if you ask me.',
         'description' : 'A sharp-toothed monster. Likely you will get eaten by it.',
         'wants' : 'lamp',
-        'items' : []
+        'items' : [],
+        'greeting' : 'Graugh!!!'
     }
 }

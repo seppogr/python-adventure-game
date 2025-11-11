@@ -4,9 +4,15 @@
 def extractList(listOfItems):
     return str(' '.join([str(item) for item in listOfItems]))
 
+
+# 4 is magic number here because the last FOUR keys in the
+# npcs[character] dictionary in npcs.py are not meant to be revealed
+# to the player as converstaion topics.
+
 def npcTopics(list):
     chatList = [*list]
-    s = ''
-    for item in range(0, len(chatList) - 3):
-        s += chatList[item] + ' '
-    return s
+    showThisAmountOfTopics = len(chatList) - 4
+    conversationTopics = ''
+    for item in range(0, showThisAmountOfTopics):
+        conversationTopics+= chatList[item] + ' '
+    return conversationTopics

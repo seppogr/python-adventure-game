@@ -1,3 +1,15 @@
+# Place:
+#         placeName -> name of the place : string
+#         placeIndex -> index number of the place: number
+#         atFirstGlance -> description of the place when the player enters : string
+#         items -> inventory of items in the place : list
+#         character -> characters you can talk to : list
+#         description- > more information of the place : string
+#         door -> door properties : dictionary
+#               open : boolean (False if locked, True if open)
+#               direction : string (placeName of an area)
+#               unlockedBy : string (in the items.py dictionary 'items', what is needed to unlock the door)
+#         directions - >where you can go to from here : dictionary
 
 class Place:
         """Paikkaobjekti"""
@@ -18,10 +30,10 @@ Inn = Place (
         'inn',
         0,
         'the main room of a country inn',
-        ['key', 'lamp'],
+        ['lamp'],
         ['innkeeper', 'grue'],
-        'a once-beautiful room!',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'basement' : 1, 'plaza' : 2, 'attic' : 3}
 )
 
@@ -31,8 +43,8 @@ Basement = Place (
         'a dark basement',
         ['book'],
         ['grue'],
-        'Underground area littered with debris.',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'inn': 0}
 )
 
@@ -42,8 +54,8 @@ Plaza = Place (
         'a town plaza',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'inn': 0, 'smithy' : 4, 'shop': 5, 'trail' : 6}
 )
 
@@ -53,8 +65,8 @@ Attic = Place (
         'an attic of an inn',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'inn': 0}
 )
 
@@ -64,8 +76,8 @@ Smithy = Place (
         'a village smithy',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'plaza': 2}
 )
 
@@ -75,8 +87,8 @@ Shop = Place (
         'a small shop',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'plaza': 2}
 )
 
@@ -86,8 +98,8 @@ Trail = Place (
         'a forest trail',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'plaza': 2, 'manor' : 7, 'hut' : 13, 'churchyard' : 15}
 )
 
@@ -97,8 +109,8 @@ Manor = Place (
         'a grand manor house',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'trail': 6, 'stables' : 8, 'hall' : 9}
 )
 
@@ -108,8 +120,8 @@ Stables = Place (
         'the manor stables',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'manor': 7}
 )
 
@@ -119,8 +131,8 @@ Hall = Place (
         'the manor hallway',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'manor': 7, 'study': 10, 'upstairs' : 11, 'kitchen' : 12}
 )
 
@@ -130,8 +142,8 @@ Study = Place (
         'the study of the count',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'hall': 9}
 )
 
@@ -141,8 +153,8 @@ Upstairs = Place (
         'manor upstairs floor',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'hall': 9}
 )
 
@@ -152,8 +164,8 @@ Kitchen = Place (
         'well-equipped manor kitchen',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'hall': 9}
 )
 
@@ -163,8 +175,8 @@ Hut = Place (
         'a hut by the sea',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'trail': 6, 'beach' : 14}
 )
 
@@ -174,8 +186,8 @@ Beach = Place (
         'a beach',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'hut': 13, 'forest' : 16}
 )
 
@@ -185,8 +197,8 @@ Churchyard = Place (
         'a churchyard',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'trail': 6, 'forest' : 16, 'church' : 17}
 )
 
@@ -196,8 +208,8 @@ Forest = Place (
         'a green forest',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'beach': 14, 'churchyard' : 15}
 )
 
@@ -207,8 +219,8 @@ Church = Place (
         'the village church',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'churchyard': 15, 'crypt' : 18}
 )
 
@@ -218,19 +230,19 @@ Crypt = Place (
         'the crypt beneath the church',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'church': 17, 'dungeon' : 19}
 )
 
 Dungeon = Place (
         'dungeon',
         19,
-        'a horrible dungeon',
+        'a dungeon',
         ['book'],
         ['grue'],
-        'I will eat you',
-        {'open': False, 'direction' : 'basement', 'open' : 'key' },
+        'Area longer description',
+        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'crypt': 18}
 )
 places = [Inn, Basement, Plaza,
