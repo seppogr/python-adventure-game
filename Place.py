@@ -3,7 +3,7 @@
 #         placeIndex -> index number of the place: number
 #         atFirstGlance -> description of the place when the player enters : string
 #         items -> inventory of items in the place : list
-#         character -> characters you can talk to : list
+#         character -> the character in the room you can talk to : string
 #         description- > more information of the place : string
 #         door -> door properties : dictionary
 #               open : boolean (False if locked, True if open)
@@ -31,7 +31,7 @@ Inn = Place (
         0,
         'the main room of a country inn',
         ['lamp'],
-        ['innkeeper', 'grue'],
+        'innkeeper',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'basement' : 1, 'plaza' : 2, 'attic' : 3}
@@ -42,7 +42,7 @@ Basement = Place (
         1,
         'a dark basement',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'inn': 0}
@@ -53,7 +53,7 @@ Plaza = Place (
         2,
         'a town plaza',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'inn': 0, 'smithy' : 4, 'shop': 5, 'trail' : 6}
@@ -64,7 +64,7 @@ Attic = Place (
         3,
         'an attic of an inn',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'inn': 0}
@@ -75,7 +75,7 @@ Smithy = Place (
         4,
         'a village smithy',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'plaza': 2}
@@ -86,7 +86,7 @@ Shop = Place (
         5,
         'a small shop',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'plaza': 2}
@@ -97,7 +97,7 @@ Trail = Place (
         6,
         'a forest trail',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'plaza': 2, 'manor' : 7, 'hut' : 13, 'churchyard' : 15}
@@ -108,7 +108,7 @@ Manor = Place (
         7,
         'a grand manor house',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'trail': 6, 'stables' : 8, 'hall' : 9}
@@ -119,7 +119,7 @@ Stables = Place (
         8,
         'the manor stables',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'manor': 7}
@@ -130,7 +130,7 @@ Hall = Place (
         9,
         'the manor hallway',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'manor': 7, 'study': 10, 'upstairs' : 11, 'kitchen' : 12}
@@ -141,7 +141,7 @@ Study = Place (
         10,
         'the study of the count',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'hall': 9}
@@ -152,7 +152,7 @@ Upstairs = Place (
         11,
         'manor upstairs floor',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'hall': 9}
@@ -163,7 +163,7 @@ Kitchen = Place (
         12,
         'well-equipped manor kitchen',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'hall': 9}
@@ -174,7 +174,7 @@ Hut = Place (
         13,
         'a hut by the sea',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'trail': 6, 'beach' : 14}
@@ -185,7 +185,7 @@ Beach = Place (
         14,
         'a beach',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'hut': 13, 'forest' : 16}
@@ -196,7 +196,7 @@ Churchyard = Place (
         15,
         'a churchyard',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'trail': 6, 'forest' : 16, 'church' : 17}
@@ -207,7 +207,7 @@ Forest = Place (
         16,
         'a green forest',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'beach': 14, 'churchyard' : 15}
@@ -218,7 +218,7 @@ Church = Place (
         17,
         'the village church',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'churchyard': 15, 'crypt' : 18}
@@ -229,7 +229,7 @@ Crypt = Place (
         18,
         'the crypt beneath the church',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'church': 17, 'dungeon' : 19}
@@ -240,7 +240,7 @@ Dungeon = Place (
         19,
         'a dungeon',
         ['book'],
-        ['grue'],
+        'grue',
         'Area longer description',
         {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
         {'crypt': 18}

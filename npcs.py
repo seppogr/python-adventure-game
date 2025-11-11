@@ -4,9 +4,6 @@
 # progression and npc inventory and other data not meant as a conversation topic.
 
 npcs = {
-    'default' : {
-
-    },
     'innkeeper': {
         'name' : 'I am Alfred the innkeeper.',
         'job' : 'Yes, I AM the innkeeper.',
@@ -15,7 +12,7 @@ npcs = {
         'lamp' : 'The grue in the basement is afraid of light. This lamp will help you.',
         'grue' : 'Well, I am afraid the basement is home to a grue.',
         'basement' : 'Yes, the basement is our wine cellar.',
-        'book' : 'The count left it there',
+        'book' : 'The count left it in the basement',
         'description' : 'A middle-aged man with a beard and a worried look on his face. Probably wants to talk to you about something.',
         'wants' : 'book',
         'items' : ['key'],
