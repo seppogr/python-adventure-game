@@ -72,6 +72,13 @@ def take(item):
     else:
         printText(f'Hmmm. You take a long look around and it seems there is no {item} in the room.')
 
+def request(item):
+    if item in npcs[MainChar.currentPlace.character]['items']:
+        MainChar.add_to_inventory(item)
+        npcs[MainChar.currentPlace.character]['items'].remove(item)
+        printText(f'You politely inform that the {MainChar.currentPlace.character}\'s {item} is required in your investigation. They grudgingly hand it over.')
+    else:
+        printText(f'The {MainChar.currentPlace.character} hastily explains that the {item} is not in their possession.')
 
 def actOnDoubleCommand(verb, noun):
     try:
@@ -87,6 +94,8 @@ def actOnDoubleCommand(verb, noun):
             give(noun)
         elif verb == 'take':
             take(noun)
+        elif verb == 'request':
+            request(noun)
 
     except:
         print('stutters down')
