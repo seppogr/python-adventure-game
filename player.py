@@ -51,4 +51,4 @@ class Player:
         return f'{self.points}'
 
 # initialise main character with default values
-MainChar = Player(0, Inn, 0, ['ball'])
+MainChar = Player(0, Inn, 0, ['ball', 'book'])
