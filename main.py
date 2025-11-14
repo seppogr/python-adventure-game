@@ -26,7 +26,6 @@ while commandInput != ('quit'):
         noun = listOfCommands[1]
         if verb not in commandVerbs:
             printText('That command is not supported.')
-
         actOnDoubleCommand(verb, noun)
 
     else:

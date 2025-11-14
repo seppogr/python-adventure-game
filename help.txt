@@ -1,29 +1,37 @@
 This is the help file. Use the following commands in the game:
 
 You can use one or two words, some verbs can be used either singulary
-or together with a noun. All prepositions have been omitted, so that
-for example 'ask about lamp' or 'go to plaza' take the form 'ask lamp' or
-'go plaza' respectively. Hopefully this won't cause too much confusion. Below
+or together with a noun. Please note that all prepositions have been omitted
+from the commands, so that for example
+
+'ask about lamp' or 'go to plaza'
+take the form
+'ask lamp' or 'go plaza'
+
+respectively. Hopefully this won't cause too much confusion. Below
 is the comprehensive list of commands available in the game, with some
-hopefully helpful notes. Happy gamming!
+helpful notes. Happy gamming!
 
 
 1-word:
 
-'help'              ->  Brings out this help file
+'help'              ->  Brings out this help file.
 
 'describe'          ->  Gives you a look around the room or area you are in.
                         Helpful in figuring out what to ask or pick up etc. Equals to
                         you looking about.
 
-'chat'              ->  A casual greeting to the npc on the room or area. Useful in figuring
-                        out what to ask the character.
+'chat'              ->  A casual greeting to the character in the room or area. Useful in figuring
+                        out what further actions to take with the character.
 
 'directions'        ->  You take a look around and see where to go next.
 
-'inventory'         -> What's in your bag at the moment.
+'inventory'         ->  What's in your bag at the moment.
+
 
 2-word:
+Note: Don't write the '+' sign in the command. It's just here to clarify that these verb commands
+work this way when there is a noun given as a second command word.
 
 go + <place>        ->  Move from one place to another. If you cannot think of a next place to go,
                         have a brief look around with 'directions' command.
@@ -36,3 +44,9 @@ describe + <item>   ->  Describe an item more thoroughly. Can be important when 
 ask + <about>       ->  Ask another character about an item or place, or about some other character. If
                         you are unsure what to ask about, use 'chat' command. This is a specific interaction
                         with another character.
+
+give + <item>       -> If you got a specific item that sombody wants, you can give it to them.
+
+take + <item>       -> If there is somethiing in the room that you need or want, you can get it with this command.
+
+request + <item>    -> Politely ask for an item in somebody else's possession.

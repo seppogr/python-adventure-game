@@ -1,9 +1,14 @@
 from printer import *
 from Player import MainChar
-from npcs import npcs
+from npcs import npcData
+from npcs import npcConversation
 from utils import *
 from Place import *
 from items import items
+
+# shorthand variable, make the code more readable because used a lot
+# in functions below
+currentNpc = MainChar.currentPlace.character
 
 def changePlace(direction):
     oldPlace = MainChar.currentPlace.atFirstGlance
@@ -26,43 +31,43 @@ def go(direction):
         printText(f'There is no way to reach {direction} from here.')
 
 def chat(character):
-    if character in MainChar.currentPlace.character:
-        printText(f'You greet the {character}. He says "{npcs[character]['greeting']}".')
+    if character ==  currentNpc:
+        printText(f'You greet the {character}. He says "{npcData[character]['greeting']}".')
         printText(f'The {character} chats with you. Some topics pique your interest: ')
-        topics = npcTopics(npcs[character].keys())
+        topics = npcTopics(npcConversation[character].keys())
         printText(f'{printInColour(topics, BLUE)}')
 
-        if len(npcs[character]['items']) > 0:
+        if len(npcData[character]['items']) > 0:
             printText(f'I also have these, if you need: ')
-            npcItems = extractList(npcs[character]['items'])
+            npcItems = extractList(npcData[character]['items'])
             printText(f'{printInColour(npcItems, GREEN)}')
     else:
-        printText(f'It seems {character} is not here. {MainChar.currentPlace.character.capitalize()} is amused when you talk by yourself.')
+        printText(f'It seems {character} is not here. {currentNpc.capitalize()} is amused when you talk by yourself.')
 
 def ask(noun):
-    if(noun in npcs[MainChar.currentPlace.character].keys()):
-        printText(f'The {MainChar.currentPlace.character} says "{npcs[MainChar.currentPlace.character][noun]}"')
+    if(noun in npcConversation[currentNpc].keys()):
+        printText(f'The {MainChar.currentNpc} says "{npcConversation[currentNpc][noun]}"')
     else:
         printText(f'{noun.capitalize()} is something I know nothing about.')
 
 def describe(noun):
-    if noun in MainChar.currentPlace.character:
-        printText(npcs[noun]['description'])
-    elif noun in MainChar.currentPlace.items or noun in npcs[MainChar.currentPlace.character]['items']:
+    if noun in currentNpc:
+        printText(npcData[noun]['description'])
+    elif noun in MainChar.currentPlace.items or noun in npcData[currentNpc]['items']:
         printText(items[noun]['description'])
     else:
         printText(f'You glance about the room but there is no {noun} here.')
 
 def give(item):
     if item in MainChar.inventory:
-        if item == npcs[MainChar.currentPlace.character]['wants']:
-            npcs[MainChar.currentPlace.character]['items'].append(item)
+        if item == npcData[currentNpc]['wants']:
+            npcData[currentNpc]['items'].append(item)
             if(MainChar.remove_from_inventory(item)):
-                print(f'{MainChar.currentPlace.character.capitalize()} thanks you heartily as you give your {item} away.')
+                printText(f'{currentNpc.capitalize()} thanks you heartily as you give your {item} away.')
         else:
-            printText(f'{MainChar.currentPlace.character.capitalize()} does not care for the {item}.')
+            printText(f'{currentNpc.capitalize()} does not care for the {item}.')
     else:
-        printText(f'You rummage and rummage through your bag, but there is no {item} in there. You cannot give away what you do not have.' )
+        printText(f'You rummage and rummage through your bag, but there is no {item} there. You cannot give away what you do not have.' )
 
 def take(item):
     if item in MainChar.currentPlace.items:
@@ -73,12 +78,12 @@ def take(item):
         printText(f'Hmmm. You take a long look around and it seems there is no {item} in the room.')
 
 def request(item):
-    if item in npcs[MainChar.currentPlace.character]['items']:
+    if item in npcData[currentNpc]['items']:
         MainChar.add_to_inventory(item)
-        npcs[MainChar.currentPlace.character]['items'].remove(item)
-        printText(f'You politely inform that the {MainChar.currentPlace.character}\'s {item} is required in your investigation. They grudgingly hand it over.')
+        npcData[MainChar.currentPlace.character]['items'].remove(item)
+        printText(f'You politely inform that the {currentNpc}\'s {item} is required in your investigation. They grudgingly hand it over.')
     else:
-        printText(f'The {MainChar.currentPlace.character} hastily explains that the {item} is not in their possession.')
+        printText(f'The {currentNpc} hastily explains that the {item} is not in their possession.')
 
 def actOnDoubleCommand(verb, noun):
     try:
