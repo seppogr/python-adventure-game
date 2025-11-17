@@ -9,6 +9,6 @@ items = {
     },
     'book' : {
         'description': 'An ominous black-bound tome. Written by Abdul Alhazred.',
-        'synonym' : 'necronomicon'
+        'synonym' : ' the necronomicon'
     }
 }

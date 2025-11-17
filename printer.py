@@ -1,14 +1,18 @@
 import time
 from colours import *
+print_text_delay = .05
 
-# custom  print() function
+# custom print() function
 # writes a string letter by letter with a slight delay between letters
+# defined in print_text_delay variable
 
-def printText(string):
+def print_text_slowly(string):
     for char in string:
         print(char, end='', flush=True)
-        time.sleep(.05)
+        time.sleep(print_text_delay)
     print()
 
-def printInColour(string, colourCode):
-    return colourCode + string + END
+# adds desired colour to the input string. Colour codes are stored in the # colours.py file
+def print_in_colour(string, colour_code):
+    return colour_code + string + END
+

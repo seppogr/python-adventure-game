@@ -18,10 +18,10 @@
 
 class Place:
         """Paikkaobjekti"""
-        def __init__(self, placeName, placeIndex, atFirstGlance, items, character, description, door, blocker, directions):
-                self.placeName = placeName
-                self.placeIndex = placeIndex
-                self.atFirstGlance = atFirstGlance
+        def __init__(self, place_name, place_index, at_first_glance, items, character, description, door, blocker, directions):
+                self.place_name = place_name
+                self.place_index = place_index
+                self.at_first_glance = at_first_glance
                 self.items = items
                 self.character = character
                 self.description = description
@@ -29,8 +29,8 @@ class Place:
                 self.blocker = blocker
                 self.directions = directions
 
-        def get_placeName(self):
-                return self.placeName
+        def get_place_name(self):
+                return self.place_name
 
 Inn = Place (
         'inn',
@@ -39,8 +39,8 @@ Inn = Place (
         ['lamp'],
         'innkeeper',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'basement' : 1, 'plaza' : 2, 'attic' : 3}
 )
 
@@ -51,8 +51,8 @@ Basement = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': True, 'direction' : 'inn', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'inn': 0}
 )
 
@@ -63,8 +63,8 @@ Plaza = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-       {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+       {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'inn': 0, 'smithy' : 4, 'shop': 5, 'trail' : 6}
 )
 
@@ -75,8 +75,8 @@ Attic = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'inn': 0}
 )
 
@@ -87,8 +87,8 @@ Smithy = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'plaza': 2}
 )
 
@@ -99,8 +99,8 @@ Shop = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'plaza': 2}
 )
 
@@ -111,8 +111,8 @@ Trail = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'plaza': 2, 'manor' : 7, 'hut' : 13, 'churchyard' : 15}
 )
 
@@ -123,8 +123,8 @@ Manor = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'trail': 6, 'stables' : 8, 'hall' : 9}
 )
 
@@ -135,8 +135,8 @@ Stables = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'manor': 7}
 )
 
@@ -147,8 +147,8 @@ Hall = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'manor': 7, 'study': 10, 'upstairs' : 11, 'kitchen' : 12}
 )
 
@@ -159,8 +159,8 @@ Study = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'hall': 9}
 )
 
@@ -171,8 +171,8 @@ Upstairs = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'hall': 9}
 )
 
@@ -183,8 +183,8 @@ Kitchen = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'hall': 9}
 )
 
@@ -195,8 +195,8 @@ Hut = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'trail': 6, 'beach' : 14}
 )
 
@@ -207,8 +207,8 @@ Beach = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'hut': 13, 'forest' : 16}
 )
 
@@ -219,8 +219,8 @@ Churchyard = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'trail': 6, 'forest' : 16, 'church' : 17}
 )
 
@@ -231,8 +231,8 @@ Forest = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'beach': 14, 'churchyard' : 15}
 )
 
@@ -243,8 +243,8 @@ Church = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'churchyard': 15, 'crypt' : 18}
 )
 
@@ -255,8 +255,8 @@ Crypt = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'church': 17, 'dungeon' : 19}
 )
 
@@ -267,8 +267,8 @@ Dungeon = Place (
         ['book'],
         'grue',
         'Area longer description',
-        {'open': False, 'direction' : 'basement', 'unlockedBy' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','afterMessage' : ''},
+        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'crypt': 18}
 )
 places = [Inn, Basement, Plaza,

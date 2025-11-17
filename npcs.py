@@ -1,7 +1,7 @@
-# npcData:
+# npc_data:
 # all data used in the game regarding the npc.
 
-npcData = {
+npc_data = {
     'innkeeper': {
         'description' : 'A middle-aged man with a beard and a worried look on his face. Probably wants to talk to you about something.',
         'wants' : 'book',
@@ -16,11 +16,11 @@ npcData = {
     }
 }
 
-# npcConversation:
+# npc_conversation:
 # A dictionary of various non-player characters encountered n the game.
 # Keys represent different conversation topics and values what the npc has to say about it.
 
-npcConversation = {
+npc_conversation = {
     'innkeeper' : {
         'name' : 'I am Alfred the innkeeper.',
         'job' : 'Yes, I AM the innkeeper.',
