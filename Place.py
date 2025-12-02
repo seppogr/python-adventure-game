@@ -32,13 +32,26 @@ class Place:
         def get_place_name(self):
                 return self.place_name
 
+        @classmethod
+        def get_Place(cls):
+                return cls
+
 Inn = Place (
         'inn',
         0,
         'the main room of a country inn',
         ['lamp'],
         'innkeeper',
-        'Area longer description',
+        '''
+        COMMON ROOM
+
+        This is a typical inn. You can see several tables and chairs,
+        and there is a fire warming up weary travelers in the fireplace.
+        You smell a delicious aroma in the air. In the back of the room
+        there is a bar, and behind it an innkeeper stands ready to serve
+        customers. Curiously, there is no one else around.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'basement' : 1, 'plaza' : 2, 'attic' : 3}
@@ -49,8 +62,18 @@ Basement = Place (
         1,
         'a dark basement',
         ['book'],
-        'grue',
-        'Area longer description',
+        'wererat',
+        '''
+        THE INN BASEMENT
+
+        As you take a look around in the lamplight, you can see almost nothing
+        out of the ordinary in this underground celler. Several goods requiring
+        cold storage are stacked here in barrels and crates. However, there is
+        a character shifting nervously just at the edge of the circle of light
+        radiating from your lamp. It looks like a you have stumbled into the
+        lair of a sharp-toothed wererat.
+
+        ''',
         {'open': True, 'direction' : 'inn', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'inn': 0}
@@ -61,8 +84,16 @@ Plaza = Place (
         2,
         'a town plaza',
         ['book'],
-        'grue',
-        'Area longer description',
+        'idler',
+        '''
+        THE TOWN SQUARE
+
+        You can see several buildings lining up this small town square or plaza,
+        but people are absent. The only one around seems to be some sort of
+        village idler. They sure talk a lot but don't make much sense. A
+        clinking noise is coming from the village smithy.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'inn': 0, 'smithy' : 4, 'shop': 5, 'trail' : 6}
@@ -71,10 +102,18 @@ Plaza = Place (
 Attic = Place (
         'attic',
         3,
-        'an attic of an inn',
+        'a dusty attic',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        THE INN ATTIC
+
+        This is the inn attic. Whereas other areas have been quite neat and tidy,
+        this room is the total opposite. There are all sorts of piles of junk
+        everywhere and you guess that it would take a better part of a week
+        to organise everything.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'inn': 0}
@@ -86,7 +125,14 @@ Smithy = Place (
         'a village smithy',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        SMITHY
+
+        Heat and smell of metal welcomes you to the village smithy. There are
+        tools everywhere, and a giant anvil dominates the room. The deafening noise
+        stops when you open the door and enter. All is suddenly very, very quiet.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'plaza': 2}
@@ -95,10 +141,19 @@ Smithy = Place (
 Shop = Place (
         'shop',
         5,
-        'a small shop',
+        'a local shop',
         ['book'],
         'grue',
-        'Area longer description',
+
+        '''
+        A SMALL SHOP
+
+        As you enter from the open door, you find yourseld in a shop. It is evident
+        that the customers are local farmers as the products on sale are typical
+        farming equipment. Maybe there could be something useful to buy amidst all
+        the items you deem unnecessary in your profession.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'plaza': 2}
@@ -110,7 +165,15 @@ Trail = Place (
         'a forest trail',
         ['book'],
         'grue',
-        'Area longer description',
+         '''
+        TRAIL IN THE FOREST
+
+        The trail leading to local manor is not wide, but a well-enough
+        maintained that a carriage can pass through. It is still evident
+        that traffic is scarce. The air smells fresh and forest around is
+        green with plants and trees.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'plaza': 2, 'manor' : 7, 'hut' : 13, 'churchyard' : 15}
@@ -119,10 +182,18 @@ Trail = Place (
 Manor = Place (
         'manor',
         7,
-        'a grand manor house',
+        'a manor courtyard',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        MANOR COURTYARD
+
+        You are looking at the manor of the local lord. It has two stories
+        and has clearly seen better days: the paint is peeling here and there
+        and the roof looks like it would need a makeover before it starts
+        leaking. You hazard a guess it will as soon as it starts raining.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'trail': 6, 'stables' : 8, 'hall' : 9}
@@ -134,7 +205,15 @@ Stables = Place (
         'the manor stables',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        STABLES
+
+        This is the place where normally horses are kept out of the rain. However,
+        at the moment there are none due to a grisly scene in one of the corners.
+        You can see a body of a young man inotherwise fine shape except the head
+        is missing.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'manor': 7}
@@ -146,7 +225,13 @@ Hall = Place (
         'the manor hallway',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        MANOR HALLWAY
+
+        As you enter the hallway a strange quietness envelopes you. It is as
+        if there are layers and layers of buried secrets in this manor house.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'manor': 7, 'study': 10, 'upstairs' : 11, 'kitchen' : 12}
@@ -158,7 +243,15 @@ Study = Place (
         'the study of the count',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        STUDY OF THE MANOR LORD
+
+        This is the stydy of the manor lord, Count Willis. Books line the walls and
+        an old globe sits in the corner. On display is also an old armour,
+        perhaps it has once been instrumental in gaining these lands. Curiously, a
+        used-looking bed is in the corner, which looks very out-of-place.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'hall': 9}
@@ -170,7 +263,16 @@ Upstairs = Place (
         'manor upstairs floor',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        UPSTAIRS
+
+        Soft chanting fills your ears as you enter the upsairs room.
+        The upstairs is a single large space, and it is aparent that some years
+        ago large renovations were started and later abandoned. Walls have been
+        torn down but no new ones have been installed. Everywhere you looka at
+        there is dusty emptiness, except in one corner where there is bedding
+        for a single person.
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'hall': 9}
@@ -179,10 +281,17 @@ Upstairs = Place (
 Kitchen = Place (
         'a kitchen',
         12,
-        'well-equipped manor kitchen',
+        'a well-equipped manor kitchen',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        KITCHEN
+
+        The kitchen is clean, tidy and evidently run by care and precision.
+        It looks everything that the rest of the manor is not. You get a sense
+        of welcome in this room.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'hall': 9}
@@ -194,7 +303,16 @@ Hut = Place (
         'a hut by the sea',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        THE BEACH HUT
+
+        THe hut by the beach is weather-worn, but at least the roof seems tight
+        enough to keep the rain outside. By the hut door there are fishing
+        equipment and next to the hut is a patch where some plants such as potatoes
+        and carrots are grown. This does not seem to be a typical witch's hut but
+        instead a fisherman's.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'trail': 6, 'beach' : 14}
@@ -206,7 +324,15 @@ Beach = Place (
         'a beach',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        THE BEACH
+
+        THe beach goes on and on to both directions. The sea is calm today,
+        and there is nothing of interest out in the sea. However, something
+        nags at you: nothing means exactly NOTHING, and you suddenly realise
+        that there are no sea birds anywhere.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'hut': 13, 'forest' : 16}
@@ -218,7 +344,16 @@ Churchyard = Place (
         'a churchyard',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        THE CHURCHYARD
+
+        Around the churchyard there are several burail markers, and in this
+        respect the environs of the local church does not differ in any way
+        from that of a typical village church. On a closer look, you notice
+        that all the markers grow with moss and there are no fresh graves even
+        though the path to the church itself is well-used.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'trail': 6, 'forest' : 16, 'church' : 17}
@@ -230,7 +365,15 @@ Forest = Place (
         'a green forest',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        A FOREST
+
+        The trees are form a natural wall to both sides and amidst the dense
+        growth is a game trail leading onwards. Curiously, all the man-made buldings
+        in the area have shown severe dilapitation wheras the forest feels energetic
+        and healthy.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'beach': 14, 'churchyard' : 15}
@@ -242,7 +385,14 @@ Church = Place (
         'the village church',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        THE CHURCH INTERIOR
+
+        Even though the path to the church was well-traveled it is difficult
+        to believe that the church has seen much religious use recently. In the
+        dusty floor is a clear traveled path to the catacombs.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'churchyard': 15, 'crypt' : 18}
@@ -251,10 +401,18 @@ Church = Place (
 Crypt = Place (
         'crypt',
         18,
-        'the crypt beneath the church',
+        'a dark crypt',
         ['book'],
         'grue',
-        'Area longer description',
+          '''
+        THE DARK CRYPT
+
+        It seems a the church above was a much more recent construction than these catacombs.
+        You get feeling of being crushed by the walls and the floor, but not of the ceiling.
+        You suddenly notice a trail of blood droplets leading to an opening on the floor. A
+        ladder is placed in the opening for accessing the chamber below.
+
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'church': 17, 'dungeon' : 19}
@@ -266,7 +424,14 @@ Dungeon = Place (
         'a dungeon',
         ['book'],
         'grue',
-        'Area longer description',
+        '''
+        THE RITUAL CHAMBER
+
+        You have reached a large cavern beneath the catacombs. There are several people
+        of the village gathered around an altar upon which a severed head is placed.
+        You recognise the head immediately as the one that recently was attached to
+        your friend's body that was left in the stables.
+        ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
         {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
         {'crypt': 18}

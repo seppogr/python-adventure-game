@@ -1,6 +1,6 @@
 This is the help file. Use the following commands in the game:
 
-You can use one or two words, some verbs can be used either singulary
+You can use one or two words, some verbs can be used either singularly
 or together with a noun. Please note that all prepositions have been omitted
 from the commands, so that for example
 
@@ -10,7 +10,7 @@ take the form
 
 respectively. Hopefully this won't cause too much confusion. Below
 is the comprehensive list of commands available in the game, with some
-helpful notes. Happy gamming!
+helpful notes. Happy gaming!
 
 
 1-word:

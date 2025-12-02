@@ -5,11 +5,11 @@ from printer import *
 from utils import *
 from single_actions import act_on_single_command
 from double_actions import act_on_double_command
+import sys
 
-#currentInteraction = 'default'
+finish_game = False
 
-
-print_text(f'You are in {MainChar.current_place.at_first_glance}.')
+print_text_slowly(f'You are in {MainChar.current_place.at_first_glance}.')
 
 command_input = input('What will you do?> ').strip().lower()
 
@@ -25,10 +25,13 @@ while command_input != ('quit'):
         verb = list_of_commands[0]
         noun = list_of_commands[1]
         if verb not in command_verbs:
-            print_text('That command is not supported.')
+            print_text_slowly('That command is not supported.')
         act_on_double_command(verb, noun)
 
     else:
-        print_text('I do not understand that command.')
+        print_text_slowly('I do not understand that command.')
+
+    if MainChar.get_life_status() == False:
+        sys.exit(1)
 
     command_input = input('What will you do?> ').strip().lower()

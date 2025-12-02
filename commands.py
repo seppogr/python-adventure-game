@@ -1,6 +1,6 @@
 ## remove test before release
 
-single_word_commands = ['help', 'inventory', 'describe', 'directions', 'test']
+single_word_commands = ['help', 'inventory', 'describe', 'directions', 'test', 'commands', 'quit']
 
 ## Commands to be added:
 # drop

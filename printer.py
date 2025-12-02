@@ -1,6 +1,6 @@
 import time
 from colours import *
-print_text_delay = .05
+print_text_delay = .001
 
 # custom print() function
 # writes a string letter by letter with a slight delay between letters

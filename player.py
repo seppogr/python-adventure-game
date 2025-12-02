@@ -2,13 +2,14 @@ from Place import *
 
 class Player:
     """edustaa pelaajaa"""
-    def __init__(self, points, current_place, current_place_index, inventory):
+    def __init__(self, points, current_place, current_place_index, inventory, life_status):
         self.points = points
         self.current_place = current_place
         self.current_place_index = current_place_index
         self.inventory = []
         for e in inventory:
             self.add_to_inventory(e)
+        self.life_status = life_status
 
     def get_points(self):
         return self.points
@@ -47,8 +48,14 @@ class Player:
         else:
             print(f'Inventory is empty')
 
+    def set_life_status(self, life_status):
+        self.life_status = life_status
+
+    def get_life_status(self):
+        return self.life_status
+
     def __str__(self):
         return f'{self.points}'
 
 # initialise main character with default values
-MainChar = Player(0, Inn, 0, ['ball', 'book'])
+MainChar = Player(0, Inn, 0, ['ball', 'book'], True)
