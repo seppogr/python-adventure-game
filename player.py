@@ -2,10 +2,10 @@ from Place import *
 
 class Player:
     """edustaa pelaajaa"""
-    def __init__(self, points, current_place, current_place_index, inventory, life_status):
+    def __init__(self, points, current_place, follower, inventory, life_status):
         self.points = points
         self.current_place = current_place
-        self.current_place_index = current_place_index
+        self.follower = follower
         self.inventory = []
         for e in inventory:
             self.add_to_inventory(e)
@@ -17,8 +17,11 @@ class Player:
     def get_current_place(self):
         return self.current_place
 
-    def get_placeIndex(self):
-        return self.current_place_index
+    def get_follower(self):
+        return self.follower
+
+    def set_follower(self, follower):
+        self.follower = follower
 
     def get_inventory(self):
         return self.inventory
@@ -58,4 +61,4 @@ class Player:
         return f'{self.points}'
 
 # initialise main character with default values
-MainChar = Player(0, Inn, 0, ['ball', 'book'], True)
+MainChar = Player(0, Inn, 'none', ['ball', 'book', 'lamp', 'fish'], True)

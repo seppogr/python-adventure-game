@@ -53,7 +53,7 @@ Inn = Place (
 
         ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'blocked' : False, 'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'basement' : 1, 'plaza' : 2, 'attic' : 3}
 )
 
@@ -75,7 +75,7 @@ Basement = Place (
 
         ''',
         {'open': True, 'direction' : 'inn', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'blocked' : False, 'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'inn': 0}
 )
 
@@ -94,8 +94,8 @@ Plaza = Place (
         clinking noise is coming from the village smithy.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-       {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+       {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'inn': 0, 'smithy' : 4, 'shop': 5, 'trail' : 6}
 )
 
@@ -104,18 +104,18 @@ Attic = Place (
         3,
         'a dusty attic',
         ['book'],
-        'grue',
+        'cat',
         '''
         THE INN ATTIC
 
         This is the inn attic. Whereas other areas have been quite neat and tidy,
         this room is the total opposite. There are all sorts of piles of junk
         everywhere and you guess that it would take a better part of a week
-        to organise everything.
+        to organise everything. There is an orange tabby cat lazing around.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'inn', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'inn': 0}
 )
 
@@ -133,8 +133,8 @@ Smithy = Place (
         stops when you open the door and enter. All is suddenly very, very quiet.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'plaza': 2}
 )
 
@@ -154,8 +154,8 @@ Shop = Place (
         the items you deem unnecessary in your profession.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'plaza': 2}
 )
 
@@ -174,8 +174,8 @@ Trail = Place (
         green with plants and trees.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : True, 'direction': 'manor','name': 'vicious dog', 'unblocked_by': 'cat','after_message' : 'The cat drives the vicious dog away.'},
         {'plaza': 2, 'manor' : 7, 'hut' : 13, 'churchyard' : 15}
 )
 
@@ -194,8 +194,8 @@ Manor = Place (
         leaking. You hazard a guess it will as soon as it starts raining.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'trail': 6, 'stables' : 8, 'hall' : 9}
 )
 
@@ -214,8 +214,8 @@ Stables = Place (
         is missing.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'manor': 7}
 )
 
@@ -232,8 +232,8 @@ Hall = Place (
         if there are layers and layers of buried secrets in this manor house.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'manor': 7, 'study': 10, 'upstairs' : 11, 'kitchen' : 12}
 )
 
@@ -252,8 +252,8 @@ Study = Place (
         used-looking bed is in the corner, which looks very out-of-place.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'hall': 9}
 )
 
@@ -273,8 +273,8 @@ Upstairs = Place (
         there is dusty emptiness, except in one corner where there is bedding
         for a single person.
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '',  'name': '', 'unblocked_by': '','after_message' : ''},
         {'hall': 9}
 )
 
@@ -292,8 +292,8 @@ Kitchen = Place (
         of welcome in this room.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'hall': 9}
 )
 
@@ -301,7 +301,7 @@ Hut = Place (
         'hut',
         13,
         'a hut by the sea',
-        ['book'],
+        ['rod'],
         'grue',
         '''
         THE BEACH HUT
@@ -313,8 +313,8 @@ Hut = Place (
         instead a fisherman's.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'trail': 6, 'beach' : 14}
 )
 
@@ -333,8 +333,8 @@ Beach = Place (
         that there are no sea birds anywhere.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'hut': 13, 'forest' : 16}
 )
 
@@ -354,8 +354,8 @@ Churchyard = Place (
         though the path to the church itself is well-used.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'trail': 6, 'forest' : 16, 'church' : 17}
 )
 
@@ -374,8 +374,8 @@ Forest = Place (
         and healthy.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'beach': 14, 'churchyard' : 15}
 )
 
@@ -393,8 +393,8 @@ Church = Place (
         dusty floor is a clear traveled path to the catacombs.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'churchyard': 15, 'crypt' : 18}
 )
 
@@ -413,8 +413,8 @@ Crypt = Place (
         ladder is placed in the opening for accessing the chamber below.
 
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'church': 17, 'dungeon' : 19}
 )
 
@@ -432,8 +432,8 @@ Dungeon = Place (
         You recognise the head immediately as the one that recently was attached to
         your friend's body that was left in the stables.
         ''',
-        {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : False, 'name': '', 'unBlockedBy': '','after_message' : ''},
+        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'crypt': 18}
 )
 places = [Inn, Basement, Plaza,

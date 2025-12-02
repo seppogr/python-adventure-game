@@ -8,10 +8,6 @@ from items import items
 from idler import *
 from death_conditions import *
 
-
-
-
-
 # change from one place/room to another, called by go() when needed
 def change_place(direction):
     old_place = MainChar.current_place.at_first_glance
@@ -19,6 +15,10 @@ def change_place(direction):
     MainChar.set_current_place(places[index_of_place_object])
     new_place = MainChar.current_place.at_first_glance
     print_text_slowly(f'You go from {old_place} into {new_place}.')
+
+    if MainChar.follower != 'none':
+        print_text_slowly(f'The {MainChar.follower} follows you.')
+
     check_for_death_by_room(direction)
 
 # handles the go command. requires the direction where to go as parameter
@@ -32,6 +32,15 @@ def go(direction):
                 change_place(direction)
             else:
                 print_text_slowly(f'The {direction} door is locked. It looks like you need a {MainChar.current_place.door['unlocked_by']} to proceed.')
+
+        elif MainChar.current_place.blocker['direction'] == direction and MainChar.current_place.blocker['blocked'] == True:
+            if(MainChar.follower == MainChar.current_place.blocker['unblocked_by']):
+                MainChar.current_place.blocker['blocked'] = False
+                print_text_slowly(f'{MainChar.current_place.blocker['after_message']}')
+                print_text_slowly('The road is clear!')
+                change_place(direction)
+            else:
+                print_text_slowly(f'There is a {MainChar.current_place.blocker['name']}. It stops you from moving onwards.')
         else:
             change_place(direction)
     else:
@@ -84,9 +93,13 @@ def give(item):
             room = MainChar.current_place.place_name
 
             if(MainChar.remove_from_inventory(item)):
-                print_text_slowly(f'{MainChar.current_place.character.capitalize()} thanks you heartily as you give your {item} away.')
+                print_text_slowly(f'{MainChar.current_place.character.capitalize()} is very happy to get the {item}.')
                 items = MainChar.inventory
-                check_for_death_by_item(room, items)
+                if npc_data[MainChar.current_place.character]['follower'] == False:
+                    check_for_death_by_item(room, items)
+                else:
+                    MainChar.set_follower(MainChar.current_place.character)
+                    MainChar.current_place.character = None
         else:
             print_text_slowly(f'{MainChar.current_place.character.capitalize()} does not care for the {item}.')
     else:
@@ -98,7 +111,7 @@ def take(item):
     if item in MainChar.current_place.items:
         MainChar.add_to_inventory(item)
         MainChar.current_place.items.remove(item)
-        print_text_slowly(f'You add {items[item]['synonym'].upper()} into your bag.')
+        print_text_slowly(f'You pick up {items[item]['synonym'].upper()}.')
     else:
         print_text_slowly(f'Hmmm. You take a long look around and it seems there is no {item} in the room.')
 

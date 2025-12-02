@@ -7,12 +7,21 @@ npc_data = {
         'wants' : 'book',
         'items' : ['key'],
         'greeting' : 'Hello traveler',
+        'follower' : False
     },
     'wererat' : {
         'description' : 'A sharp-toothed monster. Likely you will get eaten by it.',
         'wants' : 'lamp',
         'items' : [],
-        'greeting' : 'Graugh!!!'
+        'greeting' : 'Graugh!!!',
+        'follower' : False
+    },
+    'cat' : {
+        'description' : ' A fine-looking healthy cat.',
+        'wants': 'fish',
+        'items' : [],
+        'greeting' : 'Meeee-oooow! MEEEE-OOOOWWW!',
+        'follower' : True
     }
 }
 
@@ -35,5 +44,9 @@ npc_conversation = {
         'wererat' : 'I must stay here in the basement until the sun goes down.',
         'mission' : 'What a nice lamp you have, please give it to me! I hate it here in the dark.',
         'book' : 'It says NECRONOMICON on the cover. A bit shady if you ask me.',
+    },
+    'cat' : {
+        'meow': 'MEOW!',
+        'purr': 'Purrr-rrrrr.'
     }
 }

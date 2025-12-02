@@ -10,5 +10,9 @@ items = {
     'book' : {
         'description': 'An ominous black-bound tome. Written by Abdul Alhazred.',
         'synonym' : ' the necronomicon'
+    },
+    'rod' : {
+        'description' : 'A rod for fishing. You feel confident that you will catch a really big fish with this one.',
+        'synonym' : "a fishing rod"
     }
 }

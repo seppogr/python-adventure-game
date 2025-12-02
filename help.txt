@@ -28,6 +28,16 @@ helpful notes. Happy gaming!
 
 'inventory'         ->  What's in your bag at the moment.
 
+'companion'         -> Show your current companion (if any).
+
+'commands'          -> A quick help with all available commands used in the game.
+
+Context-specific
+
+The following commands produce a desired effect if certain in-game conditions are met:
+
+'fish'               -> Cach a fish!
+
 
 2-word:
 Note: Don't write the '+' sign in the command. It's just here to clarify that these verb commands
