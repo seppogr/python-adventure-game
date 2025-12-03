@@ -77,31 +77,37 @@ def ask(noun):
 
 # gives a more detailed description of an item or character, depending on the parameter
 def describe(noun):
-    if noun in MainChar.current_place.character:
-        print_text_slowly(npc_data[noun]['description'])
-    elif noun in MainChar.current_place.items or noun in npc_data[MainChar.current_place.character]['items']:
+    npc = MainChar.current_place.character
+    place_items =  MainChar.current_place.items
+    npc_items = npc_data[MainChar.current_place.character]['items']
+    char_items = MainChar.get_inventory()
+
+    if noun in place_items or noun in npc_items or noun in char_items:
         print_text_slowly(items[noun]['description'])
+    elif noun in npc:
+        print_text_slowly(npc_data[noun]['description'])
     else:
-        print_text_slowly(f'You glance about the room but there is no {noun} here.')
+        print_text_slowly(f'You glance about the room but there is no {noun} here. You do not find it in your pockets either. You check your hands but they are definitely NOT holding anything even remotely resembling the {noun}')
 
 # remove item from your inventory only if the npc wants that item.
 # if so, also adds the item to npc's inventory
 def give(item):
     if item in MainChar.inventory:
-        if item == npc_data[MainChar.current_place.character]['wants']:
-            npc_data[MainChar.current_place.character]['items'].append(item)
-            room = MainChar.current_place.place_name
+        if npc_data[MainChar.current_place.character]['trader'] == False:
+            if item == npc_data[MainChar.current_place.character]['wants']:
+                npc_data[MainChar.current_place.character]['items'].append(item)
+                room = MainChar.current_place.place_name
 
-            if(MainChar.remove_from_inventory(item)):
-                print_text_slowly(f'{MainChar.current_place.character.capitalize()} is very happy to get the {item}.')
-                items = MainChar.inventory
-                if npc_data[MainChar.current_place.character]['follower'] == False:
-                    check_for_death_by_item(room, items)
-                else:
-                    MainChar.set_follower(MainChar.current_place.character)
-                    MainChar.current_place.character = None
+                if(MainChar.remove_from_inventory(item)):
+                    print_text_slowly(f'{MainChar.current_place.character.capitalize()} is very happy to get the {item}.')
+                    items = MainChar.inventory
+                    if npc_data[MainChar.current_place.character]['follower'] == False:
+                        check_for_death_by_item(room, items)
+                    else:
+                        MainChar.set_follower(MainChar.current_place.character)
+                        MainChar.current_place.character = None
         else:
-            print_text_slowly(f'{MainChar.current_place.character.capitalize()} does not care for the {item}.')
+            print_text_slowly(f'{MainChar.current_place.character.capitalize()} does not care for the {item}. Or Maybe they will want to trade instead.')
     else:
         print_text_slowly(f'You rummage and rummage through your bag, but there is no {item} there. You cannot give away what you do not have.' )
 
@@ -118,12 +124,14 @@ def take(item):
 def request(item):
     if item == npc_data[MainChar.current_place.character]['wants']:
         print_text_slowly(f'{MainChar.current_place.character} explains: "No! Never in my life shall I part again from this precious {item}!"')
-    elif item in npc_data[MainChar.current_place.character]['items']:
+
+    elif item in npc_data[MainChar.current_place.character]['items'] and npc_data[MainChar.current_place.character]['trader'] == False:
         MainChar.add_to_inventory(item)
         npc_data[MainChar.current_place.character]['items'].remove(item)
         print_text_slowly(f'You politely inform that the {MainChar.current_place.character}\'s {item} is required in your investigation. They grudgingly hand it over.')
-    else:
-        print_text_slowly(f'The {MainChar.current_place.character} hastily explains that the {item} is not in their possession.')
+
+    elif item in npc_data[MainChar.current_place.character]['items'] and npc_data[MainChar.current_place.character]['trader'] == True:
+        print_text_slowly(f'The {MainChar.current_place.character} says: "I could give you the {item}, if you bring me {npc_data[MainChar.current_place.character]['wants']}."')
 
 def act_on_double_command(verb, noun):
     try:

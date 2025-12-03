@@ -1,15 +1,16 @@
 from Player import MainChar
 from printer import *
+from npcs import *
 
 
 def main_char_death(killer, death_message, hint):
     print_text_slowly(death_message)
-    print_text_slowly(f'Your journey ends in the hands of a {killer}.')
+    if len(killer) > 1:
+        print_text_slowly(f'Your journey ends in the hands of a {killer}.')
     print_text_slowly(hint)
     print_text_slowly('GAME OVER')
     print_text_slowly(f'Final points: {MainChar.get_points()}/200. ')
     MainChar.set_life_status(False)
-
 
 def check_for_death_by_room(room):
     if room == 'basement' and 'lamp' not in MainChar.inventory:
@@ -22,3 +23,14 @@ def check_for_death_by_item(room, items):
         death_message = 'The wererat smashes the lamp. It is very, very dark and you have just time to feel something sharp hitting you. Then the final darkness...'
         hint = 'In retrospective, possibly not the smartest choice giving your lamp away in a dark cellar just like that.'
         main_char_death(MainChar.current_place.character, death_message, hint)
+
+    if room == 'inn' and 'book' in npc_data['innkeeper']['items']:
+        death_message = 'The innkeeper smiles and informs you that regrettably the inn will close for the day.\nYou are left outside waiting for some means of transportation out of here.\nAfter a couple of hours a bus arrives, and on the journey back\nto more civilised parts of the country you have a nagging feeling that you missed something.\nAfter all, you DID spy the innkeper hurrying to the direction of the forest with the book.'
+        hint = 'Maybe always doing what people tell you to is not a key to victory.'
+        main_char_death('a', death_message, hint)
+
+def check_for_death_by_book():
+    death_message = 'First, your eyes feel like melting and a moment later it feels your brain is frying. Then, nothing.'
+    hint = 'Huh, reading strange books without some means of protection was not too bright. After all, it DID say "Necronomicon" on the cover. '
+    main_char_death('book', death_message, hint)
+

@@ -1,3 +1,8 @@
-THis will be displayed in the beginning of the game
+A while ago, your friend invited you to a trip through New England countryside in his brand new motor vehicle.
+You are to meet in a small village by the sea called Spruce Head. You have now arrived but there is no trace of your friend.
+Perhaps it is time to investigate?
 
-FINAL NOTE: the character 'village idiot' was renamed 'village idler' for the game not being offensive to any idiots.
+If you're ever unsure how to proceed in the game, write "help" for a comprehensive help file or "commands" for a more compact list
+of available verbs you can use in the game.
+
+FINAL NOTE: the character 'village idiot' was renamed 'village idler' for the game not to be offensive to any idiots.

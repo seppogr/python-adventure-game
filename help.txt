@@ -28,15 +28,20 @@ helpful notes. Happy gaming!
 
 'inventory'         ->  What's in your bag at the moment.
 
-'companion'         -> Show your current companion (if any).
+'companion'         ->  Show your current companion (if any).
 
-'commands'          -> A quick help with all available commands used in the game.
+'commands'          ->  A quick help with all available verb commands used in the game. Nouns are
+                        for you to figure out.
 
-Context-specific
+Context-specific one-word
 
 The following commands produce a desired effect if certain in-game conditions are met:
 
-'fish'               -> Cach a fish!
+'fish'               -> Catch a fish!
+
+'read'               -> Read something.
+
+'trade'              -> Some people will trade with you if you have something they want.
 
 
 2-word:
@@ -59,4 +64,5 @@ give + <item>       -> If you got a specific item that sombody wants, you can gi
 
 take + <item>       -> If there is somethiing in the room that you need or want, you can get it with this command.
 
-request + <item>    -> Politely ask for an item in somebody else's possession.
+request + <item>    -> Politely ask for an item in somebody else's possession. If they don't want to give it to you,
+                       maybe they will simply 'trade' for it instead.

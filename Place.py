@@ -32,9 +32,7 @@ class Place:
         def get_place_name(self):
                 return self.place_name
 
-        @classmethod
-        def get_Place(cls):
-                return cls
+
 
 Inn = Place (
         'inn',
@@ -71,7 +69,8 @@ Basement = Place (
         cold storage are stacked here in barrels and crates. However, there is
         a character shifting nervously just at the edge of the circle of light
         radiating from your lamp. It looks like a you have stumbled into the
-        lair of a sharp-toothed wererat.
+        lair of a sharp-toothed wererat. Additionally, you notice a black-bound
+        book in the middle of what appears to be a faded red circle.
 
         ''',
         {'open': True, 'direction' : 'inn', 'unlocked_by' : 'key' },
@@ -103,7 +102,7 @@ Attic = Place (
         'attic',
         3,
         'a dusty attic',
-        ['book'],
+        [],
         'cat',
         '''
         THE INN ATTIC
@@ -123,8 +122,8 @@ Smithy = Place (
         'smithy',
         4,
         'a village smithy',
-        ['book'],
-        'grue',
+        ['mask'],
+        'smith',
         '''
         SMITHY
 
@@ -142,8 +141,8 @@ Shop = Place (
         'shop',
         5,
         'a local shop',
-        ['book'],
-        'grue',
+        [],
+        'shopkeeper',
 
         '''
         A SMALL SHOP
@@ -282,8 +281,8 @@ Kitchen = Place (
         'a kitchen',
         12,
         'a well-equipped manor kitchen',
-        ['book'],
-        'grue',
+        ['money'],
+        'cook',
         '''
         KITCHEN
 

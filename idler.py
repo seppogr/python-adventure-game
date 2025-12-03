@@ -14,7 +14,8 @@ idler_adverbs = ['softly', 'loudly', 'calmly', 'sternly', 'politely', 'cheerfull
 
 idler_sayings = ['The town horse radiates warmth!', 'I think the swamp is round.', 'Everyone stares at the plaza.',
              'There is no room for thought in my bag.', 'Fishing is good for health.', 'I can dream in blue.',
-             'I think there is a dungeon beneath the church.']
+             'I think there is a dungeon beneath the church.', 'Beware of the rat in the dark!', 'Reading is good for you!',
+             'Sky is separate from the ceiling.']
 
 def idler_speaks():
     random.seed()

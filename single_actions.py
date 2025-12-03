@@ -3,6 +3,7 @@ from Player import MainChar
 from utils import *
 from colours import *
 from commands import *
+from death_conditions import *
 
 def test():
     print('test code here')
@@ -56,6 +57,32 @@ def fish():
     else:
         print_text_slowly('Generally, a significant body of water, such as an ocean, and some sort of fishing rod are both needed to catch fish.')
 
+def read():
+    items = MainChar.get_inventory()
+    if 'book' in items:
+        print_text_slowly('As you turn the pages it becomes evident that this book was not meant for mortal eyes.')
+        print_text_slowly('However, you notice that someone has added notes to the sidelines.')
+        if 'mask' in items:
+            print_text_slowly('Good thing you managed to slip your welding mask on before reading.')
+            print_text_slowly('The notes are a diary of cult meetings and what has been offered to the deity.')
+            print_text_slowly('As you read down the list, you see that the last offering is scheduled for today and it is a human head.')
+        else:
+            check_for_death_by_book()
+
+def trade():
+    if npc_data[MainChar.current_place.character]['trader'] == True:
+        items = MainChar.get_inventory()
+        wanted_item = npc_data[MainChar.current_place.character]['wants']
+        trade_item = npc_data[MainChar.current_place.character]['trades']
+        if wanted_item in items:
+            print_text_slowly(f'The {MainChar.current_place.character} is happy to trade ')
+            MainChar.add_to_inventory(trade_item)
+            npc_data[MainChar.current_place.character]['items'].remove(trade_item)
+            MainChar.remove_from_inventory(wanted_item)
+            print_text_slowly(f'You give the {wanted_item} and they hand over the {trade_item}.')
+            npc_data[MainChar.current_place.character]['trader'] = False
+    else:
+        print_text_slowly(f'The {MainChar.current_place.character} has nothing that you want to trade.')
 
 def act_on_single_command(command_input):
     if command_input == 'help':
@@ -74,5 +101,9 @@ def act_on_single_command(command_input):
         companion()
     elif command_input == 'fish':
         fish()
+    elif command_input == 'read':
+        read()
+    elif command_input == 'trade':
+        trade()
     else:
-        print_text_slowly('I do not understand that command.')
+        print_text_slowly('I do not understand that command. Write "commands" for a quick help, or "help" for available commands with examples of use.')
