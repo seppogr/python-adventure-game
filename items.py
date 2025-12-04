@@ -30,5 +30,13 @@ items = {
     'coffee' : {
         'description' : 'A tin of coffee. Will last for at least a couple of days.',
         'synonym' : 'an unopened tin of coffee'
+    },
+    'shovel' : {
+        'description' : 'A sturdy and reliable shovel. Good for digging.',
+        'synonym' : 'a shovel'
+    },
+    'circle' : {
+        'description' : 'A small metal circle. Looks like it has some indentations and could be combined with some other similar objects.',
+        'synonym' : 'a metal circle'
     }
 }

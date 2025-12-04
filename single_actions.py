@@ -84,6 +84,29 @@ def trade():
     else:
         print_text_slowly(f'The {MainChar.current_place.character} has nothing that you want to trade.')
 
+def dig():
+    inventory = MainChar.get_inventory()
+    place = MainChar.current_place.place_name
+
+    if place == 'forest' and 'shovel' in inventory:
+        print_text_slowly('You dig around the place marked with an "X" and find something.')
+        print_text_slowly('It is a metal circle.')
+        MainChar.current_place.items.append('circle')
+
+
+    elif place == 'forest' and 'shovel' not in inventory:
+        print_text_slowly('The ground is soft and good for digging and ther certainly is an "X" to mark something. But you have no tool for digging.')
+
+    elif place != 'forest' and 'shovel' in inventory:
+        print_text_slowly('This is not a good place to dig. Or are you inside a building perhaps? In any case the shovel is ineffective.')
+
+    elif place != 'forest' and 'shovel' not in inventory:
+        print_text_slowly('What you are missing is a good place to dig, and a tool for doing it.')
+
+
+
+
+
 def act_on_single_command(command_input):
     if command_input == 'help':
         help()
@@ -105,5 +128,7 @@ def act_on_single_command(command_input):
         read()
     elif command_input == 'trade':
         trade()
+    elif command_input == 'dig':
+        dig()
     else:
         print_text_slowly('I do not understand that command. Write "commands" for a quick help, or "help" for available commands with examples of use.')

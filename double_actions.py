@@ -50,13 +50,13 @@ def go(direction):
                 print_text_slowly(f'The {direction} door is locked. It looks like you need a {unlocking_item} to proceed.')
 
         elif direction == blocker_in_this_direction and road_blocker_status == True:
+            print(f'You try to go to {direction} but there is a {blocker} that way and...')
             if(follower == follower_who_helps_with_this_block):
-                road_blocker_status = False
+                MainChar.current_place.blocker['blocked'] = False
                 print_text_slowly(f'{message_of_unblocking}')
                 print_text_slowly('The road is clear!')
-                change_place(direction)
             else:
-                print_text_slowly(f'There is a {blocker}. It stops you from moving onwards.')
+                print_text_slowly(f'...you cannot get past it. Probably there is someone who can help you.')
         else:
             change_place(direction)
     else:
@@ -94,15 +94,11 @@ def ask(noun):
 
 # gives a more detailed description of an item or character, depending on the parameter
 def describe(noun):
-    npc = MainChar.current_place.character
-    place_items =  MainChar.current_place.items
-    npc_items = npc_data[MainChar.current_place.character]['items']
-    char_items = MainChar.get_inventory()
 
-    if noun in place_items or noun in npc_items or noun in char_items:
+    if noun in MainChar.current_place.items or noun in npc_data[MainChar.current_place.character]['items'] or noun in MainChar.get_inventory():
         print_text_slowly(items[noun]['description'])
 
-    elif noun in npc:
+    elif noun in MainChar.current_place.character:
         print_text_slowly(npc_data[noun]['description'])
 
     else:

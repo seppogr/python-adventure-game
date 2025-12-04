@@ -174,7 +174,7 @@ Trail = Place (
 
         ''',
         {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
-        {'blocked' : True, 'direction': 'manor','name': 'vicious dog', 'unblocked_by': 'cat','after_message' : 'The cat drives the vicious dog away.'},
+        {'blocked' : True, 'direction': 'manor','name': 'vicious dog', 'unblocked_by': 'cat','after_message' : '... the cat drives the vicious dog away!'},
         {'plaza': 2, 'manor' : 7, 'hut' : 13, 'churchyard' : 15}
 )
 
@@ -202,7 +202,7 @@ Stables = Place (
         'stables',
         8,
         'the manor stables',
-        ['book'],
+        ['spearhead'],
         'grue',
         '''
         STABLES
@@ -278,7 +278,7 @@ Upstairs = Place (
 )
 
 Kitchen = Place (
-        'a kitchen',
+        'kitchen',
         12,
         'a well-equipped manor kitchen',
         ['money'],
@@ -341,12 +341,12 @@ Churchyard = Place (
         'churchyard',
         15,
         'a churchyard',
-        ['book'],
-        'grue',
+        ['shovel'],
+        '',
         '''
         THE CHURCHYARD
 
-        Around the churchyard there are several burail markers, and in this
+        Around the churchyard there are several burial markers, and in this
         respect the environs of the local church does not differ in any way
         from that of a typical village church. On a closer look, you notice
         that all the markers grow with moss and there are no fresh graves even
@@ -362,7 +362,7 @@ Forest = Place (
         'forest',
         16,
         'a green forest',
-        ['book'],
+        [],
         'grue',
         '''
         A FOREST
@@ -370,7 +370,7 @@ Forest = Place (
         The trees are form a natural wall to both sides and amidst the dense
         growth is a game trail leading onwards. Curiously, all the man-made buldings
         in the area have shown severe dilapitation wheras the forest feels energetic
-        and healthy.
+        and healthy. Somebody has gathered branches and arranged them to resemble an "X".
 
         ''',
         {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },

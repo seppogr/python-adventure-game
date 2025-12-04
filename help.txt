@@ -43,6 +43,8 @@ The following commands produce a desired effect if certain in-game conditions ar
 
 'trade'              -> Some people will trade with you if you have something they want.
 
+'dig'                -> Find a good place and some sort of digging tool and perhaps you'll find something.
+
 
 2-word:
 Note: Don't write the '+' sign in the command. It's just here to clarify that these verb commands
