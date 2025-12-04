@@ -96,7 +96,9 @@ npc_conversation = {
         'name'      : 'William, at your service.',
         'job'       : 'I run this country shop. We mainly sell farming equipment and other equipment.',
         'coffee'    : 'Ah, yes I sell quality coffee.',
-        'food'      : 'The locals grow or fish their own food, I just sell coffee and seasonings.'
+        'food'      : 'The locals grow or fish their own food, I just sell coffee and seasonings.',
+        'count'     : 'Ahh, our lord hereabouts. Oldish fellow.',
+        'friend'    : 'I think I saw somebody of that description not a few days past.'
     },
     'cook' : {
         'name'      : 'My name is Lina.',
@@ -105,6 +107,10 @@ npc_conversation = {
         'money'     : 'Take that money from the table, it should be enough.',
         'coffee'    : 'With some money you could go and buy it from the shop if you do not mind.',
         'trade'     : 'Get me some coffee and I will give the upstairs passkey.',
-        'passkey'   : 'It will unlock the upstairs door.'
+        'passkey'   : 'It will unlock the upstairs door.',
+        'count'     : 'Ah well, set in his ways. Not the same after they locked the countess upstairs.',
+        'locked'    : 'Yes, maybe I should not say anything. I got the passkey, though.',
+        'countess'  : 'Lost her mind, poor thing. Not surprising after seeing what they did to that poor man.',
+        'man'       : 'I should not say anything. The count forbade it.'
     }
 }

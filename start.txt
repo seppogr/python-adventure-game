@@ -1,8 +1,27 @@
-A while ago, your friend invited you to a trip through New England countryside in his brand new motor vehicle.
-You are to meet in a small village by the sea called Spruce Head. You have now arrived but there is no trace of your friend.
-Perhaps it is time to investigate?
 
-If you're ever unsure how to proceed in the game, write "help" for a comprehensive help file or "commands" for a more compact list
-of available verbs you can use in the game.
+THE STRANGE DISAPPEARANCE OF ERNEST MULHONEY
+
+A while ago, I got a call from an acquientance, Ernest Mulhoney. "Hey Jim", he started "Come over to Spruce Head and we'll take a grand tour of
+New England in my brand new motor car."
+
+"Sounds good", I answered, "Let me check my schedule for the week". I had a busy couple of days coming up but towards the weekend my schedule
+seemed clear.
+
+"How about I arrive on Thursday on the 11:34 bus?", I proposed.
+
+Ernest thought about it for a moment, "Yeah, I guess I'll have the chance to use that new fishing rod I got while I wait for you." So, the
+agreement was made and we were to start our field trip on Thursday.
+
+The next couple of days were filled with endless office tasks, but quite miraculously, nothing new was piled up on top of the previous ones,
+and my desk was clear by Wednesday night. In the morning I took the bus and arrived propmptly on time in Spruce Head town square. However,
+of Ernest Mulhoney or his brand new motor vehicle there was no trace. I waited for a while but it became evident that Ernest was not going
+to be here anytime soon.
+
+Perhaps it is time to figure out where he is.
+
+If you're ever unsure how to proceed in the game, write:
+
+- "help" for a comprehensive help file or
+- "commands" for a more compact list of available verbs you can use in the game.
 
 FINAL NOTE: the character 'village idiot' was renamed 'village idler' for the game not to be offensive to any idiots.

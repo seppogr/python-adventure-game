@@ -1,6 +1,6 @@
-This is the help file. Use the following commands in the game:
+HELP FILE
 
-You can use one or two words, some verbs can be used either singularly
+You can use one or two words in commands, some verbs can be used either singularly
 or together with a noun. Please note that all prepositions have been omitted
 from the commands, so that for example
 

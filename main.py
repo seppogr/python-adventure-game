@@ -7,8 +7,11 @@ from single_actions import act_on_single_command
 from double_actions import act_on_double_command
 import sys
 
-finish_game = False
-
+#finish_game = False
+start_text = open("start.txt")
+print(start_text.read())
+print()
+start_text.close()
 print_text_slowly(f'You are in {MainChar.current_place.at_first_glance}.')
 
 command_input = input('What will you do?> ').strip().lower()
