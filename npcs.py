@@ -50,11 +50,38 @@ npc_data = {
     'cook' : {
         'description' : 'An elderly cook. Clearly intelligent and runs the manor kitchen with utmost care.',
         'wants': 'coffee',
-        'items' : ['keypass'],
+        'items' : ['passkey'],
         'greeting' : 'Hello dear!',
         'follower' : False,
         'trader'   : True,
-        'trades'   : 'keypass'
+        'trades'   : 'passkey'
+    },
+    'stablehand' : {
+        'description' : 'A shifty character. Clearly hides something. But what?',
+        'wants': '',
+        'items' : ['rag'],
+        'greeting' : 'Uh.. Hi.',
+        'follower' : False,
+        'trader'   : False,
+        'trades'   : ''
+    },
+    'count' : {
+        'description' : 'An old aristocrat. Seems well-aware that he is superior to you.',
+        'wants': '',
+        'items' : [],
+        'greeting' : 'Yes, what ist it? Speak up, man!',
+        'follower' : False,
+        'trader'   : False,
+        'trades'   : ''
+    },
+        'countess' : {
+        'description' : 'A sad-lookin lady.',
+        'wants': 'mirror',
+        'items' : ['spearhead'],
+        'greeting' : 'Ohh. Ohh! OHHH!',
+        'follower' : False,
+        'trader'   : True,
+        'trades'   : 'spearhead'
     }
 }
 
@@ -93,7 +120,7 @@ npc_conversation = {
         'count'     : 'The old lord hereabouts. Only the cook of their household is of a good sort.'
     },
     'shopkeeper' : {
-        'name'      : 'William, at your service.',
+        'name'      : 'Adam, at your service.',
         'job'       : 'I run this country shop. We mainly sell farming equipment and other equipment.',
         'coffee'    : 'Ah, yes I sell quality coffee.',
         'food'      : 'The locals grow or fish their own food, I just sell coffee and seasonings.',
@@ -101,7 +128,7 @@ npc_conversation = {
         'friend'    : 'I think I saw somebody of that description not a few days past.'
     },
     'cook' : {
-        'name'      : 'My name is Lina.',
+        'name'      : 'My name is Carla.',
         'job'       : 'I cook for the lord and the lady, been doing that for fifty years now.',
         'help'      : 'If you could be so dear and fetch my coffee package from the shop.',
         'money'     : 'Take that money from the table, it should be enough.',
@@ -111,6 +138,28 @@ npc_conversation = {
         'count'     : 'Ah well, set in his ways. Not the same after they locked the countess upstairs.',
         'locked'    : 'Yes, maybe I should not say anything. I got the passkey, though.',
         'countess'  : 'Lost her mind, poor thing. Not surprising after seeing what they did to that poor man.',
-        'man'       : 'I should not say anything. The count forbade it.'
+        'stablehand'       : 'I should not say anything. The count forbade it.'
+    },
+    'stablehand' : {
+        'name'          : 'Chris.',
+        'job'           : 'I-a I work at the stables.',
+        'horses'        : 'They were ummm..., sold a while ago',
+        'knife'         : 'Knife, what knife?',
+        'bloodstains'   : 'it is uhhh, a pig we slaughtered. Yesterday.',
+        'rag'           : 'Oh this, umm, nothing. Just have a flu, me.'
+    },
+    'count' : {
+        'name' : 'You may call me The Count',
+        'job' : 'I govern these parts.',
+        'countess' : 'I am afraid that is a topic not to be discussed among starngers. Suffice to say she is unwell at present and rests upstairs.',
+        'stablehand' : 'I cannot fathom how I could manage how I could manged without Chris! Indispensable, that man.',
+        'cook' : 'She is not very trustworthy, I am afraid. I would have let her go were it not for the delicate condition of the countess.'
+    },
+    'countess' : {
+        'name' : 'I am- I am. Lady Alise.',
+        'job' : 'Sighhhh.',
+        'count' : 'He is half evil, locked me here.',
+        'spearhead' : 'Half of a whole it is, and other half is not here.',
+        'need' : 'What need I? To see, to see myself truthfully again.'
     }
 }

@@ -14,6 +14,8 @@ print()
 start_text.close()
 print_text_slowly(f'You are in {MainChar.current_place.at_first_glance}.')
 
+command_not_supported = 'Your intentions remain unclear, maybe even for yourself. You take a moment to gather your thoughts.'
+
 command_input = input('What will you do?> ').strip().lower()
 
 while command_input != ('quit'):
@@ -28,11 +30,11 @@ while command_input != ('quit'):
         verb = list_of_commands[0]
         noun = list_of_commands[1]
         if verb not in command_verbs:
-            print_text_slowly('That command is not supported.')
+            print_text_slowly(command_not_supported)
         act_on_double_command(verb, noun)
 
     else:
-        print_text_slowly('I do not understand that command.')
+        print_text_slowly(command_not_supported)
 
     if MainChar.get_life_status() == False:
         sys.exit(1)

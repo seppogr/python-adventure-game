@@ -18,7 +18,11 @@ def help():
 
 def directions():
     travel_directions = MainChar.current_place.directions.keys()
-    print_text_slowly(f'You can go to: ')
+    number_of_directions =len(travel_directions)
+    if number_of_directions == 1:
+        print_text_slowly('From here, the only way is: ')
+    else:
+        print_text_slowly(f'You notice the following possible directions: ')
     print_text_slowly(f'{print_in_colour(extract_list(travel_directions), VIOLET)}')
 
 def describe():
@@ -57,29 +61,18 @@ def fish():
     else:
         print_text_slowly('Generally, a significant body of water, such as an ocean, and some sort of fishing rod are both needed to catch fish.')
 
-def read():
-    items = MainChar.get_inventory()
-    if 'book' in items:
-        print_text_slowly('As you turn the pages it becomes evident that this book was not meant for mortal eyes.')
-        print_text_slowly('However, you notice that someone has added notes to the sidelines.')
-        if 'mask' in items:
-            print_text_slowly('Good thing you managed to slip your welding mask on before reading.')
-            print_text_slowly('The notes are a diary of cult meetings and what has been offered to the deity.')
-            print_text_slowly('As you read down the list, you see that the last offering is scheduled for today and it is a human head.')
-        else:
-            check_for_death_by_book()
 
 def trade():
     if npc_data[MainChar.current_place.character]['trader'] == True:
         items = MainChar.get_inventory()
         wanted_item = npc_data[MainChar.current_place.character]['wants']
         trade_item = npc_data[MainChar.current_place.character]['trades']
-        if wanted_item in items:
+        if wanted_item  in items:
             print_text_slowly(f'The {MainChar.current_place.character} is happy to trade ')
             MainChar.add_to_inventory(trade_item)
             npc_data[MainChar.current_place.character]['items'].remove(trade_item)
-            MainChar.remove_from_inventory(wanted_item)
-            print_text_slowly(f'You give the {wanted_item} and they hand over the {trade_item}.')
+            MainChar.remove_from_inventory(wanted_item )
+            print_text_slowly(f'You give the {wanted_item } and they hand over the {trade_item}.')
             npc_data[MainChar.current_place.character]['trader'] = False
     else:
         print_text_slowly(f'The {MainChar.current_place.character} has nothing that you want to trade.')
@@ -93,7 +86,6 @@ def dig():
         print_text_slowly('It is a metal circle.')
         MainChar.current_place.items.append('circle')
 
-
     elif place == 'forest' and 'shovel' not in inventory:
         print_text_slowly('The ground is soft and good for digging and ther certainly is an "X" to mark something. But you have no tool for digging.')
 
@@ -103,32 +95,47 @@ def dig():
     elif place != 'forest' and 'shovel' not in inventory:
         print_text_slowly('What you are missing is a good place to dig, and a tool for doing it.')
 
+def combine():
+    inventory = MainChar.get_inventory()
+    if 'circle' in inventory and 'spearhead' in inventory:
+        print_text_slowly('You take the spear and the circle, and try to fit them together. After a while of tinkering they both fit in place!')
+        MainChar.current_place.items.append('symbol')
+        MainChar.remove_from_inventory('circle')
+        MainChar.remove_from_inventory('spearhead')
+        print_text_slowly('It is clearly a religious symbol, but could also be a key to a locked place?')
 
-
-
+    elif 'circle' in inventory and 'spearhead' not in inventory:
+         print_text_slowly('The markings of the metal circle look as if it could be combined with something.')
+    elif 'circle' not in inventory and 'spearhead' in inventory:
+         print_text_slowly('You take a closer look at the spearhead and it does seem it could be combined with something.')
+    elif 'circle' not in inventory and 'spearhead' not in inventory:
+         print_text_slowly('You do not think you have anything that fits together with anything else.')
 
 def act_on_single_command(command_input):
-    if command_input == 'help':
-        help()
-    elif command_input == 'test':
-        test()
-    elif command_input == 'inventory':
-        MainChar.print_inventory()
-    elif command_input == 'directions':
-        directions()
-    elif command_input == 'describe':
-        describe()
-    elif command_input == 'commands':
-        commands()
-    elif command_input == 'companion':
-        companion()
-    elif command_input == 'fish':
-        fish()
-    elif command_input == 'read':
-        read()
-    elif command_input == 'trade':
-        trade()
-    elif command_input == 'dig':
-        dig()
-    else:
-        print_text_slowly('I do not understand that command. Write "commands" for a quick help, or "help" for available commands with examples of use.')
+    try:
+        if command_input == 'help':
+            help()
+        elif command_input == 'test':
+            test()
+        elif command_input == 'inventory':
+            MainChar.print_inventory()
+        elif command_input == 'directions':
+            directions()
+        elif command_input == 'describe':
+            describe()
+        elif command_input == 'commands':
+            commands()
+        elif command_input == 'companion':
+            companion()
+        elif command_input == 'fish':
+            fish()
+        elif command_input == 'trade':
+            trade()
+        elif command_input == 'dig':
+            dig()
+        elif command_input == 'combine':
+            combine()
+        else:
+            print_text_slowly('I do not understand that command. Write "commands" for a quick help, or "help" for available commands with examples of use.')
+    except Exception as e:
+        print(e)

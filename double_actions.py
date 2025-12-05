@@ -50,7 +50,7 @@ def go(direction):
                 print_text_slowly(f'The {direction} door is locked. It looks like you need a {unlocking_item} to proceed.')
 
         elif direction == blocker_in_this_direction and road_blocker_status == True:
-            print(f'You try to go to {direction} but there is a {blocker} that way and...')
+            print(f'You start to go to {direction} but there is a {blocker} that way and...')
             if(follower == follower_who_helps_with_this_block):
                 MainChar.current_place.blocker['blocked'] = False
                 print_text_slowly(f'{message_of_unblocking}')
@@ -73,12 +73,12 @@ def chat(character):
 
     elif character == MainChar.current_place.character:
         print_text_slowly(f'You greet the {character}. He says "{npc_data[character]['greeting']}".')
-        print_text_slowly(f'The {character} chats with you. Some topics pique your interest: ')
+        print_text_slowly(f'As you greet the {character} politely and carry on with some small talk, it occurs to you that maybe you could ask about: ')
         topics = npc_topics(npc_conversation[character].keys())
         print_text_slowly(f'{print_in_colour(topics, BLUE)}')
 
         if len(npc_data[character]['items']) > 0:
-            print_text_slowly(f'I also have these, if you need: ')
+            print_text_slowly(f'During your conversation, you notice that the {character} is carrying: ')
             npc_items = extract_list(npc_data[character]['items'])
             print_text_slowly(f'{print_in_colour(npc_items, GREEN)}')
     else:
@@ -161,10 +161,32 @@ def request(item):
     elif item in npc_inventory and npc_trader_status == False:
         MainChar.add_to_inventory(item)
         npc_inventory.remove(item)
-        print_text_slowly(f'You politely inform that the {npc}\'s {item} is required in your investigation. They grudgingly hand it over.')
+        print_text_slowly(f'You press on the {npc} to give the {item}. The {item} is now in your possession.')
 
     elif item in npc_inventory and npc_trader_status == True:
         print_text_slowly(f'The {npc} says: "I could give you the {item}, if you bring me {item_npc_wants_to_keep}."')
+
+def read(noun):
+    inventory = MainChar.get_inventory()
+    if noun in inventory:
+        if noun == 'book':
+            print_text_slowly('As you turn the pages it becomes evident that this book was not meant for mortal eyes.')
+            print_text_slowly('However, you notice that someone has added notes to the sidelines.')
+            if 'mask' in inventory:
+                print_text_slowly('Good thing you managed to slip your welding mask on before reading.')
+                print_text_slowly('The notes are a diary of cult meetings and what has been offered to the deity.')
+                print_text_slowly('As you read down the list, you see that the last offering is scheduled for today and it is a human head.')
+            else:
+                check_for_death_by_book()
+
+        elif noun == 'note':
+            print_text_slowly(f'{items['note']['description']}')
+
+        else:
+            print_text_slowly('It appears you have nothing to read.')
+
+    else:
+        print_text_slowly('You have nothing to read.')
 
 def act_on_double_command(verb, noun):
     try:
@@ -182,6 +204,8 @@ def act_on_double_command(verb, noun):
             take(noun)
         elif verb == 'request':
             request(noun)
+        elif verb == 'read':
+            read(noun)
 
-    except:
-        print('stutters down')
+    except KeyError as e:
+        print(f'You grow pensive, distracted for a while but the feeling passes.')

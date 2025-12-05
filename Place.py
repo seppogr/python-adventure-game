@@ -47,7 +47,9 @@ Inn = Place (
         and there is a fire warming up weary travelers in the fireplace.
         You smell a delicious aroma in the air. In the back of the room
         there is a bar, and behind it an innkeeper stands ready to serve
-        customers. Curiously, there is no one else around.
+        customers. Curiously, there is no one else around. There are two
+        doors, one leading to th square, and another one. Stairs are
+        leading upstairs into the attic.
 
         ''',
         {'open': False, 'direction' : 'basement', 'unlocked_by' : 'key' },
@@ -70,7 +72,8 @@ Basement = Place (
         a character shifting nervously just at the edge of the circle of light
         radiating from your lamp. It looks like a you have stumbled into the
         lair of a sharp-toothed wererat. Additionally, you notice a black-bound
-        book in the middle of what appears to be a faded red circle.
+        book in the middle of what appears to be a faded red circle. The only way
+        out of here is way you came.
 
         ''',
         {'open': True, 'direction' : 'inn', 'unlocked_by' : 'key' },
@@ -82,15 +85,17 @@ Plaza = Place (
         'plaza',
         2,
         'a town plaza',
-        ['book'],
+        ['note'],
         'idler',
         '''
         THE TOWN SQUARE
 
         You can see several buildings lining up this small town square or plaza,
         but people are absent. The only one around seems to be some sort of
-        village idler. They sure talk a lot but don't make much sense. A
-        clinking noise is coming from the village smithy.
+        village idler. They sure talk a lot but don't make much sense. Still, could
+        be useful at least try to chat wit them. A clinking noise is coming from the
+        village smithy. There is also an inn and a shop lining this small square.
+        A small carriage trail leads further into the woods.
 
         ''',
         {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
@@ -111,6 +116,7 @@ Attic = Place (
         this room is the total opposite. There are all sorts of piles of junk
         everywhere and you guess that it would take a better part of a week
         to organise everything. There is an orange tabby cat lazing around.
+        Stairs lead back down to the common room of the inn.
 
         ''',
         {'open': True, 'direction' : 'inn', 'unlocked_by' : 'key' },
@@ -130,6 +136,7 @@ Smithy = Place (
         Heat and smell of metal welcomes you to the village smithy. There are
         tools everywhere, and a giant anvil dominates the room. The deafening noise
         stops when you open the door and enter. All is suddenly very, very quiet.
+        The only door leads back to the square.
 
         ''',
         {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
@@ -150,7 +157,8 @@ Shop = Place (
         As you enter from the open door, you find yourseld in a shop. It is evident
         that the customers are local farmers as the products on sale are typical
         farming equipment. Maybe there could be something useful to buy amidst all
-        the items you deem unnecessary in your profession.
+        the items you deem unnecessary in your profession. No other doors here except
+        the one you came from.
 
         ''',
         {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
@@ -191,6 +199,7 @@ Manor = Place (
         and has clearly seen better days: the paint is peeling here and there
         and the roof looks like it would need a makeover before it starts
         leaking. You hazard a guess it will as soon as it starts raining.
+        You can visit the smithy or go straight to manor, or to the forest trail.
 
         ''',
         {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
@@ -202,15 +211,15 @@ Stables = Place (
         'stables',
         8,
         'the manor stables',
-        ['spearhead'],
-        'grue',
+        ['knife'],
+        'stablehand',
         '''
         STABLES
 
         This is the place where normally horses are kept out of the rain. However,
         at the moment there are none due to a grisly scene in one of the corners.
-        You can see a body of a young man inotherwise fine shape except the head
-        is missing.
+        You can see bloodstains in one corner. There is also a stablehand present. They
+        seem a bit shaken. He shuffles nervously.
 
         ''',
         {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
@@ -222,16 +231,18 @@ Hall = Place (
         'hall',
         9,
         'the manor hallway',
-        ['book'],
-        'grue',
+        ['mirror'],
+        '',
         '''
         MANOR HALLWAY
 
         As you enter the hallway a strange quietness envelopes you. It is as
-        if there are layers and layers of buried secrets in this manor house.
+        if there are layers upon layers of old and buried secrets in this manor house.
+        There are dusty paintings on the walls, and the people in the a staring at you
+        sternly from times gone.
 
         ''',
-        {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
+        {'open': False, 'direction' : 'upstairs', 'unlocked_by' : 'passkey' },
         {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
         {'manor': 7, 'study': 10, 'upstairs' : 11, 'kitchen' : 12}
 )
@@ -240,8 +251,8 @@ Study = Place (
         'study',
         10,
         'the study of the count',
-        ['book'],
-        'grue',
+        ['letter'],
+        'count',
         '''
         STUDY OF THE MANOR LORD
 
@@ -260,16 +271,16 @@ Upstairs = Place (
         'upstairs',
         11,
         'manor upstairs floor',
-        ['book'],
-        'grue',
+        [],
+        'countess',
         '''
         UPSTAIRS
 
         Soft chanting fills your ears as you enter the upsairs room.
         The upstairs is a single large space, and it is aparent that some years
         ago large renovations were started and later abandoned. Walls have been
-        torn down but no new ones have been installed. Everywhere you looka at
-        there is dusty emptiness, except in one corner where there is bedding
+        torn down but no new ones have been installed. Everywhere you look,
+        there is only dust, except in one corner where you notice a bedding
         for a single person.
         ''',
         {'open': True, 'direction' : 'basement', 'unlocked_by' : 'key' },
