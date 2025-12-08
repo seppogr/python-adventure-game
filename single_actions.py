@@ -4,6 +4,7 @@ from utils import *
 from colours import *
 from commands import *
 from death_conditions import *
+from Item import *
 
 def test():
     print('test code here')
@@ -35,7 +36,9 @@ def describe():
         print_text_slowly(f'Maybe you can chat with the {print_in_colour(characters, GREEN)}.')
 
     if len(MainChar.current_place.items) > 0:
-            item_list = extract_list(MainChar.current_place.items)
+            item_list = ''
+            for item in MainChar.current_place.items:
+                item_list += item.name + ' '
             print_text_slowly(f'Some possibly useful items are lying around: ')
             print_text_slowly(f'{print_in_colour(item_list, RED)}')
     else:
@@ -72,7 +75,7 @@ def trade():
             MainChar.add_to_inventory(trade_item)
             npc_data[MainChar.current_place.character]['items'].remove(trade_item)
             MainChar.remove_from_inventory(wanted_item )
-            print_text_slowly(f'You give the {wanted_item } and they hand over the {trade_item}.')
+            print_text_slowly(f'You give the {wanted_item.name } and they hand over the {trade_item.name}.')
             npc_data[MainChar.current_place.character]['trader'] = False
     else:
         print_text_slowly(f'The {MainChar.current_place.character} has nothing that you want to trade.')
@@ -81,34 +84,34 @@ def dig():
     inventory = MainChar.get_inventory()
     place = MainChar.current_place.place_name
 
-    if place == 'forest' and 'shovel' in inventory:
+    if place == 'forest' and Shovel in inventory:
         print_text_slowly('You dig around the place marked with an "X" and find something.')
         print_text_slowly('It is a metal circle.')
-        MainChar.current_place.items.append('circle')
+        MainChar.current_place.items.append(Circle)
 
-    elif place == 'forest' and 'shovel' not in inventory:
+    elif place == 'forest' and Shovel not in inventory:
         print_text_slowly('The ground is soft and good for digging and ther certainly is an "X" to mark something. But you have no tool for digging.')
 
-    elif place != 'forest' and 'shovel' in inventory:
+    elif place != 'forest' and Shovel in inventory:
         print_text_slowly('This is not a good place to dig. Or are you inside a building perhaps? In any case the shovel is ineffective.')
 
-    elif place != 'forest' and 'shovel' not in inventory:
+    elif place != 'forest' and Shovel not in inventory:
         print_text_slowly('What you are missing is a good place to dig, and a tool for doing it.')
 
 def combine():
     inventory = MainChar.get_inventory()
-    if 'circle' in inventory and 'spearhead' in inventory:
+    if Circle in inventory and Spearhead in inventory:
         print_text_slowly('You take the spear and the circle, and try to fit them together. After a while of tinkering they both fit in place!')
-        MainChar.current_place.items.append('symbol')
-        MainChar.remove_from_inventory('circle')
-        MainChar.remove_from_inventory('spearhead')
+        MainChar.current_place.items.append(Symbol)
+        MainChar.remove_from_inventory(Circle)
+        MainChar.remove_from_inventory(Spearhead)
         print_text_slowly('It is clearly a religious symbol, but could also be a key to a locked place?')
 
-    elif 'circle' in inventory and 'spearhead' not in inventory:
+    elif Circle in inventory and Spearhead not in inventory:
          print_text_slowly('The markings of the metal circle look as if it could be combined with something.')
-    elif 'circle' not in inventory and 'spearhead' in inventory:
+    elif Circle not in inventory and Spearhead in inventory:
          print_text_slowly('You take a closer look at the spearhead and it does seem it could be combined with something.')
-    elif 'circle' not in inventory and 'spearhead' not in inventory:
+    elif Circle not in inventory and Spearhead not in inventory:
          print_text_slowly('You do not think you have anything that fits together with anything else.')
 
 def act_on_single_command(command_input):

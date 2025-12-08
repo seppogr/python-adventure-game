@@ -4,7 +4,7 @@ from npcs import npc_data
 from npcs import npc_conversation
 from utils import *
 from Place import *
-from items import items
+from Item import *
 from idler import *
 from death_conditions import *
 

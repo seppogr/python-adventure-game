@@ -47,7 +47,7 @@ class Player:
         if self.inventory:
             print('you have...')
             for item in self.inventory:
-                print(f'- {item}')
+                print(f'- {item.name}')
         else:
             print(f'Inventory is empty')
 
@@ -61,4 +61,4 @@ class Player:
         return f'{self.points}'
 
 # initialise main character with default values
-MainChar = Player(0, Kitchen, 'none', ['ball', 'spearhead', 'circle'], True)
+MainChar = Player(0, Kitchen, 'none', [Book, Spearhead, Circle, Money, Coffee], True)

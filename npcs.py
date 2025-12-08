@@ -1,87 +1,88 @@
 # npc_data:
 # all data used in the game regarding the npc.
+from Item import *
 
 npc_data = {
     'innkeeper': {
         'description' : 'A middle-aged man with a beard and a worried look on his face. Probably wants to talk to you about something.',
-        'wants' : 'book',
-        'items' : ['key'],
+        'wants' : Book,
+        'items' : [Key],
         'greeting' : 'Hello traveler',
         'follower' : False,
         'trader'   : False,
-        'trades'   : ''
+        'trades'   : No_item
     },
     'wererat' : {
         'description' : 'A sharp-toothed monster. Likely you will get eaten by it.',
-        'wants' : 'lamp',
+        'wants' : Lamp,
         'items' : [],
         'greeting' : 'Graugh!!!',
         'follower' : False,
         'trader'   : False,
-        'trades'   : ''
+        'trades'   : No_item
     },
     'cat' : {
         'description' : 'A fine-looking healthy cat.',
-        'wants': 'fish',
+        'wants': Fish,
         'items' : [],
         'greeting' : 'Meeee-oooow! MEEEE-OOOOWWW!',
         'follower' : True,
         'trader'   : False,
-        'trades'   : ''
+        'trades'   : No_item
     },
     'smith' : {
         'description' : 'A strong man.',
-        'wants': '',
+        'wants': No_item,
         'items' : [],
         'greeting' : 'Hrmph!',
         'follower' : False,
         'trader'   : False,
-        'trades'   : ''
+        'trades'   : No_item
     },
     'shopkeeper' : {
         'description' : 'An amiable follow. Apaprently used to dealing with people.',
-        'wants': 'money',
-        'items' : ['coffee'],
+        'wants': Money,
+        'items' : [Coffee],
         'greeting' : 'Hrmph!',
         'follower' : False,
         'trader'   : True,
-        'trades'   : 'coffee'
+        'trades'   : Coffee
     },
     'cook' : {
         'description' : 'An elderly cook. Clearly intelligent and runs the manor kitchen with utmost care.',
-        'wants': 'coffee',
-        'items' : ['passkey'],
+        'wants': Coffee,
+        'items' : [Passkey],
         'greeting' : 'Hello dear!',
         'follower' : False,
         'trader'   : True,
-        'trades'   : 'passkey'
+        'trades'   : Passkey
     },
     'stablehand' : {
         'description' : 'A shifty character. Clearly hides something. But what?',
-        'wants': '',
-        'items' : ['rag'],
+        'wants': No_item,
+        'items' : [Rag],
         'greeting' : 'Uh.. Hi.',
         'follower' : False,
         'trader'   : False,
-        'trades'   : ''
+        'trades'   : No_item
     },
     'count' : {
         'description' : 'An old aristocrat. Seems well-aware that he is superior to you.',
-        'wants': '',
+        'wants': No_item,
         'items' : [],
         'greeting' : 'Yes, what ist it? Speak up, man!',
         'follower' : False,
         'trader'   : False,
-        'trades'   : ''
+        'trades'   : No_item
     },
         'countess' : {
         'description' : 'A sad-lookin lady.',
-        'wants': 'mirror',
-        'items' : ['spearhead'],
+        'wants': Mirror,
+        'items' : [Spearhead],
         'greeting' : 'Ohh. Ohh! OHHH!',
         'follower' : False,
         'trader'   : True,
-        'trades'   : 'spearhead'
+        'trades'   : Spearhead
     }
 }
 

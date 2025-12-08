@@ -4,7 +4,7 @@ single_word_commands = ['help', 'inventory', 'describe', 'directions', 'companio
 
 ## Commands to be added:
 # drop
-# combine
+
 
 command_verbs = ['go', 'describe', 'ask', 'chat', 'give', 'take', 'request', 'read']
 
