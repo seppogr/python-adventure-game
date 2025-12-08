@@ -61,4 +61,4 @@ class Player:
         return f'{self.points}'
 
 # initialise main character with default values
-MainChar = Player(0, Kitchen, 'none', [Book, Spearhead, Circle, Money, Coffee], True)
+MainChar = Player(0, Inn, 'none', [Book, Spearhead, Circle, Lamp, Key], True)

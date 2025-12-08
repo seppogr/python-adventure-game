@@ -13,18 +13,18 @@ def main_char_death(killer, death_message, hint):
     MainChar.set_life_status(False)
 
 def check_for_death_by_room(room):
-    if room == 'basement' and 'lamp' not in MainChar.inventory:
+    if room == 'basement' and Lamp not in MainChar.inventory:
         death_message = 'The darkness of the cellar engulfs you. Something moves and then it all ends...'
         hint = 'Maybe a light source would have been useful. Just a thought.'
         main_char_death(MainChar.current_place.character, death_message, hint)
 
 def check_for_death_by_item(room, items):
-    if room == 'basement' and 'lamp' not in items:
+    if room == 'basement' and Lamp not in items:
         death_message = 'The wererat smashes the lamp. It is very, very dark and you have just time to feel something sharp hitting you. Then the final darkness...'
         hint = 'In retrospective, possibly not the smartest choice giving your lamp away in a dark cellar just like that.'
         main_char_death(MainChar.current_place.character, death_message, hint)
 
-    if room == 'inn' and 'book' in npc_data['innkeeper']['items']:
+    if room == 'inn' and Book in npc_data['innkeeper']['items']:
         death_message = 'The innkeeper smiles and informs you that regrettably the inn will close for the day.\nYou are left outside waiting for some means of transportation out of here.\nAfter a couple of hours a bus arrives, and on the journey back\nto more civilised parts of the country you have a nagging feeling that you missed something.\nAfter all, you DID spy the innkeper hurrying to the direction of the forest with the book.'
         hint = 'Maybe always doing what people tell you to is not a key to victory.'
         main_char_death('a', death_message, hint)

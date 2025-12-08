@@ -4,7 +4,7 @@ class Item:
         self.description = description
         self.synonym = synonym
 
-Lamp = Item ('lamp', 'An oil lamp', 'a brightly illuminating lamp')
+Lamp = Item ('lamp', 'An oil lamp. Gives bright light. ', 'a brightly illuminating lamp')
 
 Key = Item('key', 'An old key. Opens the basement door.', 'a key to the basement door')
 
@@ -42,6 +42,11 @@ Symbol = Item('symbol', 'A strange symbol combining circle and spearhead. You gu
 
 No_item = Item('', '', '')
 
+Items = [Lamp, Key, Book, Rod, Mask, Fish, Money,
+         Coffee, Shovel, Circle, Note, Knife, Rag,
+         Letter, Mirror, Passkey, Spearhead, Symbol]
+
+readables_as_string = ['note']
 # items = {
 #     'lamp' : {
 #         'description': 'An oil lamp.',

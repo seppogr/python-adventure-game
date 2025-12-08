@@ -43,11 +43,11 @@ def go(direction):
     if direction in available_directions:
         if direction == door_opens_to and door_unlocked == False:
             if(unlocking_item in inventory):
-                print_text_slowly(f'Your {unlocking_item} unlocks the door!')
+                print_text_slowly(f'Your {unlocking_item.name} unlocks the door!')
                 change_place(direction)
 
             else:
-                print_text_slowly(f'The {direction} door is locked. It looks like you need a {unlocking_item} to proceed.')
+                print_text_slowly(f'The {direction} door is locked. It looks like you need a {unlocking_item.name} to proceed.')
 
         elif direction == blocker_in_this_direction and road_blocker_status == True:
             print(f'You start to go to {direction} but there is a {blocker} that way and...')
@@ -79,7 +79,9 @@ def chat(character):
 
         if len(npc_data[character]['items']) > 0:
             print_text_slowly(f'During your conversation, you notice that the {character} is carrying: ')
-            npc_items = extract_list(npc_data[character]['items'])
+            npc_items = ''
+            for item in npc_data[character]['items']:
+                npc_items += item.name + ' '
             print_text_slowly(f'{print_in_colour(npc_items, GREEN)}')
     else:
         print_text_slowly(f'It seems {character} is not here. {MainChar.current_place.character.capitalize()} is amused when you talk by yourself.')
@@ -94,9 +96,13 @@ def ask(noun):
 
 # gives a more detailed description of an item or character, depending on the parameter
 def describe(noun):
+    room_items = extract_object_list(MainChar.current_place.items)
+    npc_items = extract_object_list(npc_data[MainChar.current_place.character]['items'])
+    character_items = extract_object_list(MainChar.get_inventory())
+    item_obj = fetch_item_object_by_value(noun)
 
-    if noun in MainChar.current_place.items or noun in npc_data[MainChar.current_place.character]['items'] or noun in MainChar.get_inventory():
-        print_text_slowly(items[noun]['description'])
+    if noun in room_items or noun in npc_items or noun in character_items:
+        print_text_slowly(item_obj.description)
 
     elif noun in MainChar.current_place.character:
         print_text_slowly(npc_data[noun]['description'])
@@ -113,25 +119,28 @@ def give(item):
     npc_inventory = npc_data[MainChar.current_place.character]['items']
     npc_in_this_place = MainChar.current_place.character
     npc_follower_status = npc_data[MainChar.current_place.character]['follower']
+    item_obj = fetch_item_object_by_value(item)
+    not_interested = f'{npc_in_this_place.capitalize()} is not interested in {item}.'
 
-    if item in player_inventory:
+    if item_obj in player_inventory:
         if npc_trader_status == False:
-            if item == npc_wants_this_item:
-                npc_inventory.append(item)
+            if item_obj == npc_wants_this_item:
+                npc_inventory.append(item_obj)
                 room = MainChar.current_place.place_name
 
-                if(MainChar.remove_from_inventory(item)):
+                if(MainChar.remove_from_inventory(item_obj)):
                     print_text_slowly(f'{npc_in_this_place.capitalize()} is very happy to get the {item}.')
 
                     items = MainChar.get_inventory()
                     if npc_follower_status == False:
                         check_for_death_by_item(room, items)
-
                     else:
                         MainChar.set_follower(npc_in_this_place)
                         npc_in_this_place = None
+            else:
+                print_text_slowly(f'{not_interested}')
         else:
-            print_text_slowly(f'{npc_in_this_place.capitalize()} does not care for the {item}. Or Maybe they will want to trade instead.')
+            print_text_slowly(f'{not_interested}, but could be interested in trading something.')
     else:
         print_text_slowly(f'You rummage and rummage through your bag, but there is no {item} there. You cannot give away what you do not have.' )
 
@@ -139,48 +148,51 @@ def give(item):
 
 def take(item):
     items_in_the_room = MainChar.current_place.items
-    item_short_description = items[item]['synonym']
+    item_obj = fetch_item_object_by_value(item)
+    item_short_description = item_obj.synonym
 
     if item in items_in_the_room:
-        MainChar.add_to_inventory(item)
-        items_in_the_room.remove(item)
+        MainChar.add_to_inventory(item_obj)
+        items_in_the_room.remove(item_obj)
         print_text_slowly(f'You pick up {item_short_description.upper()}.')
 
     else:
         print_text_slowly(f'Hmmm. You take a long look around and it seems there is no {item} in the room.')
 
 def request(item):
+    item_obj = fetch_item_object_by_value(item)
     item_npc_wants_to_keep = npc_data[MainChar.current_place.character]['wants']
     npc = MainChar.current_place.character
     npc_inventory = npc_data[MainChar.current_place.character]['items']
     npc_trader_status = npc_data[MainChar.current_place.character]['trader']
 
-    if item == item_npc_wants_to_keep:
+    if item_obj.name == item_npc_wants_to_keep.name:
         print_text_slowly(f'{npc.capitalize()} explains: "No! Never in my life shall I part again from this precious {item}!"')
 
-    elif item in npc_inventory and npc_trader_status == False:
-        MainChar.add_to_inventory(item)
-        npc_inventory.remove(item)
+    elif item_obj in npc_inventory and npc_trader_status == False:
+        MainChar.add_to_inventory(item_obj)
+        npc_inventory.remove(item_obj)
         print_text_slowly(f'You press on the {npc} to give the {item}. The {item} is now in your possession.')
 
-    elif item in npc_inventory and npc_trader_status == True:
-        print_text_slowly(f'The {npc} says: "I could give you the {item}, if you bring me {item_npc_wants_to_keep}."')
+    elif item_obj in npc_inventory and npc_trader_status == True:
+        print_text_slowly(f'The {npc} says: "I could give you the {item}, if you bring me {item_npc_wants_to_keep.name}."')
 
 def read(noun):
     inventory = MainChar.get_inventory()
-    if noun in inventory:
-        if noun == 'book':
+    item_obj = fetch_item_object_by_value(noun)
+    if item_obj in inventory:
+        if item_obj.name == 'book':
             print_text_slowly('As you turn the pages it becomes evident that this book was not meant for mortal eyes.')
             print_text_slowly('However, you notice that someone has added notes to the sidelines.')
-            if 'mask' in inventory:
+            if Mask in inventory:
                 print_text_slowly('Good thing you managed to slip your welding mask on before reading.')
                 print_text_slowly('The notes are a diary of cult meetings and what has been offered to the deity.')
                 print_text_slowly('As you read down the list, you see that the last offering is scheduled for today and it is a human head.')
             else:
                 check_for_death_by_book()
 
-        elif noun == 'note':
-            print_text_slowly(f'{items['note']['description']}')
+        elif item_obj.name in readables_as_string:
+            print_text_slowly(f'{item_obj.description}')
 
         else:
             print_text_slowly('It appears you have nothing to read.')
