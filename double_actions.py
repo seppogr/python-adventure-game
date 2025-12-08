@@ -151,13 +151,13 @@ def take(item):
     item_obj = fetch_item_object_by_value(item)
     item_short_description = item_obj.synonym
 
-    if item in items_in_the_room:
+    if item_obj in items_in_the_room:
         MainChar.add_to_inventory(item_obj)
         items_in_the_room.remove(item_obj)
         print_text_slowly(f'You pick up {item_short_description.upper()}.')
 
     else:
-        print_text_slowly(f'Hmmm. You take a long look around and it seems there is no {item} in the room.')
+        print_text_slowly(f'Hmmm. You take a long look around and it seems there is no {item} lying around.')
 
 def request(item):
     item_obj = fetch_item_object_by_value(item)
@@ -178,6 +178,7 @@ def request(item):
         print_text_slowly(f'The {npc} says: "I could give you the {item}, if you bring me {item_npc_wants_to_keep.name}."')
 
 def read(noun):
+    nothing_to_read = 'It appears you have nothing to read.'
     inventory = MainChar.get_inventory()
     item_obj = fetch_item_object_by_value(noun)
     if item_obj in inventory:
@@ -195,10 +196,10 @@ def read(noun):
             print_text_slowly(f'{item_obj.description}')
 
         else:
-            print_text_slowly('It appears you have nothing to read.')
+            print_text_slowly(nothing_to_read)
 
     else:
-        print_text_slowly('You have nothing to read.')
+        print_text_slowly(nothing_to_read)
 
 def act_on_double_command(verb, noun):
     try:
@@ -219,5 +220,5 @@ def act_on_double_command(verb, noun):
         elif verb == 'read':
             read(noun)
 
-    except KeyError as e:
-        print(f'You grow pensive, distracted for a while but the feeling passes.')
+    except AttributeError:
+        print(f'You grow pensive, distracted for a while but the feeling passes. You come to realise there is no {noun} to be found.')

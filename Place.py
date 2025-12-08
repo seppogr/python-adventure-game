@@ -109,7 +109,7 @@ Attic = Place (
         'attic',
         3,
         'a dusty attic',
-        [],
+        [Newspaper],
         'cat',
         '''
         THE INN ATTIC

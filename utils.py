@@ -29,4 +29,3 @@ def npc_topics(list):
         conversation_topics+= chat_list[item] + ' '
     return conversation_topics
 
-readables =['note']

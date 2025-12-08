@@ -2,7 +2,6 @@ from Player import MainChar
 from Place import *
 from commands import *
 from printer import *
-from utils import *
 from single_actions import act_on_single_command
 from double_actions import act_on_double_command
 import sys
