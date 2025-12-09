@@ -27,11 +27,11 @@ def change_place(direction):
         if Evidence in npc_data[MainChar.current_place.character]['items']:
             MainChar.set_follower(MainChar.current_place.character)
             npc_conversation['smith']['evidence'] = proof_conversation['evidence']
-            chat('smith')
+
 
     if MainChar.follower != 'none':
         follower = MainChar.get_follower()
-        print_text_slowly(f'The {follower} follows you.')
+        print_text_slowly(f'The {follower.upper()} follows you.')
 
     check_for_death_by_room(direction)
 
@@ -106,13 +106,19 @@ def chat(character):
             for item in npc_data[character]['items']:
                 npc_items += item.name + ' '
             print_text_slowly(f'{print_in_colour(npc_items, GREEN)}')
+    elif character == MainChar.follower:
+        topics = npc_topics(npc_conversation[character].keys())
+        print_text_slowly(f'{print_in_colour(topics, BLUE)}')
+
     else:
         print_text_slowly(f'It seems {character} is not here. {MainChar.current_place.character.capitalize()} is amused when you talk by yourself.')
 
 # asks the current npc about the topics that can be seen with the chat command.
 def ask(noun):
-    if(noun in npc_conversation[MainChar.current_place.character].keys()):
+    if noun in npc_conversation[MainChar.current_place.character].keys():
         print_text_slowly(f'The {MainChar.current_place.character} says "{npc_conversation[MainChar.current_place.character][noun]}"')
+    elif noun in npc_conversation[MainChar.follower].keys():
+        print_text_slowly(f'The {MainChar.follower} says "{npc_conversation[MainChar.follower][noun]}"')
     else:
         print_text_slowly(f'{noun.capitalize()} is something I know nothing about.')
 
