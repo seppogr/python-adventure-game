@@ -39,6 +39,9 @@ def go(direction):
     follower = MainChar.get_follower()
     follower_who_helps_with_this_block = MainChar.current_place.blocker['unblocked_by']
     message_of_unblocking = MainChar.current_place.blocker['after_message']
+    MainChar.current_place.blocker['unblocked_by']
+    unblocking_item = fetch_item_object_by_value(MainChar.current_place.blocker['unblocked_by'])
+
 
     if direction in available_directions:
         if direction == door_opens_to and door_unlocked == False:
@@ -49,14 +52,25 @@ def go(direction):
             else:
                 print_text_slowly(f'The {direction} door is locked. It looks like you need a {unlocking_item.name} to proceed.')
 
+
+
         elif direction == blocker_in_this_direction and road_blocker_status == True:
+            unblocking_item = MainChar.current_place.blocker['unblocked_by']
             print(f'You start to go to {direction} but there is a {blocker} that way and...')
-            if(follower == follower_who_helps_with_this_block):
+            if(follower == follower_who_helps_with_this_block and check_if_follower(unblocking_item)):
                 MainChar.current_place.blocker['blocked'] = False
                 print_text_slowly(f'{message_of_unblocking}')
+                MainChar.set_follower('none')
+                print_text_slowly(f'The {follower} decides to go their own way.')
                 print_text_slowly('The road is clear!')
+
+            elif unblocking_item in MainChar.inventory:
+                MainChar.current_place.blocker['blocked'] = False
+                print_text_slowly(f'You take your {unblocking_item.name} and use it to {message_of_unblocking}')
+                change_place(direction)
+
             else:
-                print_text_slowly(f'...you cannot get past it. Probably there is someone who can help you.')
+                print_text_slowly(f'...you cannot get past it. Probably there is something you can do.')
         else:
             change_place(direction)
     else:
@@ -201,6 +215,15 @@ def read(noun):
     else:
         print_text_slowly(nothing_to_read)
 
+def drop(noun):
+    inventory = MainChar.get_inventory()
+    item_obj = fetch_item_object_by_value(noun)
+    if item_obj in inventory:
+        MainChar.current_place.items.append(item_obj)
+        MainChar.remove_from_inventory(item_obj)
+        print_text_slowly(f'You drop your {item_obj.name.upper()} to the ground. Hopefully nobody comes and takes it in case you need it later!')
+    else:
+        print_text_slowly(f'You try to to drop {item_obj.name.upper()} but soon realise you do not have it!')
 def act_on_double_command(verb, noun):
     try:
         if verb == 'go':
@@ -219,6 +242,8 @@ def act_on_double_command(verb, noun):
             request(noun)
         elif verb == 'read':
             read(noun)
+        elif verb == 'drop':
+            drop(noun)
 
     except AttributeError:
         print(f'You grow pensive, distracted for a while but the feeling passes. You come to realise there is no {noun} to be found.')

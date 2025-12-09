@@ -18,6 +18,11 @@ def check_for_death_by_room(room):
         hint = 'Maybe a light source would have been useful. Just a thought.'
         main_char_death(MainChar.current_place.character, death_message, hint)
 
+    if room == 'church' and (Circle not in MainChar.inventory or Spearhead not in MainChar.inventory) and Symbol not in MainChar.inventory:
+        death_message = 'As you drop down on the church floor, you notice there is no way to reach window from this side.\nThere is a door to the crypt but you cannot figure out how to open it.\nAfter a while, you are surprised as the church door rattles and Alfred the Innkeeper opens the door. He stares at you for a while but then firmly escorts you back to town square where he puts you in the next bus out of village.'
+        hint = 'You cannot but wonder if there would have beens some sort of way to open the crypt door.'
+        main_char_death('', death_message, hint)
+
 def check_for_death_by_item(room, items):
     if room == 'basement' and Lamp not in items:
         death_message = 'The wererat smashes the lamp. It is very, very dark and you have just time to feel something sharp hitting you. Then the final darkness...'
@@ -28,6 +33,8 @@ def check_for_death_by_item(room, items):
         death_message = 'The innkeeper smiles and informs you that regrettably the inn will close for the day.\nYou are left outside waiting for some means of transportation out of here.\nAfter a couple of hours a bus arrives, and on the journey back\nto more civilised parts of the country you have a nagging feeling that you missed something.\nAfter all, you DID spy the innkeper hurrying to the direction of the forest with the book.'
         hint = 'Maybe always doing what people tell you to is not a key to victory.'
         main_char_death('a', death_message, hint)
+
+
 
 def check_for_death_by_book():
     death_message = 'First, your eyes feel like melting and a moment later it feels your brain is frying. Then, nothing.'

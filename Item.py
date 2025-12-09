@@ -42,10 +42,13 @@ Symbol = Item('symbol', 'A strange symbol combining circle and spearhead. You gu
 
 Newspaper = Item('newspaper', 'A local newspaper full of old articles, you almost throw it away until your eyes spot something interesting. And ominous.\n "STRANGE DISAPPEARANCE\n A headless body found!!!"\n The rest is torn away.', 'an old local newspaper')
 
+Ladder = Item('ladder', 'A sturdy, portable ladder. Useful for reaching high spots.', 'a wooden ladder')
+
 No_item = Item('', '', '')
 
 Items = [Lamp, Key, Book, Rod, Mask, Fish, Money,
          Coffee, Shovel, Circle, Note, Knife, Rag,
-         Letter, Mirror, Passkey, Spearhead, Symbol, Newspaper]
+         Letter, Mirror, Passkey, Spearhead, Symbol,
+         Newspaper, Ladder]
 
 readables_as_string = ['note', 'newspaper']

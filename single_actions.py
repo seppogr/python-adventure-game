@@ -58,8 +58,8 @@ def companion():
         print_text_slowly(f'Your current companion is a {current_follower}. It feels nice not to be alone.')
 
 def fish():
-    if MainChar.current_place.place_name == 'beach' and 'rod' in MainChar.inventory:
-        MainChar.add_to_inventory('fish')
+    if MainChar.current_place.place_name == 'beach' and Rod in MainChar.inventory:
+        MainChar.current_place.items.append(Fish)
         print_text_slowly('You spend a while fishing, and catch a nice fish. Now, who likes uncooked fish?')
     else:
         print_text_slowly('Generally, a significant body of water, such as an ocean, and some sort of fishing rod are both needed to catch fish.')
@@ -70,7 +70,7 @@ def trade():
         items = MainChar.get_inventory()
         wanted_item = npc_data[MainChar.current_place.character]['wants']
         trade_item = npc_data[MainChar.current_place.character]['trades']
-        if wanted_item  in items:
+        if wanted_item in items:
             print_text_slowly(f'The {MainChar.current_place.character} is happy to trade ')
             MainChar.add_to_inventory(trade_item)
             npc_data[MainChar.current_place.character]['items'].remove(trade_item)

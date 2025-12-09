@@ -1,4 +1,4 @@
-HELP FILE
+SOME HELPFUL INSTRUCTIONS
 
 You can use one or two words in commands, some verbs can be used either singularly
 or together with a noun. Please note that all prepositions have been omitted
@@ -43,6 +43,9 @@ The following commands produce a desired effect if certain in-game conditions ar
 
 'dig'                -> Find a good place and some sort of digging tool and perhaps you'll find something.
 
+'combine'            -> Some items may fit together. I you manage to 'combine' them, remember to pick up
+                        your new item.
+
 
 2-word:
 Note: Don't write the '+' sign in the command. It's just here to clarify that these verb commands
@@ -68,3 +71,5 @@ request + <item>    -> Politely ask for an item in somebody else's possession. I
                        maybe they will simply 'trade' for it instead.
 
 read + <item>       -> Read something! A book or note or similar.
+
+drop + <item>       -> Drop an item to the ground.

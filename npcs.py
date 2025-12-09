@@ -12,7 +12,7 @@ npc_data = {
         'trader'   : False,
         'trades'   : No_item
     },
-    'wererat' : {
+    'cannibal' : {
         'description' : 'A sharp-toothed monster. Likely you will get eaten by it.',
         'wants' : Lamp,
         'items' : [],
@@ -97,13 +97,13 @@ npc_conversation = {
         'mission'   : 'There is a book in the basement. Can you bring it to me?',
         'key'       : 'You will need this key to open the basement door.',
         'lamp'      : 'That is a good lamp.',
-        'wererat'   : 'A wererat has mede its lair in the basement and I cannot go there myself.',
+        'cannibal'   : 'A cannibal is kept in the basement and I cannot go there myself.',
         'basement'  : 'It is our wine cellar. Kept dark in purpose.',
         'book'      : 'The count left it in the basement.',
         'friend'    : 'I think someone of that description was here but left in a hurry. I do not think he is in the area anymore.'
     },
-    'wererat' : {
-        'wererat'   : 'I must stay here in the basement until the sun goes down. Just my luck I guess.',
+    'cannibal' : {
+        'cannibal'   : 'I must stay here in the basement until the polica arrives. Just my luck I guess.',
         'mission'   : 'What a nice lamp you have, please give it to me! I hate it here in the dark.',
         'book'      : 'It is not important, no need for you to check it. Just leave it here in the circle.',
         'circle'    : 'Just some drawing on the floor. Nothing important.',

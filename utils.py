@@ -16,7 +16,12 @@ def fetch_item_object_by_value(noun):
     for item in Items:
         if item.name == noun:
             return item
-
+# Followers are type string, items are type object. Needed to be checked when attempting unblock of direction
+def check_if_follower(input):
+    if type(input) is str:
+        return True
+    else:
+        return False
 
 # prints the available topcis for conversation
 # with the character in the current room

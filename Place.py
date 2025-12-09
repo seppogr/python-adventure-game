@@ -64,7 +64,7 @@ Basement = Place (
         1,
         'a dark basement',
         [Book],
-        'wererat',
+        'cannibal',
         '''
         THE INN BASEMENT
 
@@ -192,7 +192,7 @@ Manor = Place (
         'manor',
         7,
         'a manor courtyard',
-        [],
+        [Ladder],
         '',
         '''
         MANOR COURTYARD
@@ -294,7 +294,7 @@ Kitchen = Place (
         'kitchen',
         12,
         'a well-equipped manor kitchen',
-        [Money, Book],
+        [Money],
         'cook',
         '''
         KITCHEN
@@ -363,11 +363,13 @@ Churchyard = Place (
         respect the environs of the local church does not differ in any way
         from that of a typical village church. On a closer look, you notice
         that all the markers grow with moss and there are no fresh graves even
-        though the path to the church itself is well-used.
+        though the path to the church itself is well-used. The church door is
+        firmly locked, but you could probably reach an open window above if
+        you could reach it.
 
         ''',
         {'open': True, 'direction' : '', 'unlocked_by' : No_item },
-        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
+        {'blocked' : True,  'direction' : 'church', 'name': 'a firmly locked door', 'unblocked_by': Ladder,'after_message' : 'climb through the window'},
         {'trail': 6, 'forest' : 16, 'church' : 17}
 )
 
@@ -402,12 +404,13 @@ Church = Place (
 
         Even though the path to the church was well-traveled it is difficult
         to believe that the church has seen much religious use recently. In the
-        dusty floor is a clear traveled path to the catacombs.
+        dusty floor is a clear traveled path to the catacombs. The catacomb door slams
+        shut just as you enter, and there is an indentation of curious shape in the door.
 
         ''',
-        {'open': True, 'direction' : '', 'unlocked_by' : No_item},
+        {'open': False, 'direction' : 'crypt', 'unlocked_by' : Symbol},
         {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
-        {'churchyard': 15, 'crypt' : 18}
+        {'crypt' : 18}
 )
 
 Crypt = Place (
@@ -427,7 +430,7 @@ Crypt = Place (
         ''',
         {'open': True, 'direction' : '', 'unlocked_by' : No_item },
         {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
-        {'church': 17, 'dungeon' : 19}
+        {'dungeon' : 19}
 )
 
 Dungeon = Place (

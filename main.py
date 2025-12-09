@@ -40,5 +40,7 @@ def main():
 
         command_input = input('What will you do?> ').strip().lower()
 
+    print_text_slowly('Bye!')
+
 if __name__ == '__main__':
     main()
