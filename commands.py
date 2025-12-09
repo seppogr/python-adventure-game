@@ -6,6 +6,6 @@ single_word_commands = ['help', 'inventory', 'describe', 'directions', 'companio
 # drop
 
 
-command_verbs = ['go', 'describe', 'ask', 'chat', 'give', 'take', 'request', 'read', 'drop']
+command_verbs = ['go', 'describe', 'ask', 'chat', 'give', 'take', 'request', 'read', 'drop', 'gather']
 
 

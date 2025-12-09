@@ -32,10 +32,10 @@ npc_data = {
     },
     'smith' : {
         'description' : 'A strong man.',
-        'wants': No_item,
+        'wants': Evidence,
         'items' : [],
         'greeting' : 'Hrmph!',
-        'follower' : False,
+        'follower' : True,
         'trader'   : False,
         'trades'   : No_item
     },
@@ -118,7 +118,9 @@ npc_conversation = {
         'job'       : 'The local smith, I also fix this and that.',
         'mask'      : 'That, an old welding mask. I do not use it anymore. Just take it if you need it.',
         'innkeeper' : 'He has some business going on with the coun in the manor. I do not trust them.',
-        'count'     : 'The old lord hereabouts. Only the cook of their household is of a good sort.'
+        'count'     : 'The old lord hereabouts. Only the cook of their household is of a good sort.',
+        'friend'    : 'He was here, fishing for a couple of days. And the disappeared',
+        'disappearance' : 'A strange case, there is something odd about that.'
     },
     'shopkeeper' : {
         'name'      : 'Adam, at your service.',

@@ -44,11 +44,13 @@ Newspaper = Item('newspaper', 'A local newspaper full of old articles, you almos
 
 Ladder = Item('ladder', 'A sturdy, portable ladder. Useful for reaching high spots.', 'a wooden ladder')
 
+Evidence = Item('evidence', 'A strong case against the Count, the Innkeeper, and the Stablehand. But is it strong enough? You guess not enough to confront them directly, but someone honest could be convinced...', 'evidence')
+
 No_item = Item('', '', '')
 
 Items = [Lamp, Key, Book, Rod, Mask, Fish, Money,
          Coffee, Shovel, Circle, Note, Knife, Rag,
          Letter, Mirror, Passkey, Spearhead, Symbol,
-         Newspaper, Ladder]
+         Newspaper, Ladder, Evidence]
 
 readables_as_string = ['note', 'newspaper']

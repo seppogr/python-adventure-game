@@ -33,7 +33,7 @@ helpful notes. Happy gaming!
 'commands'          ->  A quick help with all available verb commands used in the game. Nouns are
                         for you to figure out.
 
-Context-specific one-word
+Context-specific one-word OR two word
 
 The following commands produce a desired effect if certain in-game conditions are met:
 
@@ -45,6 +45,8 @@ The following commands produce a desired effect if certain in-game conditions ar
 
 'combine'            -> Some items may fit together. I you manage to 'combine' them, remember to pick up
                         your new item.
+
+'gather' + <noun>    -> Bring your different proof to get... Evidence?
 
 
 2-word:

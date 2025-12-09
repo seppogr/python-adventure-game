@@ -1,0 +1,23 @@
+proof = { 'knife': True,
+         'note' : True,
+         'letter' : True,
+         'rag' : True,
+         'symbol' : True
+}
+
+proof_conversation = {'knife' : 'A sharp, blade, definintely has traces of blood.',
+                      'note' : 'The handwriting looks refined and cultured.',
+                      'letter' : 'Familiar handwriting. Must be someone from the village.',
+                      'rag' : 'It is coloured by blood.',
+                      'symbol' : 'That is an old symbol. I have seen it in the crypt door in church.',
+                      'evidence' : 'Looks like we should investigate the crypt, the symbol strongly suggests that.'}
+
+def return_found_proof():
+    proof_list = []
+    for item in proof:
+        if proof[item]:
+            proof_list.append(item)
+
+    return proof_list
+
+#print(return_found_proof())

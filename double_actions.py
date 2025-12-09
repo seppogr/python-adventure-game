@@ -7,6 +7,7 @@ from Place import *
 from Item import *
 from idler import *
 from death_conditions import *
+from proof_manager import *
 
 
 # change from one place/room to another, called by go() when needed
@@ -17,6 +18,16 @@ def change_place(direction):
     new_place_at_first_glance = MainChar.current_place.at_first_glance
 
     print_text_slowly(f'You go from {old_place_at_first_glance} into {new_place_at_first_glance}.')
+    if direction == 'smithy':
+        proof_list = return_found_proof()
+
+        for proof in proof_list:
+            npc_conversation['smith'][proof] = proof_conversation[proof]
+
+        if Evidence in npc_data[MainChar.current_place.character]['items']:
+            MainChar.set_follower(MainChar.current_place.character)
+            npc_conversation['smith']['evidence'] = proof_conversation['evidence']
+            chat('smith')
 
     if MainChar.follower != 'none':
         follower = MainChar.get_follower()
@@ -51,8 +62,6 @@ def go(direction):
 
             else:
                 print_text_slowly(f'The {direction} door is locked. It looks like you need a {unlocking_item.name} to proceed.')
-
-
 
         elif direction == blocker_in_this_direction and road_blocker_status == True:
             unblocking_item = MainChar.current_place.blocker['unblocked_by']
@@ -150,6 +159,7 @@ def give(item):
                         check_for_death_by_item(room, items)
                     else:
                         MainChar.set_follower(npc_in_this_place)
+                        print_text_slowly(f'The {npc_in_this_place.upper()} will help you now.')
                         npc_in_this_place = None
             else:
                 print_text_slowly(f'{not_interested}')
@@ -224,6 +234,33 @@ def drop(noun):
         print_text_slowly(f'You drop your {item_obj.name.upper()} to the ground. Hopefully nobody comes and takes it in case you need it later!')
     else:
         print_text_slowly(f'You try to to drop {item_obj.name.upper()} but soon realise you do not have it!')
+
+def gather(noun):
+    amount_of_proof = len(return_found_proof())
+    if noun == 'evidence' and amount_of_proof < 5:
+        print_text_slowly(f'You strongly feel you are on the right track but something is still needed.')
+        amount_needed = 5 - amount_of_proof
+        if amount_of_proof != 1:
+            print_text_slowly(f'You think about {amount_needed} more pieces proof should do it.')
+        else:
+            print_text_slowly(f'Just one more piece of evidence and you could present your case to someone honest.')
+
+    elif noun == 'evidence' and amount_of_proof == 5:
+        if Letter in MainChar.get_inventory() and Note in MainChar.get_inventory() and Knife in MainChar.get_inventory() and Rag in MainChar.get_inventory():
+            print_text_slowly(f'That is it!')
+            MainChar.remove_from_inventory(Letter)
+            MainChar.remove_from_inventory(Note)
+            MainChar.remove_from_inventory(Knife)
+            MainChar.remove_from_inventory(Rag)
+            MainChar.add_to_inventory(Evidence)
+            print_text_slowly(f'You pack the knife, rag, note and letter tightly into a pack of evidence. You are about to add the symbol as well, but have a hucnch it might be needed later.')
+            print_text_slowly('Now, what to do with this?')
+        else:
+            print_text_slowly('It seems you have dropped something vital somewhere!')
+    else:
+        print_text_slowly(f'You muse over things, but {noun} has not even circumstantial signifigance in finding out what happened to your friend.')
+
+
 def act_on_double_command(verb, noun):
     try:
         if verb == 'go':
@@ -244,6 +281,8 @@ def act_on_double_command(verb, noun):
             read(noun)
         elif verb == 'drop':
             drop(noun)
+        elif verb == 'gather':
+            gather(noun)
 
     except AttributeError:
         print(f'You grow pensive, distracted for a while but the feeling passes. You come to realise there is no {noun} to be found.')

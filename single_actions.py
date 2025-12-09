@@ -5,6 +5,7 @@ from colours import *
 from commands import *
 from death_conditions import *
 from Item import *
+from proof_manager import proof
 
 def test():
     print('test code here')
@@ -105,6 +106,8 @@ def combine():
         MainChar.current_place.items.append(Symbol)
         MainChar.remove_from_inventory(Circle)
         MainChar.remove_from_inventory(Spearhead)
+        proof['symbol'] = True
+
         print_text_slowly('It is clearly a religious symbol, but could also be a key to a locked place?')
 
     elif Circle in inventory and Spearhead not in inventory:
