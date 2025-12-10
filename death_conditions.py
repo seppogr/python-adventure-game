@@ -19,30 +19,30 @@ def check_for_death_by_room(room):
         main_char_death(MainChar.current_place.character, death_message, hint)
 
     if room == 'church' and (Circle not in MainChar.inventory or Spearhead not in MainChar.inventory) and Symbol not in MainChar.inventory:
-        death_message = 'As you drop down on the church floor, you notice there is no way to reach window from this side.\nThere is a door to the crypt but you cannot figure out how to open it.\nAfter a while, you are surprised as the church door rattles and Alfred the Innkeeper opens the door.\nHe stares at you for a while but then firmly escorts you back to town square where he puts you in the next bus out of village.'
-        hint = 'You cannot but wonder if there would have beens some sort of way to open the crypt door.'
+        death_message = 'As you drop down on the church floor, you notice there is no way to reach\nwindow from this side. There is a door to the crypt but you cannot figure out\nhow to open it. After a while, you are surprised as the church door rattles and Alfred the Innkeeper opens the door. He stares at you for a while but then firmly\nescorts you back to town square where he puts you in the next bus out of village.'
+        hint = 'You cannot but wonder if there would have beens some sort of way to open the\ncrypt door.'
         main_char_death('', death_message, hint)
     if room == 'crypt':
-        death_message = 'You cannot force the portal open alone.\nYou wait in the dim crypt.\nAfter a while, the portal opens and some robed figures spawn forth and surround you.\nThey take you to the room beyond.\nIt is a some sort of an unholy worship place,\nand you retch as you suddenly realise there is a severed head on the altar.\nA head you well recognise!\nThen you feel a hit in your head, and nothing more.'
-        hint = 'Could be that a strong companion might be able to force the portal. Too late now...'
+        death_message = 'You cannot force the portal open alone. You wait in the dim crypt. After a\nwhile, the portal opens and some robed figures spawn forth and surround you.\nThey take you to the room beyond. It is a some sort of an unholy worship place,\nand you retch as you suddenly realise there is a severed head on the altar. With\na face you well recognise! Then you feel a hit in your head, and nothing more.'
+        hint = 'Could be that a strong companion might be able to force the portal. Too late\nnow...'
         main_char_death('', death_message, hint)
 
 def check_for_death_by_item(room, items):
     if room == 'basement' and Lamp not in items:
-        death_message = 'The cannibal smashes the lamp.\nIt is very, very dark and you have just time to feel something sharp hitting you.\nThen the final darkness...'
-        hint = 'In retrospective, possibly not the smartest choice giving your lamp away in a dark cellar just like that.'
+        death_message = 'The cannibal smashes the lamp.\nIt is very, very dark and you have just time to\nfeel something sharp hitting you. Then the final darkness...'
+        hint = 'In retrospective, possibly not the smartest choice giving your lamp away in a\ndark cellar just like that.'
         main_char_death(MainChar.current_place.character, death_message, hint)
 
     if room == 'inn' and Book in npc_data['innkeeper']['items']:
-        death_message = 'The innkeeper smiles and informs you that regrettably the inn will close for the day.\nYou are left outside waiting for some means of transportation out of here.\nAfter a couple of hours a bus arrives, and on the journey back\nto more civilised parts of the country you have a nagging feeling that you missed something.\nAfter all, you DID spy the innkeper hurrying to the direction of the forest with the book.'
+        death_message = 'The innkeeper smiles and informs you that regrettably the inn will close for the\nday.You are left outside waiting for some means of transportation out of here.\nAfter a couple of hours a bus arrives, and on the journey back to more civilised\nparts of the country you have a nagging feeling that you missed something. After\nall, you DID spy the innkeper hurrying to the direction of the forest with the\nbook.'
         hint = 'Maybe always doing what people tell you to is not a key to victory.'
         main_char_death('a', death_message, hint)
 
 
 
 def check_for_death_by_book():
-    death_message = 'First, your eyes feel like melting and a moment later it feels your brain is frying. Then, nothing.'
-    hint = 'Huh, reading strange books without some means of protection was not too bright. After all, it DID say "Necronomicon" on the cover. '
+    death_message = 'First, your eyes feel like melting and a moment later it feels your brain is\nfrying. Then, nothing.'
+    hint = 'Huh, reading strange books without some means of protection was not too bright.\nAfter all, it DID say "Necronomicon" on the cover.'
     main_char_death('book', death_message, hint)
 
 def declare_victory():

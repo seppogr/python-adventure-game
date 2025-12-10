@@ -62,4 +62,4 @@ class Player:
         return f'{self.points}'
 
 # initialise main character with default values
-MainChar = Player(0, Crypt, 'smith', [Fish, Spearhead, Circle, Ladder, Rod, Shovel, Letter, Note, Knife, Rag, Symbol, Evidence], True)
+MainChar = Player(0, Plaza, 'none', [], True)

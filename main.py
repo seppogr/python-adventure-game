@@ -27,7 +27,7 @@ def main():
     print_ui()
     print_text_slowly(f'You are in {MainChar.current_place.at_first_glance}.')
 
-    command_not_supported = 'Your intentions remain unclear, maybe even for yourself. You take a moment to gather your thoughts.'
+    command_not_supported = 'Your intentions remain unclear, maybe even for yourself. You take a moment to\ngather your thoughts.'
 
     command_input = input('What will you do?> ').strip().lower()
 

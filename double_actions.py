@@ -59,7 +59,7 @@ def go(direction):
                 change_place(direction)
 
             else:
-                print_text_slowly(f'The {direction} door is locked. It looks like you need a {unlocking_item.name} to proceed.')
+                print_text_slowly(f'The {direction} door is locked. It looks like you need a {unlocking_item.name}\nto proceed.')
 
         elif direction == blocker_in_this_direction and road_blocker_status == True:
             unblocking_item = MainChar.current_place.blocker['unblocked_by']
@@ -94,16 +94,17 @@ def chat(character):
 
     if MainChar.get_current_place() == Plaza:
         if character == MainChar.follower:
-            print_text_slowly('It is impossible to talk to anyone except the village idler. He is simply just everywhere in this place at once.')
+            print_text_slowly('It is impossible to talk to anyone except the village idler. He is simply just everywhere\nin this place at once.')
         elif character != MainChar.current_place.character:
             print_text_slowly('The idler does not mind that you try to talk to somebody who is not here.')
         idler_speaks()
 
     elif character == MainChar.current_place.character:
         print_text_slowly(f'You greet the {character}. He says "{npc_data[character]['greeting']}".')
-        print_text_slowly(f'As you greet the {character} politely and carry on with some small talk, it occurs to you that maybe you could ask about: ')
+        print_text_slowly(f'As you greet the {character} politely and carry on with some small talk, it occurs\nto you that maybe you could ask about: ')
         topics = npc_topics(npc_conversation[character].keys())
         print_text_slowly(f'{print_in_colour(topics, BLUE)}')
+
 
         if len(npc_data[character]['items']) > 0:
             print_text_slowly(f'During your conversation, you notice that the {character} is carrying: ')
@@ -115,10 +116,10 @@ def chat(character):
 
     elif character == MainChar.follower:
         topics = npc_topics(npc_conversation[character].keys())
-        print_text_slowly(f'You remember {MainChar.follower} mentioned {print_in_colour(topics, BLUE)} earlier.')
+        print_text_slowly(f'You remember {MainChar.follower} mentioned {print_in_colour(topics, BLUE)}\nearlier.')
 
     else:
-        print_text_slowly(f'It seems {character} is not here. {MainChar.current_place.character.capitalize()} is amused when you talk by yourself.')
+        print_text_slowly(f'It seems {character} is not here. {MainChar.current_place.character.capitalize()} is\namused when you talk by yourself.')
 
 # asks the current npc about the topics that can be seen with the chat command.
 def ask(noun):
@@ -146,7 +147,7 @@ def describe(noun):
         print_text_slowly(npc_data[noun]['description'])
 
     else:
-        print_text_slowly(f'You glance about the room but there is no {noun} here. You do not find it in your pockets either. You check your hands but they are definitely NOT holding anything even remotely resembling the {noun}')
+        print_text_slowly(f'You glance about the room but there is no {noun} here. You do not find it in your pockets either.\nYou check your hands but they are definitely NOT holding anything even remotely resembling the {noun}')
 
 # remove item from your inventory only if the npc wants that item.
 # if so, also adds the item to npc's inventory
@@ -185,7 +186,7 @@ def give(item):
         else:
             print_text_slowly(f'{not_interested}, but could be interested in trading something.')
     else:
-        print_text_slowly(f'You rummage and rummage through your bag, but there is no {item} there. You cannot give away what you do not have.' )
+        print_text_slowly(f'You rummage and rummage through your bag, but there is no {item} there.\nsYou cannot give away what you do not have.' )
 
 
 
@@ -200,7 +201,7 @@ def take(item):
         print_text_slowly(f'You pick up {item_short_description.upper()}.')
 
     else:
-        print_text_slowly(f'Hmmm. You take a long look around and it seems there is no {item} lying around.')
+        print_text_slowly(f'Hmmm. You take a long look around and it seems there is no {item}\nlying around.')
 
 def request(item):
     item_obj = fetch_item_object_by_value(item)
@@ -215,10 +216,10 @@ def request(item):
     elif item_obj in npc_inventory and npc_trader_status == False:
         MainChar.add_to_inventory(item_obj)
         npc_inventory.remove(item_obj)
-        print_text_slowly(f'You press on the {npc} to give the {item}. The {item} is now in your possession.')
+        print_text_slowly(f'You press on the {npc} to give the {item}.\nThe {item} is now in your possession.')
 
     elif item_obj in npc_inventory and npc_trader_status == True:
-        print_text_slowly(f'The {npc} says: "I could give you the {item}, if you bring me {item_npc_wants_to_keep.name}."')
+        print_text_slowly(f'The {npc} says: "I could give you the {item},\nif you bring me {item_npc_wants_to_keep.name}."')
 
 def read(noun):
     nothing_to_read = 'It appears you have nothing to read.'
@@ -228,10 +229,12 @@ def read(noun):
         if item_obj.name == 'book':
             print_text_slowly('As you turn the pages it becomes evident that this book was not meant for mortal eyes.')
             print_text_slowly('However, you notice that someone has added notes to the sidelines.')
+
             if Mask in inventory:
                 print_text_slowly('Good thing you managed to slip your welding mask on before reading.')
                 print_text_slowly('The notes are a diary of cult meetings and what has been offered to the deity.')
-                print_text_slowly('As you read down the list, you see that the last offering is scheduled for today and it is a human head.')
+                print_text_slowly('As you read down the list, you see that the last offering is scheduled for\ntoday and it is a human head.')
+
             else:
                 check_for_death_by_book()
 
@@ -253,19 +256,19 @@ def drop(noun):
         if noun == 'symbol' and MainChar.current_place.place_name == 'dungeon':
             declare_victory()
         else:
-            print_text_slowly(f'You drop your {item_obj.name.upper()} to the ground. Hopefully nobody comes and takes it in case you need it later!')
+            print_text_slowly(f'You drop your {item_obj.name.upper()} to the ground.\nHopefully nobody comes and takes it in case you need it later!')
     else:
-        print_text_slowly(f'You try to to drop {item_obj.name.upper()} but soon realise you do not have it!')
+        print_text_slowly(f'You try to to drop {item_obj.name.upper()} but soon\nrealise you do not have it!')
 
 def gather(noun):
     amount_of_proof = len(return_found_proof())
     if noun == 'evidence' and amount_of_proof < 5:
-        print_text_slowly(f'You strongly feel you are on the right track but something is still needed.')
+        print_text_slowly(f'You strongly feel you are on the right track but\nsomething is still needed.')
         amount_needed = 5 - amount_of_proof
         if amount_of_proof != 1:
             print_text_slowly(f'You think about {amount_needed} more pieces proof should do it.')
         else:
-            print_text_slowly(f'Just one more piece of evidence and you could present your case to someone honest.')
+            print_text_slowly(f'Just one more piece of evidence and you could present\nyour case to someone honest.')
 
     elif noun == 'evidence' and amount_of_proof == 5:
         if Letter in MainChar.get_inventory() and Note in MainChar.get_inventory() and Knife in MainChar.get_inventory() and Rag in MainChar.get_inventory():
@@ -275,12 +278,12 @@ def gather(noun):
             MainChar.remove_from_inventory(Knife)
             MainChar.remove_from_inventory(Rag)
             MainChar.add_to_inventory(Evidence)
-            print_text_slowly(f'You pack the knife, rag, note and letter tightly into a pack of evidence. You are about to add the symbol as well, but have a hucnch it might be needed later.')
+            print_text_slowly(f'You pack the knife, rag, note and letter tightly into a pack of evidence.\nYou are about to add the symbol as well, but have a hucnch it might be needed later.')
             print_text_slowly('Now, what to do with this?')
         else:
             print_text_slowly('It seems you have dropped something vital somewhere!')
     else:
-        print_text_slowly(f'You muse over things, but {noun} has not even circumstantial signifigance in finding out what happened to your friend.')
+        print_text_slowly(f'You muse over things, but {noun} has not even circumstantial signifigance\nin finding out what happened to your friend.')
 
 
 def act_on_double_command(verb, noun):
@@ -307,6 +310,6 @@ def act_on_double_command(verb, noun):
             gather(noun)
 
     except AttributeError:
-        print_text_slowly(f'You grow pensive, distracted for a while but the feeling passes. You come to realise there is no {noun} to be found.')
+        print_text_slowly(f'You grow pensive, distracted for a while but the feeling passes.\nYou come to realise there is no {noun} to be found.')
     except KeyError:
         print_text_slowly(f'It seems there simply is no {noun} here.')

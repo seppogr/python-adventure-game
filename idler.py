@@ -14,7 +14,7 @@ idler_adverbs = ['softly', 'loudly', 'calmly', 'sternly', 'politely', 'cheerfull
 
 idler_sayings = ['The town horse radiates warmth!', 'I think the swamp is round.', 'Everyone stares at the plaza.',
              'There is no room for thought in my bag.', 'Fishing is good for health.', 'I can dream in blue.',
-             'I think there is a dungeon beneath the church.', 'Beware of the rat in the dark!', 'Reading is good for you!',
+             'There is a dungeon beneath the church.', 'Beware of the eater in the dark!', 'Reading is good for you!',
              'Sky is separate from the ceiling.', 'X marks the spot, the spot is marked by X.', 'Spears and squares go well together. Somewhere.',
              'Cats fear dogs! Or maybe the other way around.', 'People go missing every day.', 'The pipes in my soul echo sunlight!',
              'Who is A, Who is C, why never B?' ]

@@ -27,4 +27,6 @@ If you're ever unsure how to proceed in the game, write:
 - "help" for a comprehensive help file or
 - "commands" for a more compact list of available verbs you can use in the game.
 
-FINAL NOTE: the character 'village idiot' was renamed 'village idler' for the game not to be offensive to any idiots.
+********************************************************************************
+FINAL NOTE: the character 'village idiot' was renamed 'village idler' for the
+game not to be offensive to any idiots.

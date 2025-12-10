@@ -49,23 +49,23 @@ def describe():
 
 def commands():
     com_verbs = extract_list(command_verbs)
-    print_text_slowly(f'Combine these with a noun (for example place or item etc.): {print_in_colour(com_verbs, BLACK)}')
+    print_text_slowly(f'Combine these with a noun (for example place or item etc.):\n{print_in_colour(com_verbs, BLACK)}')
     single_coms = extract_list(single_word_commands)
-    print_text_slowly(f'These will work as a single command: {print_in_colour(single_coms, BLACK)}')
+    print_text_slowly(f'These will work as a single command:\n{print_in_colour(single_coms, BLACK)}')
 
 def companion():
     current_follower = MainChar.get_follower()
     if MainChar.follower == 'none':
-        print_text_slowly('You do not have a companion at the moment, maybe you will find one.')
+        print_text_slowly('You do not have a companion at the moment,\nmaybe you will find one.')
     else:
-        print_text_slowly(f'Your current companion is a {current_follower}. It feels nice not to be alone.')
+        print_text_slowly(f'Your current companion is a {current_follower}.\nIt feels nice not to be alone.')
 
 def fish():
     if MainChar.current_place.place_name == 'beach' and Rod in MainChar.inventory:
         MainChar.current_place.items.append(Fish)
-        print_text_slowly('You spend a while fishing, and catch a nice fish. Now, who likes uncooked fish?')
+        print_text_slowly('You spend a while fishing, and catch a nice fish.\nNow, who likes uncooked fish?')
     else:
-        print_text_slowly('Generally, a significant body of water, such as an ocean, and some sort of fishing rod are both needed to catch fish.')
+        print_text_slowly('Generally, a significant body of water, such as an ocean, and some sort of\nfishing rod are both needed to catch fish.')
 
 
 def trade():
@@ -93,31 +93,31 @@ def dig():
         MainChar.current_place.items.append(Circle)
 
     elif place == 'forest' and Shovel not in inventory:
-        print_text_slowly('The ground is soft and good for digging and ther certainly is an "X" to mark something. But you have no tool for digging.')
+        print_text_slowly('The ground is soft and good for digging and ther certainly is an "X" to mark something.\nBut you have no tool for digging.')
 
     elif place != 'forest' and Shovel in inventory:
-        print_text_slowly('This is not a good place to dig. Or are you inside a building perhaps? In any case the shovel is ineffective.')
+        print_text_slowly('This is not a good place to dig. Or are you inside a building perhaps?\nIn any case the shovel is ineffective.')
 
     elif place != 'forest' and Shovel not in inventory:
-        print_text_slowly('What you are missing is a good place to dig, and a tool for doing it.')
+        print_text_slowly('What you are missing is a good place to dig,\nband a tool for doing it.')
 
 def combine():
     inventory = MainChar.get_inventory()
     if Circle in inventory and Spearhead in inventory:
-        print_text_slowly('You take the spear and the circle, and try to fit them together. After a while of tinkering they both fit in place!')
+        print_text_slowly('You take the spear and the circle, and try to fit them together.\nAfter a while of tinkering they both fit in place!')
         MainChar.current_place.items.append(Symbol)
         MainChar.remove_from_inventory(Circle)
         MainChar.remove_from_inventory(Spearhead)
         proof['symbol'] = True
 
-        print_text_slowly('It is clearly a religious symbol, but could also be a key to a locked place?')
+        print_text_slowly('It is clearly a religious symbol,\nbut could also be a key to a locked place?')
 
     elif Circle in inventory and Spearhead not in inventory:
-         print_text_slowly('The markings of the metal circle look as if it could be combined with something.')
+         print_text_slowly('The markings of the metal circle look as\nif it could be combined with something.')
     elif Circle not in inventory and Spearhead in inventory:
-         print_text_slowly('You take a closer look at the spearhead and it does seem it could be combined with something.')
+         print_text_slowly('You take a closer look at the spearhead and it\ndoes seem it could be combined with something.')
     elif Circle not in inventory and Spearhead not in inventory:
-         print_text_slowly('You do not think you have anything that fits together with anything else.')
+         print_text_slowly('You do not think you have anything that fits\ntogether with anything else.')
 
 def act_on_single_command(command_input):
     try:
