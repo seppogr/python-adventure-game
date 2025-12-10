@@ -20,12 +20,8 @@ def change_place(direction):
     print_text_slowly(f'You go from {old_place_at_first_glance} into {new_place_at_first_glance}.')
     if direction == 'smithy':
         proof_list = return_found_proof()
-
         for proof in proof_list:
             npc_conversation['smith'][proof] = proof_conversation[proof]
-
-
-
 
     if MainChar.follower != 'none':
         follower = MainChar.get_follower()
@@ -68,8 +64,8 @@ def go(direction):
                 MainChar.current_place.blocker['blocked'] = False
                 print_text_slowly(f'{message_of_unblocking}')
                 MainChar.set_follower('none')
-                print_text_slowly(f'The {follower} decides to go their own way.')
-                print_text_slowly('The road is clear!')
+                print_text_slowly(f'The {follower} decides it is time for a rest and leaves. You must go on alone.')
+                print_text_slowly('The road ahead is clear!')
 
             elif unblocking_item in MainChar.inventory:
                 MainChar.current_place.blocker['blocked'] = False
@@ -77,7 +73,10 @@ def go(direction):
                 change_place(direction)
 
             else:
-                print_text_slowly(f'...you cannot get past it. Probably there is something you can do.')
+                if MainChar.current_place == Crypt:
+                    check_for_death_by_room('crypt')
+                else:
+                    print_text_slowly(f'...you cannot get past it. Probably there is something you can do.')
         else:
             change_place(direction)
     else:
@@ -112,7 +111,7 @@ def chat(character):
 
     elif character == MainChar.follower:
         topics = npc_topics(npc_conversation[character].keys())
-        print_text_slowly(f'{print_in_colour(topics, BLUE)}')
+        print_text_slowly(f'You remember {MainChar.follower} mentioned {print_in_colour(topics, BLUE)} earlier.')
 
     else:
         print_text_slowly(f'It seems {character} is not here. {MainChar.current_place.character.capitalize()} is amused when you talk by yourself.')

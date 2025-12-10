@@ -429,7 +429,7 @@ Crypt = Place (
 
         ''',
         {'open': True, 'direction' : '', 'unlocked_by' : No_item },
-        {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},
+        {'blocked' : True,  'direction' : 'dungeon', 'name': 'portal', 'unblocked_by': 'smith','after_message' : '... the smith forces the portal open.'},
         {'dungeon' : 19}
 )
 

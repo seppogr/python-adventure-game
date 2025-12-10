@@ -22,6 +22,10 @@ def check_for_death_by_room(room):
         death_message = 'As you drop down on the church floor, you notice there is no way to reach window from this side.\nThere is a door to the crypt but you cannot figure out how to open it.\nAfter a while, you are surprised as the church door rattles and Alfred the Innkeeper opens the door. He stares at you for a while but then firmly escorts you back to town square where he puts you in the next bus out of village.'
         hint = 'You cannot but wonder if there would have beens some sort of way to open the crypt door.'
         main_char_death('', death_message, hint)
+    if room == 'crypt':
+        death_message = 'You cannot force the portal open alone.\nYou wait in the dim crypt.\nAfter a while, the portal opens and some robed figures spawn forth and surround you.\nThey take you to the room beyond.\nIt is a some sort of an unholy worship place,\nand you retch as you suddenly realise there is a severed head on the altar.\nA head you well recognise!\nThen you feel a hit in your head, and nothing more.'
+        hint = 'Could be that a strong companion might be able to force the portal. Too late now...'
+        main_char_death('', death_message, hint)
 
 def check_for_death_by_item(room, items):
     if room == 'basement' and Lamp not in items:

@@ -1,4 +1,5 @@
 from Place import *
+from printer import *
 
 class Player:
     """edustaa pelaajaa"""
@@ -45,9 +46,9 @@ class Player:
 
     def print_inventory(self):
         if self.inventory:
-            print('you have...')
+            print_text_slowly('you have...')
             for item in self.inventory:
-                print(f'- {item.name}')
+                print_text_slowly(f'- {item.name}')
         else:
             print(f'Inventory is empty')
 
@@ -61,4 +62,4 @@ class Player:
         return f'{self.points}'
 
 # initialise main character with default values
-MainChar = Player(0, Plaza, 'none', [Fish, Spearhead, Circle, Ladder, Rod, Shovel, Letter, Note, Knife, Rag, Symbol, Evidence], True)
+MainChar = Player(0, Crypt, '', [Fish, Spearhead, Circle, Ladder, Rod, Shovel, Letter, Note, Knife, Rag, Symbol, Evidence], True)
