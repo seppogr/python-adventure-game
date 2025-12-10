@@ -442,12 +442,6 @@ Dungeon = Place (
         '''
         THE RITUAL CHAMBER
 
-        You have reached a large cavern beneath the catacombs. There are three robed
-        figures gathered around an altar upon which a severed head is placed.
-        You recognise the head immediately as the one that recently was attached to
-        your friend's body that was left in the stables. A robed figure steps forth:
-        "What is this?" he shouts, "The ritual must not be disrupted!" You recognise the
-        voice! The Count! And there are Innkeeper and the Stablehand as well!
         ''',
         {'open': True, 'direction' : '', 'unlocked_by' : No_item },
         {'blocked' : False,  'direction' : '', 'name': '', 'unblocked_by': '','after_message' : ''},

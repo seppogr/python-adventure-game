@@ -22,7 +22,11 @@ def change_place(direction):
         proof_list = return_found_proof()
         for proof in proof_list:
             npc_conversation['smith'][proof] = proof_conversation[proof]
-
+    if direction == 'dungeon':
+        dungeon_text = open("dungeon.txt")
+        print(dungeon_text.read())
+        print()
+        dungeon_text.close()
     if MainChar.follower != 'none':
         follower = MainChar.get_follower()
         print_text_slowly(f'The {follower.upper()} follows you.')
