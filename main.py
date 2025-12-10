@@ -5,12 +5,26 @@ from printer import *
 from single_actions import act_on_single_command
 from double_actions import act_on_double_command
 import sys
+import os
+
+def print_ui():
+        cls = lambda: os.system('cls')
+        cls()
+        title = f'     {print_in_colour('"The Strange Disappearance of Ernest Mulhoney"', BLACK)}'
+        current_score = str(MainChar.points)
+        points = f'Points:{print_in_colour(current_score + '/200', WHITEBG)}'
+        space = 9 * ' '
+        print_a_line_of_stars(RED)
+        print(f'{title}{space}{points}')
+        print_a_line_of_stars(RED)
 
 def main():
     start_text = open("start.txt")
     print(start_text.read())
     print()
     start_text.close()
+    input('Press "Enter" to start your investigation.')
+    print_ui()
     print_text_slowly(f'You are in {MainChar.current_place.at_first_glance}.')
 
     command_not_supported = 'Your intentions remain unclear, maybe even for yourself. You take a moment to gather your thoughts.'
@@ -18,6 +32,8 @@ def main():
     command_input = input('What will you do?> ').strip().lower()
 
     while command_input != ('quit'):
+
+        print_ui()
         word_count_in_command = 0
         for item in command_input.split(" "):
             word_count_in_command = word_count_in_command + 1

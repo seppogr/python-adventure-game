@@ -307,4 +307,6 @@ def act_on_double_command(verb, noun):
             gather(noun)
 
     except AttributeError:
-        print(f'You grow pensive, distracted for a while but the feeling passes. You come to realise there is no {noun} to be found.')
+        print_text_slowly(f'You grow pensive, distracted for a while but the feeling passes. You come to realise there is no {noun} to be found.')
+    except KeyError:
+        print_text_slowly(f'It seems there simply is no {noun} here.')

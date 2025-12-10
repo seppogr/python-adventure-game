@@ -424,8 +424,9 @@ Crypt = Place (
 
         It seems a the church above was a much more recent construction than these catacombs.
         You get feeling of being crushed by the walls and the floor, but not of the ceiling.
-        You suddenly notice a trail of blood droplets leading to an opening on the floor. A
-        ladder is placed in the opening for accessing the chamber below.
+        You suddenly notice a trail of blood droplets leading to a portal that has been barred
+        with a sturdy door. You check the door, but someone much stronger is required to force
+        it open.
 
         ''',
         {'open': True, 'direction' : '', 'unlocked_by' : No_item },

@@ -1,77 +1,91 @@
 SOME HELPFUL INSTRUCTIONS
 
-You can use one or two words in commands, some verbs can be used either singularly
-or together with a noun. Please note that all prepositions have been omitted
-from the commands, so that for example
+You can use one or two words in commands, some verbs can be used either
+singularly or together with a noun. Please note that all prepositions have been
+omitted from the commands, so that for example
 
 'ask about lamp' or 'go to plaza'
 take the form
 'ask lamp' or 'go plaza'
 
-respectively. Hopefully this won't cause too much confusion. Below
-is the comprehensive list of commands available in the game, with some
-helpful notes. Happy gaming!
+respectively. Hopefully this won't cause too much confusion. Below is the
+comprehensive list of commands available in the game, with some helpful notes.
+Happy gaming!
 
-
+********************************************************************************
 1-word:
-
+********************************************************************************
 'help'              ->  Brings out this help file.
-
+********************************************************************************
 'describe'          ->  Gives you a look around the room or area you are in.
-                        Helpful in figuring out what to ask or pick up etc. Equals to
-                        you looking about.
-
-'chat'              ->  A casual greeting to the character in the room or area. Useful in figuring
-                        out what further actions to take with the character.
-
+                        Helpful in figuring out what to ask or pick up etc.
+                        Equals to you taking a good look around.
+********************************************************************************
+'chat'              ->  A casual greeting to the character in the room or area.
+                        Useful in figuring out what further actions to take
+                        with the character.
+********************************************************************************
 'directions'        ->  You take a look around and see where to go next.
-
+********************************************************************************
 'inventory'         ->  What's in your bag at the moment.
-
+********************************************************************************
 'companion'         ->  Show your current companion (if any).
+********************************************************************************
+'commands'          ->  A quick help with all available verb commands used in
+                        the game. Nouns are for you to figure out.
+********************************************************************************
 
-'commands'          ->  A quick help with all available verb commands used in the game. Nouns are
-                        for you to figure out.
-
-Context-specific one-word OR two word
-
-The following commands produce a desired effect if certain in-game conditions are met:
-
+********************************************************************************
+Context-specific one-word OR two word. They produce a desired effect if certain
+in-game conditions are met.
+********************************************************************************
 'fish'               -> Catch a fish!
-
-'trade'              -> Some people will trade with you if you have something they want.
-
-'dig'                -> Find a good place and some sort of digging tool and perhaps you'll find something.
-
-'combine'            -> Some items may fit together. I you manage to 'combine' them, remember to pick up
-                        your new item.
-
+********************************************************************************
+'trade'              -> Some people will trade with you if you have something
+                        they want.
+********************************************************************************
+'dig'                -> Find a good place and some sort of digging tool and
+                        perhaps you'll find something.
+********************************************************************************
+'combine'            -> Some items may fit together. I you manage to 'combine'
+                        them, remember to pick up your new item.
+********************************************************************************
 'gather' + <noun>    -> Bring your different proof to get... Evidence?
+********************************************************************************
 
-
+********************************************************************************
 2-word:
-Note: Don't write the '+' sign in the command. It's just here to clarify that these verb commands
-work this way when there is a noun given as a second command word.
-
-go + <place>        ->  Move from one place to another. If you cannot think of a next place to go,
-                        have a brief look around with 'directions' command.
-
-describe + <item>   ->  Describe an item more thoroughly. Can be important when you are trying to
-    or <character>      find important clues.  This is not interaction, it is you looking at things.
-                        For a general look into your whereabouts, use the single word 'describe' command.
-                        If you wish to communicate, use 'ask <about>' command.
-
-ask + <about>       ->  Ask another character about an item or place, or about some other character. If
-                        you are unsure what to ask about, use 'chat' command. This is a specific interaction
-                        with another character.
-
-give + <item>       -> If you got a specific item that sombody wants, you can give it to them.
-
-take + <item>       -> If there is somethiing in the room that you need or want, you can get it with this command.
-
-request + <item>    -> Politely ask for an item in somebody else's possession. If they don't want to give it to you,
-                       maybe they will simply 'trade' for it instead.
-
+Note: Don't write the '+' sign in the command. It's just here to clarify that
+these verb commands work this way when there is a noun given as a second command
+word.
+********************************************************************************
+go + <place>        ->  Move from one place to another. If you cannot think of a
+                        next place to go, have a brief look around with
+                        'directions' command.
+********************************************************************************
+describe + <item>   ->  Describe an item more thoroughly. Can be important when
+    or <character>      you are trying to find important clues. This is not
+                        interaction, it is you looking at things.For a general
+                        look into your whereabouts, use the single word
+                        'describe' command. If you wish to communicate, use
+                        'ask <about>' command.
+********************************************************************************
+ask + <about>       ->  Ask another character about an item or place, or about
+                        some other character. If you are unsure what to ask
+                        about, use 'chat' command. This is a specific
+                        interaction with another character.
+********************************************************************************
+give + <item>       ->  If you got a specific item that sombody wants, you can
+                        give it to them.
+********************************************************************************
+take + <item>       ->  If there is somethiing in the room that you need or
+                        want, you can get it with this command.
+********************************************************************************
+request + <item>    ->  Politely ask for an item in somebody else's possession.
+                        If they don't want to give it to you, maybe they will
+                        simply 'trade' for it instead.
+********************************************************************************
 read + <item>       -> Read something! A book or note or similar.
-
+********************************************************************************
 drop + <item>       -> Drop an item to the ground.
+********************************************************************************
