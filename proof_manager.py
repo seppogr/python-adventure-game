@@ -1,8 +1,8 @@
 proof = { 'knife': True,
          'note' : True,
          'letter' : True,
-         'rag' : True,
-         'symbol' : True
+         'rag' : False,
+         'symbol' : False
 }
 
 proof_conversation = {'knife' : 'A sharp, blade, definintely has traces of blood.',

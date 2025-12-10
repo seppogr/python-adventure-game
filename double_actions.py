@@ -24,9 +24,7 @@ def change_place(direction):
         for proof in proof_list:
             npc_conversation['smith'][proof] = proof_conversation[proof]
 
-        if Evidence in npc_data[MainChar.current_place.character]['items']:
-            MainChar.set_follower(MainChar.current_place.character)
-            npc_conversation['smith']['evidence'] = proof_conversation['evidence']
+
 
 
     if MainChar.follower != 'none':
@@ -92,6 +90,10 @@ def go(direction):
 def chat(character):
 
     if MainChar.get_current_place() == Plaza:
+        if character == MainChar.follower:
+            print_text_slowly('It is impossible to talk to anyone except the village idler. He is simply just everywhere in this place at once.')
+        elif character != MainChar.current_place.character:
+            print_text_slowly('The idler does not mind that you try to talk to somebody who is not here.')
         idler_speaks()
 
     elif character == MainChar.current_place.character:
@@ -102,10 +104,12 @@ def chat(character):
 
         if len(npc_data[character]['items']) > 0:
             print_text_slowly(f'During your conversation, you notice that the {character} is carrying: ')
-            npc_items = ''
-            for item in npc_data[character]['items']:
-                npc_items += item.name + ' '
-            print_text_slowly(f'{print_in_colour(npc_items, GREEN)}')
+            npc_items = extract_item_names_from_object_list(npc_data[MainChar.current_place.character]['items'])
+            npc_items_string = ''
+            for item in npc_items:
+                npc_items_string += item + ' '
+            print_text_slowly(f'{print_in_colour(npc_items_string, GREEN)}')
+
     elif character == MainChar.follower:
         topics = npc_topics(npc_conversation[character].keys())
         print_text_slowly(f'{print_in_colour(topics, BLUE)}')
@@ -115,19 +119,21 @@ def chat(character):
 
 # asks the current npc about the topics that can be seen with the chat command.
 def ask(noun):
-    if noun in npc_conversation[MainChar.current_place.character].keys():
-        print_text_slowly(f'The {MainChar.current_place.character} says "{npc_conversation[MainChar.current_place.character][noun]}"')
-    elif noun in npc_conversation[MainChar.follower].keys():
+    if noun in npc_conversation[MainChar.follower].keys():
         print_text_slowly(f'The {MainChar.follower} says "{npc_conversation[MainChar.follower][noun]}"')
+
+    elif noun in npc_conversation[MainChar.current_place.character].keys():
+        print_text_slowly(f'The {MainChar.current_place.character} says "{npc_conversation[MainChar.current_place.character][noun]}"')
+
     else:
         print_text_slowly(f'{noun.capitalize()} is something I know nothing about.')
 
 
 # gives a more detailed description of an item or character, depending on the parameter
 def describe(noun):
-    room_items = extract_object_list(MainChar.current_place.items)
-    npc_items = extract_object_list(npc_data[MainChar.current_place.character]['items'])
-    character_items = extract_object_list(MainChar.get_inventory())
+    room_items = extract_item_names_from_object_list(MainChar.current_place.items)
+    npc_items = extract_item_names_from_object_list(npc_data[MainChar.current_place.character]['items'])
+    character_items = extract_item_names_from_object_list(MainChar.get_inventory())
     item_obj = fetch_item_object_by_value(noun)
 
     if noun in room_items or noun in npc_items or noun in character_items:
@@ -166,6 +172,10 @@ def give(item):
                     else:
                         MainChar.set_follower(npc_in_this_place)
                         print_text_slowly(f'The {npc_in_this_place.upper()} will help you now.')
+                        if npc_in_this_place == 'smith'and Evidence in npc_data[MainChar.current_place.character]['items']:
+                            MainChar.set_follower(MainChar.current_place.character)
+                            npc_conversation['smith']['evidence'] = proof_conversation['evidence']
+
                         npc_in_this_place = None
             else:
                 print_text_slowly(f'{not_interested}')

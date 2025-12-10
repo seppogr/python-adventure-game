@@ -30,8 +30,10 @@ def directions():
 def describe():
     print_text_slowly(f'{MainChar.get_current_place().description}')
 
-    if MainChar.current_place.character == '':
-        print_text_slowly('There is nobody here.')
+    if MainChar.current_place.character == '' and MainChar.follower != 'none':
+        print_text_slowly(f'There is nobody except you and {MainChar.follower} here.')
+    elif MainChar.current_place.character == '':
+        print_text_slowly('You are alone.')
     else:
         characters = MainChar.current_place.character
         print_text_slowly(f'Maybe you can chat with the {print_in_colour(characters, GREEN)}.')
