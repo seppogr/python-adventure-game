@@ -14,12 +14,12 @@ def main_char_death(killer, death_message, hint):
 
 def check_for_death_by_room(room):
     if room == 'basement' and Lamp not in MainChar.inventory:
-        death_message = 'The darkness of the cellar engulfs you. Something moves and then it all ends...'
+        death_message = 'The darkness of the cellar engulfs you.\nSomething moves and then it all ends...'
         hint = 'Maybe a light source would have been useful. Just a thought.'
         main_char_death(MainChar.current_place.character, death_message, hint)
 
     if room == 'church' and (Circle not in MainChar.inventory or Spearhead not in MainChar.inventory) and Symbol not in MainChar.inventory:
-        death_message = 'As you drop down on the church floor, you notice there is no way to reach window from this side.\nThere is a door to the crypt but you cannot figure out how to open it.\nAfter a while, you are surprised as the church door rattles and Alfred the Innkeeper opens the door. He stares at you for a while but then firmly escorts you back to town square where he puts you in the next bus out of village.'
+        death_message = 'As you drop down on the church floor, you notice there is no way to reach window from this side.\nThere is a door to the crypt but you cannot figure out how to open it.\nAfter a while, you are surprised as the church door rattles and Alfred the Innkeeper opens the door.\nHe stares at you for a while but then firmly escorts you back to town square where he puts you in the next bus out of village.'
         hint = 'You cannot but wonder if there would have beens some sort of way to open the crypt door.'
         main_char_death('', death_message, hint)
     if room == 'crypt':
@@ -29,7 +29,7 @@ def check_for_death_by_room(room):
 
 def check_for_death_by_item(room, items):
     if room == 'basement' and Lamp not in items:
-        death_message = 'The wererat smashes the lamp. It is very, very dark and you have just time to feel something sharp hitting you. Then the final darkness...'
+        death_message = 'The cannibal smashes the lamp.\nIt is very, very dark and you have just time to feel something sharp hitting you.\nThen the final darkness...'
         hint = 'In retrospective, possibly not the smartest choice giving your lamp away in a dark cellar just like that.'
         main_char_death(MainChar.current_place.character, death_message, hint)
 
@@ -45,3 +45,9 @@ def check_for_death_by_book():
     hint = 'Huh, reading strange books without some means of protection was not too bright. After all, it DID say "Necronomicon" on the cover. '
     main_char_death('book', death_message, hint)
 
+def declare_victory():
+    victory_text = open("victory.txt")
+    print(victory_text.read())
+    victory_text.close()
+    print('THE END')
+    print_text_slowly(f'Final points: {MainChar.get_points()}/200. ')

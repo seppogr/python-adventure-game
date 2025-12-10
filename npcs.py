@@ -164,5 +164,6 @@ npc_conversation = {
         'count' : 'He is half evil, locked me here.',
         'spearhead' : 'Half of a whole it is, and other half is not here.',
         'need' : 'What need I? To see, to see myself truthfully again.'
-    }
+    },
+
 }

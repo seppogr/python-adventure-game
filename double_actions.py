@@ -246,7 +246,10 @@ def drop(noun):
     if item_obj in inventory:
         MainChar.current_place.items.append(item_obj)
         MainChar.remove_from_inventory(item_obj)
-        print_text_slowly(f'You drop your {item_obj.name.upper()} to the ground. Hopefully nobody comes and takes it in case you need it later!')
+        if noun == 'symbol' and MainChar.current_place.place_name == 'dungeon':
+            declare_victory()
+        else:
+            print_text_slowly(f'You drop your {item_obj.name.upper()} to the ground. Hopefully nobody comes and takes it in case you need it later!')
     else:
         print_text_slowly(f'You try to to drop {item_obj.name.upper()} but soon realise you do not have it!')
 
