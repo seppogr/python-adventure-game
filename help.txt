@@ -50,6 +50,8 @@ in-game conditions are met.
 'combine'            -> Some items may fit together. I you manage to 'combine'
                         them, remember to pick up your new item.
 ********************************************************************************
+'climb'             ->  Climb!
+********************************************************************************
 'gather' + <noun>    -> Bring your different proof to get... Evidence?
 ********************************************************************************
 

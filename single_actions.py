@@ -11,8 +11,7 @@ from points_manager import *
 
 def test():
     pprint.pp(points_gained)
-    for item in points_gained:
-        points_gained[item] = True
+
 
 
 def help():

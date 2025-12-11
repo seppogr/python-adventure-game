@@ -40,7 +40,7 @@ Spearhead = Item('spearhead', 'An ancient spearhead. Upon closer inspection, som
 
 Symbol = Item('symbol', 'A strange symbol combining circle and spearhead. You guess it has some religious signifigance, but you would not classify it as "holy".', 'an evil symbol')
 
-Newspaper = Item('newspaper', 'A local newspaper full of old articles, you almost throw it away until your eyes spot something interesting. And ominous.\n "STRANGE DISAPPEARANCE\n A headless body found!!!"\n The rest is torn away.', 'an old local newspaper')
+Newspaper = Item('newspaper', 'A local newspaper full of old articles. The date is almost exactly from 25 years ago.\nYou are about to throw it away until your\neyes spot something interesting. And ominous.\n "STRANGE DISAPPEARANCE\n A headless body found!!!"\n The rest is torn away.', 'an old local newspaper')
 
 Ladder = Item('ladder', 'A sturdy, portable ladder. Useful for reaching high spots.', 'a wooden ladder')
 

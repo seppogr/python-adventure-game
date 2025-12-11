@@ -100,8 +100,8 @@ def chat(character):
         idler_speaks()
 
     elif character == MainChar.current_place.character:
-        print_text_slowly(f'You greet the {character}. He says "{npc_data[character]['greeting']}".')
-        print_text_slowly(f'As you greet the {character} politely and carry on with some small talk, it occurs\nto you that maybe you could ask about: ')
+        print_text_slowly(f'You greet the {character} politely. He says "{npc_data[character]['greeting']}".')
+        print_text_slowly(f'As you carry on with some small talk, it occurs to you that maybe\nyou could ask about: ')
         topics = npc_topics(npc_conversation[character].keys())
         print_text_slowly(f'{print_in_colour(topics, BLUE)}')
 
@@ -220,9 +220,9 @@ def request(item):
 
     elif item_obj in npc_inventory and npc_trader_status == False:
         MainChar.add_to_inventory(item_obj)
-        check_for_points_gained(item)
         npc_inventory.remove(item_obj)
-        print_text_slowly(f'You press on the {npc} to give the {item}.\nThe {item} is now in your possession.')
+        print_text_slowly(f'You press on the {npc} to give the {item}.\nIt is now in your possession.')
+        check_for_points_gained(item)
 
     elif item_obj in npc_inventory and npc_trader_status == True:
         print_text_slowly(f'The {npc} says: "I could give you the {item},\nif you bring me {item_npc_wants_to_keep.name}."')
@@ -264,12 +264,7 @@ def drop(noun):
         if noun == 'symbol' and MainChar.current_place.place_name == 'dungeon':
             check_for_points_gained('game_won')
             print_escape_text()
-            print_text_slowly('As you throw the symbol on the floor, something curious happens:')
-            print_text_slowly('The symbol shatters into two pieces, and a strong surge of power pulses from the')
-            print_text_slowly('exact place where the pieces of the symbol fell from each other. The power')
-            print_text_slowly('clearly disrupts the ritual the three robed figures were conducting, and the')
-            print_text_slowly('ground starts to shatter. Suddenly, a hole appears in the cavern roof! Sunlight')
-            print_text_slowly('starts to stream into the dungeon and, as on cue, you feel it is now or never.')
+
 
         else:
             print_text_slowly(f'You drop your {item_obj.name.upper()} to the ground.\nHopefully nobody comes and takes it in case you need it later!')
@@ -294,9 +289,9 @@ def gather(noun):
             MainChar.remove_from_inventory(Knife)
             MainChar.remove_from_inventory(Rag)
             MainChar.add_to_inventory(Evidence)
-            check_for_points_gained(noun)
             print_text_slowly(f'You pack the knife, rag, note and letter tightly into a pack of evidence.')
             print_text_slowly('Now, what to do with this?')
+            check_for_points_gained(noun)
         else:
             print_text_slowly('It seems you have dropped something vital somewhere!')
     else:

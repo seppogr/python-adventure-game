@@ -369,7 +369,7 @@ Churchyard = Place (
 
         ''',
         {'open': True, 'direction' : '', 'unlocked_by' : No_item },
-        {'blocked' : True,  'direction' : 'church', 'name': 'a firmly locked door', 'unblocked_by': Ladder,'after_message' : 'climb through the window'},
+        {'blocked' : True,  'direction' : 'church', 'name': 'a firmly locked door', 'unblocked_by': Ladder,'after_message' : 'climb through the window.'},
         {'trail': 6, 'forest' : 16, 'church' : 17}
 )
 

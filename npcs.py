@@ -117,10 +117,11 @@ npc_conversation = {
         'name'      : 'I am Alan.',
         'job'       : 'The local smith, I also fix this and that.',
         'mask'      : 'That, an old welding mask. I do not use it anymore. Just take it if you need it.',
-        'innkeeper' : 'He has some business going on with the coun in the manor. I do not trust them.',
+        'innkeeper' : 'He has some odd business going on with the count in the manor. I do not trust them.',
         'count'     : 'The old lord hereabouts. Only the cook of their household is of a good sort.',
         'friend'    : 'He was here, fishing for a couple of days. And the disappeared',
-        'disappearance' : 'A strange case, there is something odd about that.'
+        'disappearance' : 'A strange case, there is something odd about that.',
+        'stablehand' : 'He looks like a criminal, but I have no evidence against him.'
     },
     'shopkeeper' : {
         'name'      : 'Adam, at your service.',
