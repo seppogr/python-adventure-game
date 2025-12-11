@@ -1,3 +1,4 @@
+import pprint
 from printer import *
 from Player import MainChar
 from utils import *
@@ -9,8 +10,10 @@ from proof_manager import proof
 from points_manager import *
 
 def test():
-    print(points_gained)
-    print(MainChar.current_place.place_name)
+    pprint.pp(points_gained)
+    for item in points_gained:
+        points_gained[item] = True
+
 
 def help():
     help_file = open("help.txt")
@@ -81,6 +84,8 @@ def trade():
             MainChar.remove_from_inventory(wanted_item )
             print_text_slowly(f'You give the {wanted_item.name } and they hand over the {trade_item.name}.')
             npc_data[MainChar.current_place.character]['trader'] = False
+            check_for_points_gained(wanted_item.name)
+            check_for_points_gained(trade_item.name)
         else:
             print_text_slowly(f'The {MainChar.current_place.character} exclaims: "No. You have nothing I want."')
     else:
@@ -112,7 +117,6 @@ def combine():
         MainChar.remove_from_inventory(Circle)
         MainChar.remove_from_inventory(Spearhead)
         proof['symbol'] = True
-
         print_text_slowly('It is clearly a religious symbol,\nbut could also be a key to a locked place?')
 
     elif Circle in inventory and Spearhead not in inventory:
@@ -121,6 +125,13 @@ def combine():
          print_text_slowly('You take a closer look at the spearhead and it\ndoes seem it could be combined with something.')
     elif Circle not in inventory and Spearhead not in inventory:
          print_text_slowly('You do not think you have anything that fits\ntogether with anything else.')
+
+def climb():
+    if MainChar.current_place.place_name == 'dungeon' and Symbol not in MainChar.inventory:
+        declare_victory()
+    else:
+        print_text_slowly('You feel like climbing but decide not to after all.')
+
 
 def act_on_single_command(command_input):
     try:
@@ -146,6 +157,8 @@ def act_on_single_command(command_input):
             dig()
         elif command_input == 'combine':
             combine()
+        elif command_input == 'climb':
+            climb()
         else:
             print_text_slowly('I do not understand that command. Write "commands" for a quick help, or "help" for available commands with examples of use.')
     except Exception as e:

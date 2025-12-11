@@ -1,24 +1,28 @@
-import os
+
 
 points_gained = {
-            'fish_caught' : False,
+            'fish' : False, #
             'cat_fed'   : False,
-            'dog_chased_away' : False,
-            'knife': False,
+            'survived_reading_book' : False,
+            'manor' : False, #
+            'knife': False, #
             'note' : False,
-            'letter' : False,
-            'rag' : False,
-            'evidence_gathered' : False,
+            'newspaper' : False,#
+            'letter' : False, #
+            'rag' : False, #
+            'evidence' : False, #
             'evidence_delivered' : False,
-            'passkey_gained' : False,
-            'circle_found' : False,
-            'spearhead_found' : False,
-            'symbol_combined' : False,
-            'church' : False,
-            'crypt' : False,
-            'dungeon': False,
-            'game_won' : False,
-
+            'passkey' : False,
+            'circle' : False, #
+            'spearhead' : False, #
+            'symbol' : False, #
+            'money' : False,
+            'coffee' : False,
+            'mirror' : False,
+            'church' : False, #
+            'crypt' : False, #
+            'dungeon': False, #
+            'game_won' : False, #
 }
 
 def return_points_gained():
@@ -31,5 +35,11 @@ def return_points_gained():
 
 def check_for_points_gained(input):
     if input in points_gained.keys():
+
+        if points_gained[input] == False:
+            print('Point gained!')
+
         points_gained[input] = True
-        print('Point gained!')
+
+
+

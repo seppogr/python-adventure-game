@@ -51,5 +51,4 @@ def declare_victory():
     print(victory_text.read())
     victory_text.close()
     print('THE END')
-    print_text_slowly(f'Final points: {MainChar.get_points()}/200. ')
     MainChar.set_life_status(False)

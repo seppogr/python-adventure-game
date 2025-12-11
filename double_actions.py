@@ -116,17 +116,14 @@ def chat(character):
 
     elif character == MainChar.follower:
         topics = npc_topics(npc_conversation[character].keys())
-        print_text_slowly(f'You remember {MainChar.follower} mentioned {print_in_colour(topics, BLUE)}\nearlier.')
+        print_text_slowly(f'You chat with the {MainChar.follower} pleasantly.')
 
     else:
         print_text_slowly(f'It seems {character} is not here. {MainChar.current_place.character.capitalize()} is\namused when you talk by yourself.')
 
 # asks the current npc about the topics that can be seen with the chat command.
 def ask(noun):
-    if noun in npc_conversation[MainChar.follower].keys():
-        print_text_slowly(f'The {MainChar.follower} says "{npc_conversation[MainChar.follower][noun]}"')
-
-    elif noun in npc_conversation[MainChar.current_place.character].keys():
+    if noun in npc_conversation[MainChar.current_place.character].keys():
         print_text_slowly(f'The {MainChar.current_place.character} says "{npc_conversation[MainChar.current_place.character][noun]}"')
 
     else:
@@ -166,17 +163,23 @@ def give(item):
             if item_obj == npc_wants_this_item:
                 npc_inventory.append(item_obj)
                 room = MainChar.current_place.place_name
+                check_for_points_gained(item)
+
+                if item == 'fish':
+                    check_for_points_gained('cat_fed')
 
                 if(MainChar.remove_from_inventory(item_obj)):
                     print_text_slowly(f'{npc_in_this_place.capitalize()} is very happy to get the {item}.')
-
                     items = MainChar.get_inventory()
                     if npc_follower_status == False:
                         check_for_death_by_item(room, items)
+
                     else:
                         MainChar.set_follower(npc_in_this_place)
                         print_text_slowly(f'The {npc_in_this_place.upper()} will help you now.')
+
                         if npc_in_this_place == 'smith'and Evidence in npc_data[MainChar.current_place.character]['items']:
+                            check_for_points_gained('evidence_delivered')
                             MainChar.set_follower('smith')
                             npc_conversation['smith']['evidence'] = proof_conversation['evidence']
 
@@ -237,12 +240,13 @@ def read(noun):
                 print_text_slowly('Good thing you managed to slip your welding mask on before reading.')
                 print_text_slowly('The notes are a diary of cult meetings and what has been offered to the deity.')
                 print_text_slowly('As you read down the list, you see that the last offering is scheduled for\ntoday and it is a human head.')
-
+                check_for_points_gained('survived_reading_book')
             else:
                 check_for_death_by_book()
 
         elif item_obj.name in readables_as_string:
             print_text_slowly(f'{item_obj.description}')
+            check_for_points_gained(noun)
 
         else:
             print_text_slowly(nothing_to_read)
@@ -256,8 +260,17 @@ def drop(noun):
     if item_obj in inventory:
         MainChar.current_place.items.append(item_obj)
         MainChar.remove_from_inventory(item_obj)
+
         if noun == 'symbol' and MainChar.current_place.place_name == 'dungeon':
-            declare_victory()
+            check_for_points_gained('game_won')
+            print_escape_text()
+            print_text_slowly('As you throw the symbol on the floor, something curious happens:')
+            print_text_slowly('The symbol shatters into two pieces, and a strong surge of power pulses from the')
+            print_text_slowly('exact place where the pieces of the symbol fell from each other. The power')
+            print_text_slowly('clearly disrupts the ritual the three robed figures were conducting, and the')
+            print_text_slowly('ground starts to shatter. Suddenly, a hole appears in the cavern roof! Sunlight')
+            print_text_slowly('starts to stream into the dungeon and, as on cue, you feel it is now or never.')
+
         else:
             print_text_slowly(f'You drop your {item_obj.name.upper()} to the ground.\nHopefully nobody comes and takes it in case you need it later!')
     else:
@@ -281,6 +294,7 @@ def gather(noun):
             MainChar.remove_from_inventory(Knife)
             MainChar.remove_from_inventory(Rag)
             MainChar.add_to_inventory(Evidence)
+            check_for_points_gained(noun)
             print_text_slowly(f'You pack the knife, rag, note and letter tightly into a pack of evidence.')
             print_text_slowly('Now, what to do with this?')
         else:
@@ -314,5 +328,5 @@ def act_on_double_command(verb, noun):
 
     except AttributeError:
         print_text_slowly(f'You grow pensive, distracted for a while but the feeling passes.\nYou come to realise there is no {noun} to be found.')
-    except KeyError:
-        print_text_slowly(f'It seems there simply is no {noun} here.')
+    except KeyError as e:
+        print_text_slowly(f'It seems there simply is no {noun} here. {e}')

@@ -55,6 +55,7 @@ def main():
             print_text_slowly(command_not_supported)
 
         if MainChar.get_life_status() == False:
+            print_text_slowly(f'Final score {MainChar.points}/{len(points_gained.keys())}')
             sys.exit(1)
 
         command_input = input('What will you do?> ').strip().lower()

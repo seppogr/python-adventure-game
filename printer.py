@@ -20,6 +20,10 @@ def print_in_colour(string, colour_code):
 def print_a_line_of_stars(colour):
     print(print_in_colour(80 * '*', colour))
 
-
-
-
+def print_escape_text():
+    print_text_slowly('As you throw the symbol on the floor, something curious happens:')
+    print_text_slowly('The symbol shatters into two pieces, and a strong surge of power pulses from the')
+    print_text_slowly('exact place where the pieces of the symbol fell from each other. The power')
+    print_text_slowly('clearly disrupts the ritual the three robed figures were conducting, and the')
+    print_text_slowly('ground starts to shatter. Suddenly, a hole appears in the cavern roof! Sunlight')
+    print_text_slowly('starts to stream into the dungeon and, as on cue, you feel it is now or never.')
