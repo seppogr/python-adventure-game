@@ -6,9 +6,10 @@ from commands import *
 from death_conditions import *
 from Item import *
 from proof_manager import proof
+from points_manager import *
 
 def test():
-    print('test code here')
+    print(points_gained)
     print(MainChar.current_place.place_name)
 
 def help():
@@ -80,6 +81,8 @@ def trade():
             MainChar.remove_from_inventory(wanted_item )
             print_text_slowly(f'You give the {wanted_item.name } and they hand over the {trade_item.name}.')
             npc_data[MainChar.current_place.character]['trader'] = False
+        else:
+            print_text_slowly(f'The {MainChar.current_place.character} exclaims: "No. You have nothing I want."')
     else:
         print_text_slowly(f'The {MainChar.current_place.character} has nothing that you want to trade.')
 

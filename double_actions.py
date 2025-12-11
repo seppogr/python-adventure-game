@@ -1,13 +1,13 @@
 from printer import *
 from Player import MainChar
-from npcs import npc_data
-from npcs import npc_conversation
+from npcs import *
 from utils import *
 from Place import *
 from Item import *
 from idler import *
 from death_conditions import *
 from proof_manager import *
+from points_manager import *
 
 
 # change from one place/room to another, called by go() when needed
@@ -30,7 +30,7 @@ def change_place(direction):
     if MainChar.follower != 'none':
         follower = MainChar.get_follower()
         print_text_slowly(f'The {follower.upper()} follows you.')
-
+    check_for_points_gained(direction)
     check_for_death_by_room(direction)
 
 # handles the go command. requires the direction where to go as parameter
@@ -177,7 +177,7 @@ def give(item):
                         MainChar.set_follower(npc_in_this_place)
                         print_text_slowly(f'The {npc_in_this_place.upper()} will help you now.')
                         if npc_in_this_place == 'smith'and Evidence in npc_data[MainChar.current_place.character]['items']:
-                            MainChar.set_follower(MainChar.current_place.character)
+                            MainChar.set_follower('smith')
                             npc_conversation['smith']['evidence'] = proof_conversation['evidence']
 
                         npc_in_this_place = None
@@ -199,6 +199,8 @@ def take(item):
         MainChar.add_to_inventory(item_obj)
         items_in_the_room.remove(item_obj)
         print_text_slowly(f'You pick up {item_short_description.upper()}.')
+        check_if_proof(item)
+        check_for_points_gained(item)
 
     else:
         print_text_slowly(f'Hmmm. You take a long look around and it seems there is no {item}\nlying around.')
@@ -215,6 +217,7 @@ def request(item):
 
     elif item_obj in npc_inventory and npc_trader_status == False:
         MainChar.add_to_inventory(item_obj)
+        check_for_points_gained(item)
         npc_inventory.remove(item_obj)
         print_text_slowly(f'You press on the {npc} to give the {item}.\nThe {item} is now in your possession.')
 
@@ -261,16 +264,16 @@ def drop(noun):
         print_text_slowly(f'You try to to drop {item_obj.name.upper()} but soon\nrealise you do not have it!')
 
 def gather(noun):
-    amount_of_proof = len(return_found_proof())
-    if noun == 'evidence' and amount_of_proof < 5:
+    amount_of_proof = amount_of_found_proof()
+    if noun == 'evidence' and amount_of_proof < 4:
         print_text_slowly(f'You strongly feel you are on the right track but\nsomething is still needed.')
         amount_needed = 5 - amount_of_proof
-        if amount_of_proof != 1:
+        if amount_needed != 1:
             print_text_slowly(f'You think about {amount_needed} more pieces proof should do it.')
         else:
             print_text_slowly(f'Just one more piece of evidence and you could present\nyour case to someone honest.')
 
-    elif noun == 'evidence' and amount_of_proof == 5:
+    elif noun == 'evidence' and amount_of_proof == 4:
         if Letter in MainChar.get_inventory() and Note in MainChar.get_inventory() and Knife in MainChar.get_inventory() and Rag in MainChar.get_inventory():
             print_text_slowly(f'That is it!')
             MainChar.remove_from_inventory(Letter)
@@ -278,7 +281,7 @@ def gather(noun):
             MainChar.remove_from_inventory(Knife)
             MainChar.remove_from_inventory(Rag)
             MainChar.add_to_inventory(Evidence)
-            print_text_slowly(f'You pack the knife, rag, note and letter tightly into a pack of evidence.\nYou are about to add the symbol as well, but have a hucnch it might be needed later.')
+            print_text_slowly(f'You pack the knife, rag, note and letter tightly into a pack of evidence.')
             print_text_slowly('Now, what to do with this?')
         else:
             print_text_slowly('It seems you have dropped something vital somewhere!')

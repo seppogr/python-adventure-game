@@ -1,7 +1,7 @@
 from Player import MainChar
 from printer import *
 from npcs import *
-
+from points_manager import *
 
 def main_char_death(killer, death_message, hint):
     print_text_slowly(death_message)
@@ -9,12 +9,13 @@ def main_char_death(killer, death_message, hint):
         print_text_slowly(f'Your journey ends in the hands of a {killer}.')
     print_text_slowly(hint)
     print_text_slowly('GAME OVER')
-    print_text_slowly(f'Final points: {MainChar.get_points()}/200. ')
+    max_points = len(points_gained.keys())
+    print_text_slowly(f'Final points: {MainChar.get_points()}/{max_points}')
     MainChar.set_life_status(False)
 
 def check_for_death_by_room(room):
     if room == 'basement' and Lamp not in MainChar.inventory:
-        death_message = 'The darkness of the cellar engulfs you.\nSomething moves and then it all ends...'
+        death_message = 'The darkness of the cellar engulfs you.\nSomething moves and you feel sharp pain in your neck...'
         hint = 'Maybe a light source would have been useful. Just a thought.'
         main_char_death(MainChar.current_place.character, death_message, hint)
 
@@ -22,7 +23,7 @@ def check_for_death_by_room(room):
         death_message = 'As you drop down on the church floor, you notice there is no way to reach\nwindow from this side. There is a door to the crypt but you cannot figure out\nhow to open it. After a while, you are surprised as the church door rattles and Alfred the Innkeeper opens the door. He stares at you for a while but then firmly\nescorts you back to town square where he puts you in the next bus out of village.'
         hint = 'You cannot but wonder if there would have beens some sort of way to open the\ncrypt door.'
         main_char_death('', death_message, hint)
-    if room == 'crypt':
+    if room == 'crypt' and MainChar.follower != 'smith':
         death_message = 'You cannot force the portal open alone. You wait in the dim crypt. After a\nwhile, the portal opens and some robed figures spawn forth and surround you.\nThey take you to the room beyond. It is a some sort of an unholy worship place,\nand you retch as you suddenly realise there is a severed head on the altar. With\na face you well recognise! Then you feel a hit in your head, and nothing more.'
         hint = 'Could be that a strong companion might be able to force the portal. Too late\nnow...'
         main_char_death('', death_message, hint)

@@ -62,4 +62,5 @@ class Player:
         return f'{self.points}'
 
 # initialise main character with default values
-MainChar = Player(0, Plaza, 'none', [], True)
+# (points gained, starting place, follower, inventory, is alive)
+MainChar = Player(0, Stables, 'none', [], True)

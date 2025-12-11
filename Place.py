@@ -220,8 +220,8 @@ Stables = Place (
 
         This is the place where normally horses are kept out of the rain. However,
         at the moment there are none due to a grisly scene in one of the corners.
-        You can see bloodstains in one corner. There is also a stablehand present. They
-        seem a bit shaken. He shuffles nervously.
+        You can see bloodstains in one corner. There is also a stablehand present.
+        They seem a bit shaken and shuffles nervously.
 
         ''',
         {'open': True, 'direction' : '', 'unlocked_by' : No_item },

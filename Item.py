@@ -8,7 +8,7 @@ Lamp = Item('lamp', 'An oil lamp. Gives bright light. ', 'a brightly illuminatin
 
 Key = Item('key', 'An old key. Opens the basement door.', 'a key to the basement door')
 
-Book = Item('book', 'An ominous black-bound tome. Written by Abdul Alhazred.', ' the necronomicon')
+Book = Item('book', 'An ominous black-bound tome. You feel nauseous just by looking at it.', 'a ritual book')
 
 Rod = Item('rod', 'A rod for fishing. You feel confident that you will catch a really big fish with this one.', 'a fishing rod')
 
@@ -53,4 +53,4 @@ Items = [Lamp, Key, Book, Rod, Mask, Fish, Money,
          Letter, Mirror, Passkey, Spearhead, Symbol,
          Newspaper, Ladder, Evidence]
 
-readables_as_string = ['note', 'newspaper']
+readables_as_string = ['note', 'newspaper', 'letter']
