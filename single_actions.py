@@ -8,6 +8,7 @@ from death_conditions import *
 from Item import *
 from proof_manager import proof
 from points_manager import *
+from in_game_messages import in_game_messages as message
 
 def test():
     pprint.pp(points_gained)
@@ -19,56 +20,56 @@ def help():
     print(help_file.read())
     print()
     help_file.close()
-    print('For a quick list of available commands, write "commands"')
+
 
 def directions():
     travel_directions = MainChar.current_place.directions.keys()
     number_of_directions =len(travel_directions)
     if number_of_directions == 1:
-        print_text_slowly('From here, the only way is: ')
+        print_text_slowly(message['the_only_way'])
     else:
-        print_text_slowly(f'You notice the following possible directions: ')
+        print_text_slowly(message['travel_directions'])
+
     print_text_slowly(f'{print_in_colour(extract_list(travel_directions), VIOLET)}')
 
 def describe():
     print_text_slowly(f'{MainChar.get_current_place().description}')
-
     if MainChar.current_place.character == '' and MainChar.follower != 'none':
-        print_text_slowly(f'There is nobody except you and {MainChar.follower} here.')
+        print_text_slowly(f'{message['no_npc_in_room_with_companion']}{MainChar.follower}.')
     elif MainChar.current_place.character == '':
-        print_text_slowly('You are alone.')
+        print_text_slowly(message['no_npc_in_room'])
     else:
         characters = MainChar.current_place.character
-        print_text_slowly(f'Maybe you can chat with the {print_in_colour(characters, GREEN)}.')
+        print_text_slowly(f'{message['chat_with']}{print_in_colour(characters, GREEN)}.')
 
     if len(MainChar.current_place.items) > 0:
             item_list = ''
             for item in MainChar.current_place.items:
                 item_list += item.name + ' '
-            print_text_slowly(f'Some possibly useful items are lying around: ')
+            print_text_slowly(message['items_found_in_room'])
             print_text_slowly(f'{print_in_colour(item_list, RED)}')
     else:
-            print_text_slowly('There are no interesting items around.')
+            print_text_slowly(message['no_items_in_room'])
 
 def commands():
     com_verbs = extract_list(command_verbs)
-    print_text_slowly(f'Combine these with a noun (for example place or item etc.):\n{print_in_colour(com_verbs, BLACK)}')
+    print_text_slowly(f'{message['double_actions']}\n{print_in_colour(com_verbs, BLACK)}')
     single_coms = extract_list(single_word_commands)
-    print_text_slowly(f'These will work as a single command:\n{print_in_colour(single_coms, BLACK)}')
+    print_text_slowly(f'{message['single_actions']}\n{print_in_colour(single_coms, BLACK)}')
 
 def companion():
     current_follower = MainChar.get_follower()
     if MainChar.follower == 'none':
-        print_text_slowly('You do not have a companion at the moment,\nmaybe you will find one.')
+        print_text_slowly(message['no_companion'])
     else:
-        print_text_slowly(f'Your current companion is a {current_follower}.\nIt feels nice not to be alone.')
+        print_text_slowly(f'{message['companion_is']}{current_follower}.{message['nice_feeling']}')
 
 def fish():
     if MainChar.current_place.place_name == 'beach' and Rod in MainChar.inventory:
         MainChar.current_place.items.append(Fish)
-        print_text_slowly('You spend a while fishing, and catch a nice fish.\nNow, who likes uncooked fish?')
+        print_text_slowly(message['catch_fish'])
     else:
-        print_text_slowly('Generally, a significant body of water, such as an ocean, and some sort of\nfishing rod are both needed to catch fish.')
+        print_text_slowly(message['cannot_fish'])
 
 
 def trade():
@@ -77,59 +78,58 @@ def trade():
         wanted_item = npc_data[MainChar.current_place.character]['wants']
         trade_item = npc_data[MainChar.current_place.character]['trades']
         if wanted_item in items:
-            print_text_slowly(f'The {MainChar.current_place.character} is happy to trade ')
+            print_text_slowly(f'The {MainChar.current_place.character}{message['will_trade']}')
             MainChar.add_to_inventory(trade_item)
             npc_data[MainChar.current_place.character]['items'].remove(trade_item)
             MainChar.remove_from_inventory(wanted_item )
-            print_text_slowly(f'You give the {wanted_item.name } and they hand over the {trade_item.name}.')
+            print_text_slowly(f'{message['give_item']}{wanted_item.name}{message['get_item']}{trade_item.name}.')
             npc_data[MainChar.current_place.character]['trader'] = False
             check_for_points_gained(wanted_item.name)
             check_for_points_gained(trade_item.name)
         else:
-            print_text_slowly(f'The {MainChar.current_place.character} exclaims: "No. You have nothing I want."')
+            print_text_slowly(f'The {MainChar.current_place.character}{message['no_trade_now']}')
     else:
-        print_text_slowly(f'The {MainChar.current_place.character} has nothing that you want to trade.')
+        print_text_slowly(f'The {MainChar.current_place.character}{message['no_trade_at_all']}')
 
 def dig():
     inventory = MainChar.get_inventory()
     place = MainChar.current_place.place_name
 
     if place == 'forest' and Shovel in inventory:
-        print_text_slowly('You dig around the place marked with an "X" and find something.')
-        print_text_slowly('It is a metal circle.')
+        print_text_slowly(message['dig_success'])
         MainChar.current_place.items.append(Circle)
 
     elif place == 'forest' and Shovel not in inventory:
-        print_text_slowly('The ground is soft and good for digging and ther certainly is an "X" to mark something.\nBut you have no tool for digging.')
+        print_text_slowly(message['no_digging_tool'])
 
     elif place != 'forest' and Shovel in inventory:
-        print_text_slowly('This is not a good place to dig. Or are you inside a building perhaps?\nIn any case the shovel is ineffective.')
+        print_text_slowly(message['wrong_place_digging'])
 
     elif place != 'forest' and Shovel not in inventory:
-        print_text_slowly('What you are missing is a good place to dig,\nband a tool for doing it.')
+        print_text_slowly(message['dig_failure'])
 
 def combine():
     inventory = MainChar.get_inventory()
     if Circle in inventory and Spearhead in inventory:
-        print_text_slowly('You take the spear and the circle, and try to fit them together.\nAfter a while of tinkering they both fit in place!')
+        print_text_slowly(message['combine_success'])
         MainChar.current_place.items.append(Symbol)
         MainChar.remove_from_inventory(Circle)
         MainChar.remove_from_inventory(Spearhead)
         proof['symbol'] = True
-        print_text_slowly('It is clearly a religious symbol,\nbut could also be a key to a locked place?')
+        print_text_slowly(message['combine_extra_info'])
 
     elif Circle in inventory and Spearhead not in inventory:
-         print_text_slowly('The markings of the metal circle look as\nif it could be combined with something.')
+         print_text_slowly(message['combine_spearhead_missing'])
     elif Circle not in inventory and Spearhead in inventory:
-         print_text_slowly('You take a closer look at the spearhead and it\ndoes seem it could be combined with something.')
+         print_text_slowly(message['combine_circle_missing'])
     elif Circle not in inventory and Spearhead not in inventory:
-         print_text_slowly('You do not think you have anything that fits\ntogether with anything else.')
+         print_text_slowly(message['no_items_to_combine'])
 
 def climb():
     if MainChar.current_place.place_name == 'dungeon' and Symbol not in MainChar.inventory:
         declare_victory()
     else:
-        print_text_slowly('You feel like climbing but decide not to after all.')
+        print_text_slowly(message['will_not_climb'])
 
 
 def act_on_single_command(command_input):
@@ -159,6 +159,6 @@ def act_on_single_command(command_input):
         elif command_input == 'climb':
             climb()
         else:
-            print_text_slowly('I do not understand that command. Write "commands" for a quick help, or "help" for available commands with examples of use.')
+            print_text_slowly(message['command_not_found'])
     except Exception as e:
         print(e)

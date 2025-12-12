@@ -8,6 +8,7 @@ from idler import *
 from death_conditions import *
 from proof_manager import *
 from points_manager import *
+from in_game_messages import in_game_messages as message
 
 
 # change from one place/room to another, called by go() when needed
@@ -59,7 +60,7 @@ def go(direction):
                 change_place(direction)
 
             else:
-                print_text_slowly(f'The {direction} door is locked. It looks like you need a {unlocking_item.name}\nto proceed.')
+                print_text_slowly(f'The {direction} door is locked. It looks like you need a {unlocking_item.name}.')
 
         elif direction == blocker_in_this_direction and road_blocker_status == True:
             unblocking_item = MainChar.current_place.blocker['unblocked_by']
