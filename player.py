@@ -50,7 +50,7 @@ class Player:
             for item in self.inventory:
                 print_text_slowly(f'- {item.name}')
         else:
-            print(f'Inventory is empty')
+            print_text_slowly(f'You are carrying nothing.')
 
     def set_life_status(self, life_status):
         self.life_status = life_status

@@ -7,6 +7,7 @@ from double_actions import act_on_double_command
 from points_manager import *
 import sys
 import os
+from in_game_messages import in_game_messages as message
 
 def print_ui():
         cls = lambda: os.system('clear')
@@ -30,7 +31,7 @@ def main():
     print_ui()
     print_text_slowly(f'You are in {MainChar.current_place.at_first_glance}.')
 
-    command_not_supported = 'Your intentions remain unclear, maybe even for yourself. You take a moment to\ngather your thoughts.'
+    #command_not_supported = 'Your intentions remain unclear, maybe even for yourself. You take a moment to\ngather your thoughts.'
 
     command_input = input('What will you do?> ').strip().lower()
 
@@ -48,11 +49,11 @@ def main():
             verb = list_of_commands[0]
             noun = list_of_commands[1]
             if verb not in command_verbs:
-                print_text_slowly(command_not_supported)
+                print_text_slowly(message['command_not_supported'])
             act_on_double_command(verb, noun)
 
         else:
-            print_text_slowly(command_not_supported)
+            print_text_slowly(message['command_not_supported'])
 
         if MainChar.get_life_status() == False:
             print_text_slowly(f'Final score {MainChar.points}/{len(points_gained.keys())}')
