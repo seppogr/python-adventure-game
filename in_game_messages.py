@@ -20,6 +20,7 @@ in_game_messages = {
     'command_not_found' : 'I do not understand that command. Write "commands" for a quick help, or "help" for available commands with examples of use.',
     'cannot_pick_up' : 'Hmmm. You take a long look around but cannot spot any ',
     'command_not_supported' : 'Your intentions remain unclear, maybe even for yourself. You take a moment to\ngather your thoughts.',
+    'cat_photo' : 'The cat is really nice. It looks like this:',
 
 
     # D
@@ -63,6 +64,7 @@ in_game_messages = {
     'items_found_in_room' : 'Some possibly useful items are lying around: ',
     'idler_accepts_imaginary_friend' : 'The idler does not mind that you try to talk to somebody who is not here.',
     'item_not_in_inventory' : 'You rummage and rummage through your bag, but you have no ',
+    'idler_and_cat' : 'Who said it that cats have secrets? The idler?',
 
 
     # N

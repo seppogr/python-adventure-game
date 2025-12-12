@@ -47,12 +47,13 @@ in-game conditions are met.
 'dig'                -> Find a good place and some sort of digging tool and
                         perhaps you'll find something.
 ********************************************************************************
-'combine'            -> Some items may fit together. I you manage to 'combine'
+'combine'            -> Some items may fit together. If you manage to 'combine'
                         them, remember to pick up your new item.
 ********************************************************************************
 'climb'             ->  Climb!
 ********************************************************************************
-'gather' + <noun>    -> Bring your different proof to get... Evidence?
+'gather' + <noun>    -> Bring your different pieces of proof together to get...
+                        Evidence?
 ********************************************************************************
 
 ********************************************************************************
@@ -67,7 +68,7 @@ go + <place>        ->  Move from one place to another. If you cannot think of a
 ********************************************************************************
 describe + <item>   ->  Describe an item more thoroughly. Can be important when
     or <character>      you are trying to find important clues. This is not
-                        interaction, it is you looking at things.For a general
+                        interaction, it is you looking at things. For a general
                         look into your whereabouts, use the single word
                         'describe' command. If you wish to communicate, use
                         'ask <about>' command.
@@ -77,10 +78,10 @@ ask + <about>       ->  Ask another character about an item or place, or about
                         about, use 'chat' command. This is a specific
                         interaction with another character.
 ********************************************************************************
-give + <item>       ->  If you got a specific item that sombody wants, you can
+give + <item>       ->  If you got a specific item that somebody wants, you can
                         give it to them.
 ********************************************************************************
-take + <item>       ->  If there is somethiing in the room that you need or
+take + <item>       ->  If there is something in the room that you need or
                         want, you can get it with this command.
 ********************************************************************************
 request + <item>    ->  Politely ask for an item in somebody else's possession.

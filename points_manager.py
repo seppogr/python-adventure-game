@@ -2,7 +2,7 @@
 
 points_gained = {
             'fish' : False, #
-            'cat_fed'   : False,
+            'cat_fed': False,
             'survived_reading_book' : False,
             'manor' : False, #
             'knife': False, #

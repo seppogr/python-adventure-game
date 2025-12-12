@@ -11,9 +11,16 @@ from points_manager import *
 from in_game_messages import in_game_messages as message
 
 def test():
+    print('Congrats, you found the secret! Can you find the other one?')
+    print('The table below keepd track of the points gained during the game')
     pprint.pp(points_gained)
 
-
+def secret():
+    if MainChar.follower == 'cat':
+        print_text_slowly(message['cat_photo'])
+        print_cat()
+    else:
+        print_text_slowly(message['idler_and_cat'])
 
 def help():
     help_file = open("help.txt")
@@ -158,6 +165,8 @@ def act_on_single_command(command_input):
             combine()
         elif command_input == 'climb':
             climb()
+        elif command_input == 'secret':
+            secret()
         else:
             print_text_slowly(message['command_not_found'])
     except Exception as e:

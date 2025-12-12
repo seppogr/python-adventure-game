@@ -2,7 +2,6 @@ from Place import *
 from printer import *
 
 class Player:
-    """edustaa pelaajaa"""
     def __init__(self, points, current_place, follower, inventory, life_status):
         self.points = points
         self.current_place = current_place
@@ -63,4 +62,4 @@ class Player:
 
 # initialise main character with default values
 # (points gained, starting place, follower, inventory, is alive)
-MainChar = Player(0, Plaza, 'none', [], True)
+MainChar = Player(0, Plaza, '', [], True)
