@@ -1,8 +1,8 @@
 import time
 from colours import *
 
-#print_text_delay = .04
-print_text_delay = .001
+print_text_delay = .04
+#print_text_delay = .001
 
 # custom print() function
 # writes a string letter by letter with a slight delay between letters
@@ -30,10 +30,9 @@ def print_escape_text():
     print_text_slowly('starts to stream into the dungeon and, as on cue, you feel it is now or never.')
 
 def print_cat():
-    print_text_slowly(print_in_colour("""
-+--------------------+
+    print_text_slowly(print_in_colour(
+"""+--------------------+
 |  /\___/\ --- MEOW! |
 | ( =`.´= )          |
 |  (__(,,))___/      |
-+--------------------+
-""",REDBG2))
++--------------------+""",REDBG2))

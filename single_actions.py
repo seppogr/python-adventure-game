@@ -113,8 +113,11 @@ def dig():
     place = MainChar.current_place.place_name
 
     if place == 'forest' and Shovel in inventory:
-        print_text_slowly(message['dig_success'])
-        MainChar.current_place.items.append(Circle)
+        if Circle not in MainChar.current_place.items and Circle not in inventory:
+            print_text_slowly(message['dig_success'])
+            MainChar.current_place.items.append(Circle)
+        else:
+            print_text_slowly(message['dig_not_anymore'])
 
     elif place == 'forest' and Shovel not in inventory:
         print_text_slowly(message['no_digging_tool'])
@@ -131,7 +134,7 @@ def combine():
     inventory = MainChar.get_inventory()
     if Circle in inventory and Spearhead in inventory:
         print_text_slowly(message['combine_success'])
-        MainChar.current_place.items.append(Symbol)
+        MainChar.add_to_inventory(Symbol)
         MainChar.remove_from_inventory(Circle)
         MainChar.remove_from_inventory(Spearhead)
         proof['symbol'] = True

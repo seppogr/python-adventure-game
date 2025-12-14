@@ -45,7 +45,7 @@ class Player:
 
     def print_inventory(self):
         if self.inventory:
-            print_text_slowly('you have...')
+            print_text_slowly('You have...')
             for item in self.inventory:
                 print_text_slowly(f'- {item.name}')
         else:
@@ -62,4 +62,4 @@ class Player:
 
 # initialise main character with default values
 # (points gained, starting place, follower, inventory, is alive)
-MainChar = Player(0, Plaza, 'none', [], True)
+MainChar = Player(0, Plaza, 'cat', [], True)

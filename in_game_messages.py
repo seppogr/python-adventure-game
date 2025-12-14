@@ -34,6 +34,7 @@ in_game_messages = {
     'dig_failure' : 'What you are missing is a good place to dig,\nband a tool for doing it.',
     'drop_success' : ' to the ground.\nHopefully nobody comes and takes it in case you need it later!',
     'drop_failure' : ' but soon realise you do not have it!',
+    'dig_not_anymore' : 'You try to dig some more but find nothing.',
 
     # E
 
