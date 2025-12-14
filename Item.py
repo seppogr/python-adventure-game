@@ -1,3 +1,5 @@
+# item class object
+
 class Item:
     def __init__(self, name, description, synonym):
         self.name = name

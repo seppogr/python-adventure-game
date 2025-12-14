@@ -62,4 +62,4 @@ class Player:
 
 # initialise main character with default values
 # (points gained, starting place, follower, inventory, is alive)
-MainChar = Player(0, Plaza, '', [], True)
+MainChar = Player(0, Plaza, 'none', [], True)

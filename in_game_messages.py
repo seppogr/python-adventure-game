@@ -1,3 +1,5 @@
+# Dictionary of most massages the player can get during the game. Some are partial.
+
 in_game_messages = {
     # A
 
@@ -11,7 +13,7 @@ in_game_messages = {
     'chat_with' : 'Maybe you can chat with the ',
     'chat_in_plaza' : 'It is impossible to talk to anyone except the village idler. He is simply just everywhere\nin this place at once.',
     'chat_with_companion' : 'You have a pleasant chat with the ',
-    'combine_success' : 'You take the spear and the circle, and try to fit them together.\nAfter a while of tinkering they both fit in place!',
+    'combine_success' : 'You take the spearhead and the circle, and try to fit them together.\nAfter a while of tinkering they both fit in place!',
     'combine_extra_info' : 'It is clearly a religious symbol, but could also be a key to a locked place?',
     'combine_spearhead_missing' : 'The markings of the metal circle look as if it could be combined with something.',
     'combine_circle_missing' : 'You take a closer look at the spearhead and it does seem it could be combined with something.',
@@ -20,7 +22,7 @@ in_game_messages = {
     'command_not_found' : 'I do not understand that command. Write "commands" for a quick help, or "help" for available commands with examples of use.',
     'cannot_pick_up' : 'Hmmm. You take a long look around but cannot spot any ',
     'command_not_supported' : 'Your intentions remain unclear, maybe even for yourself. You take a moment to\ngather your thoughts.',
-    'cat_photo' : 'The cat is really nice. It looks like this:',
+    'cat_photo' : 'The cat is really nice. It looks like this while hitting the dog:',
 
 
     # D

@@ -1,8 +1,11 @@
+# Checks for game endings
+
 from Player import MainChar
 from printer import *
 from npcs import *
 from points_manager import *
 
+# main function
 def main_char_death(killer, death_message, hint):
     print_text_slowly(death_message)
     if len(killer) > 1:
@@ -12,6 +15,8 @@ def main_char_death(killer, death_message, hint):
     max_points = len(points_gained.keys())
     print_text_slowly(f'Final points: {MainChar.get_points()}/{max_points}')
     MainChar.set_life_status(False)
+
+# check for death in  a specific room
 
 def check_for_death_by_room(room):
     if room == 'basement' and Lamp not in MainChar.inventory:
@@ -23,10 +28,13 @@ def check_for_death_by_room(room):
         death_message = 'As you drop down on the church floor, you notice there is no way to reach\nwindow from this side. There is a door to the crypt but you cannot figure out\nhow to open it. After a while, you are surprised as the church door rattles and Alfred the Innkeeper opens the door. He stares at you for a while but then firmly\nescorts you back to town square where he puts you in the next bus out of village.'
         hint = 'You cannot but wonder if there would have beens some sort of way to open the\ncrypt door.'
         main_char_death('', death_message, hint)
+
     if room == 'crypt' and MainChar.follower != 'smith':
         death_message = 'You cannot force the portal open alone. You wait in the dim crypt. After a\nwhile, the portal opens and some robed figures spawn forth and surround you.\nThey take you to the room beyond. It is a some sort of an unholy worship place,\nand you retch as you suddenly realise there is a severed head on the altar. With\na face you well recognise! Then you feel a hit in your head, and nothing more.'
         hint = 'Could be that a strong companion might be able to force the portal. Too late\nnow...'
         main_char_death('', death_message, hint)
+
+# Check for a death caused by a specific item
 
 def check_for_death_by_item(room, items):
     if room == 'basement' and Lamp not in items:
@@ -39,12 +47,14 @@ def check_for_death_by_item(room, items):
         hint = 'Maybe always doing what people tell you to is not a key to victory.'
         main_char_death('a', death_message, hint)
 
-
+# Check if pc tries to read the book without protection
 
 def check_for_death_by_book():
     death_message = 'First, your eyes feel like melting and a moment later it feels your brain is\nfrying. Then, nothing.'
     hint = 'Huh, reading strange books without some means of protection was not too bright.\nAfter all, it DID say "Necronomicon" on the cover.'
     main_char_death('book', death_message, hint)
+
+# Check for victory
 
 def declare_victory():
     victory_text = open("victory.txt")

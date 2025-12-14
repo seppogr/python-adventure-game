@@ -192,7 +192,7 @@ def give(item):
     else:
         print_text_slowly(f'{message['item_not_in_inventory']}{item}')
 
-
+# Check if item is available for taking and adds it to player inventory
 
 def take(item):
     items_in_the_room = MainChar.current_place.items
@@ -208,6 +208,8 @@ def take(item):
 
     else:
         print_text_slowly(f'{message['cannot_pick_up']}{item}.')
+
+# check if npc inventory item is available for taking
 
 def request(item):
     item_obj = fetch_item_object_by_value(item)
@@ -227,6 +229,8 @@ def request(item):
 
     elif item_obj in npc_inventory and npc_trader_status == True:
         print_text_slowly(f'The {npc} says: "I could give you the {item},\nif you bring me {item_npc_wants_to_keep.name}."')
+
+# gey description of an item if it's readable
 
 def read(noun):
     inventory = MainChar.get_inventory()
@@ -254,6 +258,8 @@ def read(noun):
     else:
         print_text_slowly(message['nothing_to_read'])
 
+# removes item from player inventory and adds it to room inventory
+
 def drop(noun):
     inventory = MainChar.get_inventory()
     item_obj = fetch_item_object_by_value(noun)
@@ -270,6 +276,9 @@ def drop(noun):
             print_text_slowly(f'You drop your {item_obj.name.upper()}{message['drop_success']}')
     else:
         print_text_slowly(f'You try to to drop {item_obj.name.upper()}{message['drop_failure']}')
+
+# Check if player has 4 proof in inventory and if so, removes them and adds Evidence item.
+# Otherwise informs how many pieces of proof are missing.
 
 def gather(noun):
     amount_of_proof = amount_of_found_proof()

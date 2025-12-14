@@ -1,3 +1,5 @@
+# Main file. LAunches and updates the game and the game ui.
+
 from Player import MainChar
 from Place import *
 from commands import *

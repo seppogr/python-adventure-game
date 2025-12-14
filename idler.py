@@ -1,3 +1,5 @@
+# Randomises what the idler npc says when player chats with him
+
 import random
 from printer import *
 from colours import idler_colour_list
