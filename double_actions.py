@@ -135,17 +135,18 @@ def ask(noun):
 def describe(noun):
     room_items = extract_item_names_from_object_list(MainChar.current_place.items)
     npc_items = extract_item_names_from_object_list(npc_data[MainChar.current_place.character]['items'])
-    character_items = extract_item_names_from_object_list(MainChar.get_inventory())
+    a = MainChar.get_inventory()
+    character_items = extract_item_names_from_object_list(a)
     item_obj = fetch_item_object_by_value(noun)
 
     if noun in room_items or noun in npc_items or noun in character_items:
         print_text_slowly(item_obj.description)
 
-    elif noun in MainChar.current_place.character:
+    elif noun == MainChar.current_place.character:
         print_text_slowly(npc_data[noun]['description'])
 
     else:
-        print_text_slowly(f'{message['no_item_to_describe']}{noun}{message['no_item_to_describe_cont']}{noun}')
+        print_text_slowly(f'{message['no_item_to_describe']}{noun}.\n{message['no_item_to_describe_cont']}{noun}')
 
 # remove item from your inventory only if the npc wants that item.
 # if so, also adds the item to npc's inventory

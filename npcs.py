@@ -83,7 +83,16 @@ npc_data = {
         'follower' : False,
         'trader'   : True,
         'trades'   : Spearhead
-    }
+    },
+        'idler' : {
+        'description' : 'Must be some sort of village idler.',
+        'wants': No_item,
+        'items' : [],
+        'greeting' : 'MmmMMmMmm.',
+        'follower' : False,
+        'trader'   : False,
+        'trades'   : No_item
+        }
 }
 
 # npc_conversation:
@@ -121,7 +130,8 @@ npc_conversation = {
         'count'     : 'The old lord hereabouts. Only the cook of their household is of a good sort.',
         'friend'    : 'He was here, fishing for a couple of days. And the disappeared',
         'disappearance' : 'A strange case, there is something odd about that.',
-        'stablehand' : 'He looks like a criminal, but I have no evidence against him.'
+        'stablehand' : 'He looks like a criminal, but I have no evidence against him.',
+        'proof' : 'If you find enough proof, I will believe you.'
     },
     'shopkeeper' : {
         'name'      : 'Adam, at your service.',

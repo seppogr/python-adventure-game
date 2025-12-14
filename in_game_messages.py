@@ -85,7 +85,7 @@ in_game_messages = {
     'npc_cannot_answer' : ' is something I know nothing about.',
     'npc_unavailable' : '. Unfortunately they are too far away.',
     'no_item_to_describe' : 'You glance about the room but there is no ',
-    'no_item_to_describe_cont' : '. You do not find it in your pockets either.\nYou check your hands but they are definitely NOT holding anything even remotely resembling the ',
+    'no_item_to_describe_cont' : 'You do not find it in your pockets either.\nYou check your hands but they are definitely NOT holding anything even remotely resembling the ',
     'npc_could_trade' : ', but could be interested in trading something.',
     'npc_refuses_request' : ' explains: "No! Never in my life shall I part again from this precious ',
     'nothing_to_read' : 'It appears you have nothing to read.',
