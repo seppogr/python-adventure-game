@@ -82,8 +82,11 @@ def companion():
 # if you have a rod and are at beach, a fish is added to place inventory
 def fish():
     if MainChar.current_place.place_name == 'beach' and Rod in MainChar.inventory:
-        MainChar.current_place.items.append(Fish)
-        print_text_slowly(message['catch_fish'])
+        if Fish not in MainChar.current_place.items and Fish not in MainChar.inventory:
+            MainChar.current_place.items.append(Fish)
+            print_text_slowly(message['catch_fish'])
+        else:
+            print_text_slowly(message['fishing_already_done'])
     else:
         print_text_slowly(message['cannot_fish'])
 
