@@ -26,13 +26,13 @@ Shovel = Item('shovel', 'A sturdy and reliable shovel. Good for digging.', 'a go
 
 Circle = Item('circle', 'A small metal circle. Looks like it has some indentations and could be combined with some other similar objects.', 'a metal circle')
 
-Note = Item('note', 'The note reads: "A, bury yours somewhere. It is not safe for us to keep them combined until tonight. I will hide mine.\n --C\n PS. Get the book from the guardian somehow!"', 'a piece of paper with some writing')
+Note = Item('note', 'The note reads: "A, bury yours somewhere. It is not safe for us to keep them combined until tonight. I will hide mine.\n --C\n PS. Get the book from the guardian somehow!" You surmise this is a piece of proof.', 'a piece of paper with some writing')
 
-Knife = Item('knife', 'A long knife with a sharp edge. It is clear that somebody has tried to wash the stains away quite recently.', 'a wicked, blood-stained knife')
+Knife = Item('knife', 'A long knife with a sharp edge. It is clear that somebody has tried to wash the stains away quite recently. You surmise this is a piece of proof.', 'a wicked, blood-stained knife')
 
-Rag = Item('rag', 'A red-stained rag. Blood, maybe?', 'a stained rag')
+Rag = Item('rag', 'A red-stained rag. Blood, maybe? You surmise this is a piece of proof.', 'a stained rag')
 
-Letter = Item('letter', 'C! Did what you asked. Are you sure your part is safe with her. She IS a bit unreliable, if you know what I mean.\n --A', 'a short letter addressed to someone with initial "C"')
+Letter = Item('letter', '"C! Did what you asked. Are you sure your part is safe with her. She IS a bit unreliable, if you know what I mean.\n --A" You surmise this is a piece of proof.', 'a short letter addressed to someone with initial "C"')
 
 Mirror = Item('mirror', 'A very normal mirror. The reflection is clear and the surfaced unstained.', 'an ordinary looking-glass')
 
@@ -40,9 +40,9 @@ Passkey = Item('passkey', 'A key to unlock the upstairs door in the manor.', 'th
 
 Spearhead = Item('spearhead', 'An ancient spearhead. Upon closer inspection, some small parts in the edges have seen use recently and shine in an uncomfortable way.', 'an evil-looking spearhead')
 
-Symbol = Item('symbol', 'A strange symbol combining circle and spearhead. You guess it has some religious signifigance, but you would not classify it as "holy".', 'an evil symbol')
+Symbol = Item('symbol', 'A strange symbol combining circle and spearhead. You guess it has some religious signifigance, but you would not classify it as "holy"\nYou could probably break it back to pieces just by dropping it to a stone floor.', 'an evil symbol')
 
-Newspaper = Item('newspaper', 'A local newspaper full of old articles. The date is almost exactly from 25 years ago.\nYou are about to throw it away until your\neyes spot something interesting. And ominous.\n "STRANGE DISAPPEARANCE\n A headless body found!!!"\n The rest is torn away.', 'an old local newspaper')
+Newspaper = Item('newspaper', 'A local newspaper full of old articles. The date is almost exactly from a year ago.\nYou are about to throw it away until your\neyes spot something interesting. And ominous.\n "STRANGE DISAPPEARANCE\n A headless body found!!!"\n The rest is torn away.', 'an old local newspaper')
 
 Ladder = Item('ladder', 'A sturdy, portable ladder. Useful for reaching high spots.', 'a wooden ladder')
 

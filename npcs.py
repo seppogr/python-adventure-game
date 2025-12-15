@@ -4,7 +4,7 @@ from Item import *
 
 npc_data = {
     'innkeeper': {
-        'description' : 'A middle-aged man with a beard and a worried look on his face. Probably wants to talk to you about something.',
+        'description' : 'A middle-aged man with a beard and a worried look on his face.\nProbably wants to talk to you about something.',
         'wants' : Book,
         'items' : [Key],
         'greeting' : 'Hello traveler',
@@ -49,7 +49,7 @@ npc_data = {
         'trades'   : Coffee
     },
     'cook' : {
-        'description' : 'An elderly cook. Clearly intelligent and runs the manor kitchen with utmost care.',
+        'description' : 'An elderly cook.\nClearly intelligent and runs the manor kitchen with utmost care.',
         'wants': Coffee,
         'items' : [Passkey],
         'greeting' : 'Hello dear!',
@@ -106,15 +106,15 @@ npc_conversation = {
         'mission'   : 'There is a book in the basement. Can you bring it to me?',
         'key'       : 'You will need this key to open the basement door.',
         'lamp'      : 'That is a good lamp.',
-        'cannibal'   : 'A cannibal is kept in the basement and I cannot go there myself.',
+        'cannibal'   : 'Huh? What cannibal. No such ones here in the village.',
         'basement'  : 'It is our wine cellar. Kept dark in purpose.',
         'book'      : 'The count left it in the basement.',
-        'friend'    : 'I think someone of that description was here but left in a hurry. I do not think he is in the area anymore.'
+        'friend'    : 'I think someone of that description was here but left in a hurry.\nI do not think he is in the area anymore.'
     },
     'cannibal' : {
         'cannibal'   : 'I must stay here in the basement until the polica arrives. Just my luck I guess.',
         'mission'   : 'What a nice lamp you have, please give it to me! I hate it here in the dark.',
-        'book'      : 'It is not important, no need for you to check it. Just leave it here in the circle.',
+        'book'      : 'It is not important, no need for you to check it.\nJust leave it here in the circle.',
         'circle'    : 'Just some drawing on the floor. Nothing important.',
         'friend'    : 'Mmmm---friend yes-yes friend.'
     },
@@ -126,7 +126,7 @@ npc_conversation = {
         'name'      : 'I am Alan.',
         'job'       : 'The local smith, I also fix this and that.',
         'mask'      : 'That, an old welding mask. I do not use it anymore. Just take it if you need it.',
-        'innkeeper' : 'He has some odd business going on with the count in the manor. I do not trust them.',
+        'innkeeper' : 'He has some odd business going on with the count in the manor.\nI do not trust them.',
         'count'     : 'The old lord hereabouts. Only the cook of their household is of a good sort.',
         'friend'    : 'He was here, fishing for a couple of days. And the disappeared',
         'disappearance' : 'A strange case, there is something odd about that.',
@@ -151,7 +151,7 @@ npc_conversation = {
         'passkey'   : 'It will unlock the upstairs door.',
         'count'     : 'Ah well, set in his ways. Not the same after they locked the countess upstairs.',
         'locked'    : 'Yes, maybe I should not say anything. I got the passkey, though.',
-        'countess'  : 'Lost her mind, poor thing. Not surprising after seeing what they did to that poor man.',
+        'countess'  : 'Lost her mind, poor thing.\nNot surprising after seeing what they did to that poor man.',
         'stablehand'       : 'I should not say anything. The count forbade it.'
     },
     'stablehand' : {
@@ -165,9 +165,9 @@ npc_conversation = {
     'count' : {
         'name' : 'You may call me The Count',
         'job' : 'I govern these parts.',
-        'countess' : 'I am afraid that is a topic not to be discussed among starngers. Suffice to say she is unwell at present and rests upstairs.',
-        'stablehand' : 'I cannot fathom how I could manage how I could manged without Chris! Indispensable, that man.',
-        'cook' : 'She is not very trustworthy, I am afraid. I would have let her go were it not for the delicate condition of the countess.'
+        'countess' : 'I am afraid that is a topic not to be discussed among strangers.\nSuffice to say she is unwell at present and rests upstairs.',
+        'stablehand' : 'I cannot fathom how I could manage how I could manged without Chris!\nIndispensable, that man.',
+        'cook' : 'She is not very trustworthy, I am afraid.\nI would have let her go were it not for the delicate condition of the countess.'
     },
     'countess' : {
         'name' : 'I am- I am. Lady Alise.',
@@ -178,3 +178,9 @@ npc_conversation = {
     },
 
 }
+
+# string length checker. change character name to check
+# different character conversations.
+
+# for item in npc_conversation['countess']:
+#     print(f'{item}: {len(npc_conversation['countess'][item])}')
